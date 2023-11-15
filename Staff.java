@@ -9,7 +9,7 @@ public class Staff extends User {
     // CampList participantMembersList = new CampList();
     // CampList campCommitteeMembersList = new CampList();
     // CampList campMembersList = new CampList();
-    // CampList campList = new CampList(); // not confirmed yet ... suggestion: implement a global list
+    //CampList campList = new CampList(); // not confirmed yet ... suggestion: implement a global list
 
     Scanner scanner = new Scanner(System.in);
 

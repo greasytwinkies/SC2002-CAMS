@@ -21,24 +21,9 @@ public class CampInformation {
 	private int CurrentCampMemberSlots = CurrentParticipantSlots + CurrentCampCommitteeSlots;
 
 	private String Description;
-	private Staff StaffInCharge;
+	private String StaffInCharge;
 
-	public CampInformation(){ // incomplete
-		System.out.println("Camp Visibility: " + CampVisibility);
-		System.out.println("Camp Name: " + CampName);
-		System.out.println("Starting Date: " + StartingDate);
-		System.out.println("Ending Date: " + EndingDate);
-		System.out.println("Registration Closing Date: " + RegistrationClosingDate);
-		System.out.println("isFaculty: " + Faculty);
-		System.out.println("Location: " + Location);
-		System.out.println("Total Participant Slots: " + TotalParticipantSlots);
-		System.out.println("Current Participant Slots: " + CurrentCampCommitteeSlots);
-		System.out.println("Total Camp Committee Slots: " + TotalCampCommitteeSlots);
-		System.out.println("Current Camp Committee Slots: " + CurrentCampCommitteeSlots);
-		System.out.println("Total Camp Member Slots: " + TotalCampMemberSlots);
-		System.out.println("Current Camp Member Slots: " + CurrentCampMemberSlots);
-		System.out.println("Description: " + Description);
-		System.out.println("Staff In Charge: " + StaffInCharge);
+	public CampInformation(){ 
 	}
 
     public CampInformation(String CampName){
@@ -114,11 +99,11 @@ public class CampInformation {
 		Description = description;
 	}
 
-	public Staff getStaffInCharge() {
+	public String getStaffInCharge() {
 		return StaffInCharge;
 	}
 
-	public void setStaffInCharge(Staff staffInCharge) {
+	public void setStaffInCharge(String staffInCharge) {
 		StaffInCharge = staffInCharge;
 	}
 

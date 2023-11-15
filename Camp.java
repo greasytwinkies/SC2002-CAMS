@@ -8,8 +8,8 @@ public class Camp {
     private StudentList CampCommitteeMembersList;
     private StudentList CampMemberList;
 
-    public Camp(String staffName){
-        campInfo = new CampInformation(staffName);
+    public Camp(CampInformation campInformation){
+        this.campInfo = campInformation;
 
     }
 
