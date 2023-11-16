@@ -19,7 +19,7 @@ public class StaffMenuController {
             switch (choice) {
                 case 1:
                     CampInformation campInformation = CampInformationCreater.populateCampInformation();
-                    camp = new Camp(campInformation);
+                    camp = new Camp(campInformation, staff);
                     campList.addToList(camp);
                     campList.printList();
                     // add to staff's list of camps
@@ -37,22 +37,18 @@ public class StaffMenuController {
                     campList.deleteFromList(camp);
                     // delete from staff's list of camps too
                     break;
-/*                 case 4:
+                case 4:
                     System.out.println("Enter the Camp Name to toggle visibility: ");
                     String campToggleVisbility = scanner.nextLine();
-                    System.out.println("Enter Y/N for True/False: ");
-                    if (scanner.nextLine().toUpperCase().equals("Y")) {
-                        staff.toggleCampVisibility(campToggleVisbility, true);
-                    } else if (scanner.nextLine().toUpperCase().equals("N")) {
-                        staff.toggleCampVisibility(campToggleVisbility, false);
-                    }
-                    break; */
+                    camp = campList.findCamp(campList, campToggleVisbility);
+                    campInfoControl.toggleCampVisibility(camp.getCampInfo());
+                    break; 
                 case 5:
                     campList.printList();
                     break;
-/*                 case 6:
-                    staff.viewCreatedCamps();
-                    break; */
+                case 6:
+                    campList.printUserCamp(staff);
+                    break; 
             //     case 7:
             //         staff.viewEnquiries(enquiryList); // insert a enquiryList object
             //         break;

@@ -1,0 +1,13 @@
+2
+HUKUMAR@NTU.EDU.SG
+Password
+n
+1
+true
+01-01-2023
+01-01-2023
+01-01-2023
+spms
+4
+4
+this is the camp description

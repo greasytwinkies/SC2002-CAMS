@@ -21,7 +21,7 @@ public class CampInformation {
 	private int CurrentCampMemberSlots = CurrentParticipantSlots + CurrentCampCommitteeSlots;
 
 	private String Description;
-	private String StaffInCharge;
+	private Staff StaffInCharge;
 
 	public CampInformation(){ 
 	}
@@ -99,11 +99,11 @@ public class CampInformation {
 		Description = description;
 	}
 
-	public String getStaffInCharge() {
+	public Staff getStaffInCharge() {
 		return StaffInCharge;
 	}
 
-	public void setStaffInCharge(String staffInCharge) {
+	public void setStaffInCharge(Staff staffInCharge) {
 		StaffInCharge = staffInCharge;
 	}
 

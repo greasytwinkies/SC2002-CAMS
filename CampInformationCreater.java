@@ -51,8 +51,8 @@ public class CampInformationCreater {
         System.out.println("Enter the Camp Description: ");
         campInformation.setDescription(scanner.nextLine());
 
-        System.out.println("Enter the staff in charge ");
-        campInformation.setStaffInCharge(scanner.nextLine());
+        //System.out.println("Enter the staff in charge "); //staff in charge is the staff that created the camp
+        //campInformation.setStaffInCharge(scanner.nextLine());
     
         return campInformation;
     }

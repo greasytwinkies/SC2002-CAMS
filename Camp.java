@@ -2,14 +2,16 @@ import java.time.LocalDate;
 
 public class Camp {
     private CampInformation campInfo;
+
     // private EnquiryList enquiries;
     // private SuggestionList suggestions;
     private StudentList CampAttendeesList;
     private StudentList CampCommitteeMembersList;
     private StudentList CampMemberList;
 
-    public Camp(CampInformation campInformation){
+    public Camp(CampInformation campInformation, Staff staffInCharge){
         this.campInfo = campInformation;
+        campInformation.setStaffInCharge(staffInCharge);
 
     }
 

@@ -97,4 +97,27 @@ public class CampInformationMenuController {
             }
         } while (choice > 0 && choice < 11);
     }
+
+    public void toggleCampVisibility(CampInformation campinfo){
+        
+        System.out.print(campinfo.getCampName() + " Current visibility status: ");
+        if (campinfo.getCampVisibility()) {
+            System.out.println("Visible");
+        }
+        else {
+            System.out.println("Hidden");
+        }
+        System.out.println("Enter Y/N (True/False) for visibility status");
+        String input = scanner.nextLine();
+        
+        if(input.toUpperCase().equals("Y")){
+            campinfo.setCampVisibility(true);
+        }else if(input.toUpperCase().equals("N")){
+            campinfo.setCampVisibility(false);
+        }
+        String visibility = Boolean.toString(campinfo.getCampVisibility());
+        System.out.print(campinfo.getCampName() + " visibility status successfully changed to: " + visibility + "\n");
+        
+
+    }
 }
