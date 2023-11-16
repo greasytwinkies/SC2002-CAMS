@@ -26,4 +26,13 @@ public class CampList extends List{
     public Object getFromList(int index){
         return super.getFromList(index);
     }
+
+    public Camp findCamp(CampList campList, String campName){
+        for(int i=0; i < campList.list.size() ; i++){
+            if(((Camp) campList.getFromList(i)).getCampInfo().getCampName().equals(campName)) {
+                return (Camp) campList.getFromList(i);
+            }
+        }
+        return null;
+    }
 }

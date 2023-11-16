@@ -7,10 +7,11 @@ public class CampInformationMenuController {
 
     public void CampInformationMenuControl(CampInformation campInfo) {
         CampInformationMenu campInfoMenu = new CampInformationMenu();
-        campInfoMenu.printMenu();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        int choice = Integer.valueOf(scanner.nextLine());
+        int choice;
         do {
+            campInfoMenu.printMenu();
+            choice = Integer.valueOf(scanner.nextLine());
             switch (choice) {
                 case 1:
                     System.out.print("Current visibility status: ");
@@ -21,9 +22,11 @@ public class CampInformationMenuController {
                         System.out.println("Hidden");
                     }
                     System.out.println("Enter Y/N (True/False) for visibility status");
-                    if(scanner.nextLine().toUpperCase().equals("Y")){
+                    String input = scanner.nextLine();
+                    
+                    if(input.toUpperCase().equals("Y")){
                         campInfo.setCampVisibility(true);
-                    }else if(scanner.nextLine().toUpperCase().equals("N")){
+                    }else if(input.toUpperCase().equals("N")){
                         campInfo.setCampVisibility(false);
                     }
                     break;
@@ -92,6 +95,6 @@ public class CampInformationMenuController {
                 case 11:
                     break;
             }
-        } while (choice > 1 || choice < 11);
+        } while (choice > 0 && choice < 11);
     }
 }

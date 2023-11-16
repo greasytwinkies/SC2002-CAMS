@@ -46,6 +46,7 @@ public class CampInformationCreater {
         System.out.println("Enter the total number of camp Comittee Slots: ");
         campInformation.setTotalCampCommitteeSlots(scanner.nextInt());
         campInformation.setCurrentCampCommitteeSlots(0);
+        scanner.nextLine();
 
         System.out.println("Enter the Camp Description: ");
         campInformation.setDescription(scanner.nextLine());

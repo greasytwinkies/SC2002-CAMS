@@ -9,12 +9,20 @@ public class Staff extends User {
     // CampList participantMembersList = new CampList();
     // CampList campCommitteeMembersList = new CampList();
     // CampList campMembersList = new CampList();
-    //CampList campList = new CampList(); // not confirmed yet ... suggestion: implement a global list
+    CampList campList = new CampList(getName()); // name of list will be staff's name for now
 
     Scanner scanner = new Scanner(System.in);
 
     public Staff(String name, String userID, String password, Faculty facultyInformation) {
         super(name, userID, password, facultyInformation);
+    }
+
+    public void addCampToList(Camp camp) {
+        campList.addToList(camp);
+    }
+
+    public void viewAllCamps() {
+        campList.printList();
     }
 
     // public void createCamp(String campName, int campComitteeSlots, int campParticipantSlots, String description,

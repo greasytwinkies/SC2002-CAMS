@@ -13,27 +13,6 @@ public class Camp {
 
     }
 
-    // public Camp(String campName, LocalDate startingDate, LocalDate endingDate, LocalDate registrationClosingDate,
-    //         boolean userGroup, String location, int totalParticipantSlots, int totalCampCommitteeSlots,
-    //         String description, Staff staffName) {
-    //     campInfo = new CampInformation();
-
-    //     campInfo.setCampName(campName);
-    //     campInfo.setStartingDate(startingDate);
-    //     campInfo.setEndingDate(endingDate);
-    //     campInfo.setRegistrationClosingDate(registrationClosingDate);
-    //     // campInfo.setUserGroup(userGroup); // What is the purpose of this UserGroup?
-    //     campInfo.setLocation(location);
-    //     campInfo.setTotalParticipantSlots(totalParticipantSlots);
-    //     campInfo.setTotalCampCommitteeSlots(totalCampCommitteeSlots);
-    //     campInfo.setDescription(description);
-    //     campInfo.setStaffInCharge(staffName);
-
-    //     // Initialize the current slots to zero
-    //     campInfo.setCurrentParticipantSlots(0);
-    //     campInfo.setCurrentCampCommitteeSlots(0);
-    //     campInfo.setCampVisibility(true); // By default, the camp is visible
-
     //     // Initialize the lists
     //     StudentList CampAttendeesList = new StudentList();
     //     CampCommitteeMembersList = new StudentList();

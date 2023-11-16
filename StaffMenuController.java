@@ -8,44 +8,51 @@ public class StaffMenuController {
 
     public void StaffMenuControl(Staff staff, CampList campList) {
         StaffMenu staffMenu = new StaffMenu();
-        staffMenu.printMenu();
-        int choice = Integer.valueOf(scanner.nextLine());
+        CampInformationMenuController campInfoControl = new CampInformationMenuController();
+
+        int choice;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        Camp camp;
         do {
+            staffMenu.printMenu();  
+            choice = Integer.valueOf(scanner.nextLine());
             switch (choice) {
                 case 1:
                     CampInformation campInformation = CampInformationCreater.populateCampInformation();
-                    Camp camp = new Camp(campInformation);
+                    camp = new Camp(campInformation);
                     campList.addToList(camp);
                     campList.printList();
-                    //add camp to staff
+                    // add to staff's list of camps
                     break;
-            //     case 2:
-            //         System.out.println("Enter the Camp Name to edit it");
-            //         String campToEdit = scanner.nextLine();
-            //         staff.findAndEditCamp(campToEdit);
-            //         break;
-            //     case 3:
-            //         System.out.println("Enter the Camp Name to delete it: ");
-            //         String campToDelete = scanner.nextLine();
-            //         staff.deleteCamp(campToDelete);
-            //         break;
-            //     case 4:
-            //         System.out.println("Enter the Camp Name to toggle visibility: ");
-            //         String campToggleVisbility = scanner.nextLine();
-            //         System.out.println("Enter Y/N for True/False: ");
-            //         if (scanner.nextLine().toUpperCase().equals("Y")) {
-            //             staff.toggleCampVisibility(campToggleVisbility, true);
-            //         } else if (scanner.nextLine().toUpperCase().equals("N")) {
-            //             staff.toggleCampVisibility(campToggleVisbility, false);
-            //         }
-            //         break;
-            //     case 5:
-            //         staff.viewAllCamps(campList); // insert a campList object
-            //         break;
-            //     case 6:
-            //         staff.viewCreatedCamps();
-            //         break;
+                case 2:
+                    System.out.println("Enter the Camp Name to edit it");
+                    String campToEdit = scanner.nextLine();
+                    camp = campList.findCamp(campList, campToEdit);
+                    campInfoControl.CampInformationMenuControl(camp.getCampInfo());
+                    break;
+                case 3:
+                    System.out.println("Enter the Camp Name to delete it: ");
+                    String campToDelete = scanner.nextLine();
+                    camp = campList.findCamp(campList, campToDelete);
+                    campList.deleteFromList(camp);
+                    // delete from staff's list of camps too
+                    break;
+/*                 case 4:
+                    System.out.println("Enter the Camp Name to toggle visibility: ");
+                    String campToggleVisbility = scanner.nextLine();
+                    System.out.println("Enter Y/N for True/False: ");
+                    if (scanner.nextLine().toUpperCase().equals("Y")) {
+                        staff.toggleCampVisibility(campToggleVisbility, true);
+                    } else if (scanner.nextLine().toUpperCase().equals("N")) {
+                        staff.toggleCampVisibility(campToggleVisbility, false);
+                    }
+                    break; */
+                case 5:
+                    campList.printList();
+                    break;
+/*                 case 6:
+                    staff.viewCreatedCamps();
+                    break; */
             //     case 7:
             //         staff.viewEnquiries(enquiryList); // insert a enquiryList object
             //         break;
@@ -78,6 +85,7 @@ public class StaffMenuController {
             //     case 12:
             //         break;
             }
-        } while (choice > 12 || choice < 1);
+        } while (choice > 0 && choice < 13);
+
     }
 }
