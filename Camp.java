@@ -12,6 +12,8 @@ public class Camp {
     public Camp(CampInformation campInformation, Staff staffInCharge){
         this.campInfo = campInformation;
         campInformation.setStaffInCharge(staffInCharge);
+        CampAttendeesList = new StudentList("Camp Attendees");
+        CampCommitteeMembersList = new StudentList("Camp Committee Members");
 
     }
 
@@ -51,6 +53,8 @@ public class Camp {
 
     public StudentList getCampMembersList(){return this.CampMemberList;}
 
-    public void printCampInfo(){}
+    public void printCampInfo(){
+        System.out.println(getCampInfo().getCampName());
+    }
 
 }

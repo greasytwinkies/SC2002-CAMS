@@ -18,37 +18,55 @@ public class StudentMenuController {
                     student.viewAvailableCamps(campList);
                     break;
                 case 2:
+                    if (student.getCampsRegisteredAsParticipant().list.size() == 0) {
+                        System.out.println("You are currently not registered for any camps!");
+                        break;
+                    }
                     System.out.println("Viewing Registered Camps");
                     student.viewRegisteredCamps();
                     break;
-                case 3: // register as attendeee
-                    System.out.println("Registering Camp as an Attendee");
-                    if (student.viewAvailableCamps(campList)) { // can find camps
-                        Camp registerCamp = searchCamp(campList);
-                        System.out.println(
-                                "Select your choice:\n(1) Register as attendee\n(2)Register as Camp Committee Member");
-                        int no = Integer.valueOf(scanner.nextLine());
-                        switch (no) {
-                            case 1:
-                                student.registerCampAsAttendee(registerCamp);
-                                break;
-                            case 2:
-                                student.registerCampAsCampComm(registerCamp);
-                            default:
-                                System.out.println("Please try again.");
-                                no = Integer.valueOf(scanner.nextLine());
-                                break;
-                        }
+                case 3:
+                    // first, print out all available camps
+                    System.out.println("Viewing Available Camps:");
+                    CampList availableCamps = student.viewAvailableCamps(campList);
+                    if (availableCamps != null) {
+                        System.out.println("Please indicate the camp number you would like to register for:");
+                        int campChoice = Integer.valueOf(scanner.nextLine());
+                        // next, get the appropriate camp from the list
+                        Camp chosenCamp = (Camp)availableCamps.list.get(campChoice-1);
+                        System.out.println("You have chosen to register for: " + chosenCamp.getCampInfo().getCampName());
+                        int registrationChoice;
+                        do {
+                            System.out.println(
+                                "Select your choice:\n(1) Register as attendee\n(2) Register as Camp Committee Member");
+                            registrationChoice = Integer.valueOf(scanner.nextLine());
+                            switch (registrationChoice) {
+                                case 1:
+                                    student.registerCampAsAttendee(chosenCamp);
+                                    break;
+                                case 2:
+                                    student.registerCampAsCampComm(chosenCamp);
+                                    break;
+                                default:
+                                    System.out.println("Invalid choice, please try again.");
+                            }
+                        } while (registrationChoice < 1 || registrationChoice > 2);
                     }
                     break;
-                case 4: // withdraw
-                    System.out.println("Withdrawing from camp");
-                    if(student.viewAvailableCamps(campList)){
-                        Camp withdrawCamp = searchCamp(campList);
-                        student.withdrawCamp(withdrawCamp);
+                case 4:
+                    if (student.getCampsRegisteredAsParticipant().list.size() == 0) {
+                        System.out.println("You are currently not registered for any camps!");
+                        break;
                     }
+                    System.out.println("Viewing registered camps:");
+                    student.viewRegisteredCamps();
+                    System.out.println("Please indicate the camp number you would like to withdraw from:");
+                    int campWithdrawChoice = Integer.valueOf(scanner.nextLine());
+                    Camp withdrawCamp = (Camp)student.getCampsRegisteredAsParticipant().list.get(campWithdrawChoice-1);
+                    student.withdrawCamp(withdrawCamp);
+                    System.out.println("Successfully withdrawn from " + withdrawCamp.getCampInfo().getCampName() + "!");
                     break;
-                case 5:
+/*                 case 5:
                     System.out.println("Enquiring Camps");
                     if(student.viewAvailableCamps(campList)){
                         System.out.println("Enter the index of the camp you want to send enquiry to: ");
@@ -76,7 +94,7 @@ public class StudentMenuController {
                         Camp deleteEnquireCamp = searchCamp(campList);
                         student.deleteEnquiry(deleteEnquireCamp);
                     }
-                    break;
+                    break; */
                 
             }
             System.out.println();
