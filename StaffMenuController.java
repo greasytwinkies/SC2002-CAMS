@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class StaffMenuController {
     Scanner scanner = new Scanner(System.in);
 
-    public void StaffMenuControl(Staff staff, CampList campList) {
+    public int StaffMenuControl(Staff staff, CampList campList) {
         StaffMenu staffMenu = new StaffMenu();
         CampInformationMenuController campInfoControl = new CampInformationMenuController();
 
@@ -18,7 +18,7 @@ public class StaffMenuController {
             choice = Integer.valueOf(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    CampInformation campInformation = CampInformationCreater.populateCampInformation();
+                    CampInformation campInformation = CampInformationCreater.populateCampInformation(staff);
                     camp = new Camp(campInformation, staff);
                     campList.addToList(camp);
                     campList.printList();
@@ -83,12 +83,12 @@ public class StaffMenuController {
                 // break;
                 // case 12:
                 // break;
-                case 13:
-                    String[] mainArgs = new String[] {}; // Or any arguments you want to pass
-                    Main.main(mainArgs);
-                    break;
+                
+                    
             }
         } while (choice > 0 && choice < 13);
+
+        return LoginPage.Logout();
 
     }
 }

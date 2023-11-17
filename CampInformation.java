@@ -9,7 +9,7 @@ public class CampInformation {
 	private LocalDate EndingDate;
 	private LocalDate RegistrationClosingDate;
 
-	private Faculty Faculty; 
+	private Faculty faculty; 
 	private String Location;
 
 	private int TotalParticipantSlots;
@@ -18,8 +18,8 @@ public class CampInformation {
 	private int TotalCampCommitteeSlots;
 	private int CurrentCampCommitteeSlots;
 
-	private int TotalCampMemberSlots = TotalParticipantSlots + TotalCampCommitteeSlots;
-	private int CurrentCampMemberSlots = CurrentParticipantSlots + CurrentCampCommitteeSlots;
+	private int TotalCampMemberSlots; /* = TotalParticipantSlots + TotalCampCommitteeSlots; */
+	private int CurrentCampMemberSlots; /* = CurrentParticipantSlots + CurrentCampCommitteeSlots; */
 
 	private String Description;
 	private Staff StaffInCharge;
@@ -77,11 +77,17 @@ public class CampInformation {
 	}
 
 	public Faculty getFaculty() {
-		return Faculty;
+		return faculty;
 	}
 
 	public void setFaculty(Faculty choice) {
-		Faculty = choice;
+		faculty = choice;
+		if(choice == Faculty.NTU){
+			System.out.println("Set as NTU-wide");
+		}else{
+			System.out.println("Set as Faculty-specific");
+		}
+		
 	}
 
 	public String getLocation() {

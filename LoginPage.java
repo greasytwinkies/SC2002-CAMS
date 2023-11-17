@@ -171,6 +171,10 @@ public class LoginPage
         System.out.println("Successfully updated password!");
     }
 
+    public static int Logout(){
+        return 1;
+    } 
+
 
 
     

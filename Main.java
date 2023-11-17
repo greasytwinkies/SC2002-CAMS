@@ -2,21 +2,26 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Object user = LoginPage.login();
 
         CampList campList = new CampList("campList");
+        int logout = 0;
+
+        do{
+        Object user = LoginPage.login();
 
         if( user instanceof Student){
             Student student = (Student) user;
             StudentMenuController studentMenuController = new StudentMenuController();
-            studentMenuController.StudentMenuControl(student, campList);
+            logout = studentMenuController.StudentMenuControl(student, campList);
+
         }
         else {
             Staff staff = (Staff) user;
             StaffMenuController staffMenuController = new StaffMenuController();
-            staffMenuController.StaffMenuControl(staff, campList);
+            logout =  staffMenuController.StaffMenuControl(staff, campList);
         }
-        }
+        }while(logout == 1);
+}
 }
     
 

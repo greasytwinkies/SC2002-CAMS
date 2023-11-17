@@ -7,7 +7,7 @@ public class StudentMenuController {
 
     }
 
-    public void StudentMenuControl(Student student, CampList campList) {
+    public int StudentMenuControl(Student student, CampList campList) {
         StudentMenu studentMenu = new StudentMenu();
         studentMenu.printMenu();
         int choice = Integer.valueOf(scanner.nextLine());
@@ -77,18 +77,16 @@ public class StudentMenuController {
                         student.deleteEnquiry(deleteEnquireCamp);
                     }
                     break;
-                case 9:
-                    //go back to the login page
-                    String[] mainArgs = new String[]{}; // Or any arguments you want to pass
-                    Main.main(mainArgs);
-                    break;
+                
             }
             System.out.println();
             System.out.println();
             System.out.println();
             studentMenu.printMenu();
             choice = Integer.valueOf(scanner.nextLine());
-        } while (choice >= 1 && choice <= 9);
+        } while (choice >= 1 && choice < 9);
+
+        return LoginPage.Logout();
     }
 
     public Camp searchCamp(CampList campList) { // returns the searched campObject

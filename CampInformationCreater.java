@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class CampInformationCreater {
-    public static CampInformation populateCampInformation(){
+    public static CampInformation populateCampInformation(Staff staff){
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         CampInformation campInformation = new CampInformation();
@@ -32,20 +32,28 @@ public class CampInformationCreater {
         LocalDate registrationClosingDate = LocalDate.parse(registrationClosingDateUnformatted, formatter);
         campInformation.setRegistrationClosingDate(registrationClosingDate);
 
-        System.out.println("Enter the faculty: ");
-        //campInformation.setFaculty(null);
 
+        System.out.println("Enter the faculty: 0 for NTU-wide and 1 for faculty-specific");
+        int ans = scanner.nextInt();
+        if(ans == 0){
+            campInformation.setFaculty(Faculty.NTU);
+        }else if(ans == 1){
+            campInformation.setFaculty(staff.getFacultyInformation());
+        }
+        scanner.nextLine();
+        
         System.out.println("Enter the Camp Location ");
-        String location = scanner.nextLine();
+        campInformation.setLocation(scanner.nextLine());
 
         System.out.println("Enter the total number of Camp Participant Slots: ");
-        campInformation.setTotalParticipantSlots(scanner.nextInt());
-        campInformation.setCurrentParticipantSlots(0);
-
+        int campParticipantSlots = scanner.nextInt();
+        campInformation.setTotalParticipantSlots(campParticipantSlots);
+        campInformation.setCurrentParticipantSlots(campParticipantSlots);
     
         System.out.println("Enter the total number of camp Comittee Slots: ");
-        campInformation.setTotalCampCommitteeSlots(scanner.nextInt());
-        campInformation.setCurrentCampCommitteeSlots(0);
+        int campCommSlots = scanner.nextInt();
+        campInformation.setTotalCampCommitteeSlots(campCommSlots);
+        campInformation.setCurrentCampCommitteeSlots(campCommSlots);
         scanner.nextLine();
 
         System.out.println("Enter the Camp Description: ");

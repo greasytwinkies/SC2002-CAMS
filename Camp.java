@@ -8,7 +8,6 @@ public class Camp {
     private StudentList CampAttendeesList;
     private StudentList CampCommitteeMembersList;
     private StudentList CampMemberList;
-    private Faculty faculty;
 
     public Camp(CampInformation campInformation, Staff staffInCharge){
         this.campInfo = campInformation;
@@ -54,7 +53,4 @@ public class Camp {
 
     public void printCampInfo(){}
 
-    public Faculty getCampFaculty(){
-        return this.faculty;
-    }
 }

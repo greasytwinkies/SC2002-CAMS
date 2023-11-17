@@ -24,25 +24,28 @@ public class Student extends User
 
 
     public boolean viewAvailableCamps(CampList campList){
-        //for loop
-            //if studentfacultyinfo == campfacultyinfo || isNTUcamp && within deadline
-                    // if vacant
-                        //print campName, campVacancy
         if(campList.list.size() == 0){
                 System.out.println("There are no camps at all");
                 return false;
             }
+        System.out.println("Error debugging: " + ((Camp) campList.list.get(0)).getCampInfo().getFaculty());
+        System.out.println("Error debugging: " + ((Camp) campList.getFromList(0)).getCampInfo().getCurrentParticipantSlots());
+        System.out.println("Error debudding: " + super.getFacultyInformation()); 
         for(int i = 0; i < campList.list.size(); i++){
-            if(super.getFacultyInformation() == ((Camp) campList.getFromList(i)).getCampFaculty() || ((Camp) campList.getFromList(i)).getCampFaculty() == Faculty.NTU){
-                if(((Camp) campList.getFromList(i)).getCampInfo().getCurrentParticipantSlots() > 0){
+            if(((Camp) campList.list.get(i)).getCampInfo().getFaculty() == Faculty.NTU && ((Camp) campList.getFromList(i)).getCampInfo().getCurrentParticipantSlots() != 0){
                     System.out.println("Camp Name: " + ((Camp) campList.getFromList(i)).getCampInfo().getCampName());
                     System.out.println("Camp Vacancy: " + ((Camp) campList.getFromList(i)).getCampInfo().getCurrentParticipantSlots());
                     return true;
-                }
+            }
+            else if(((Camp) campList.list.get(i)).getCampInfo().getFaculty() != Faculty.NTU && super.getFacultyInformation() == ((Camp) campList.getFromList(i)).getCampInfo().getFaculty()){
+                System.out.println("Camp Name: " + ((Camp) campList.getFromList(i)).getCampInfo().getCampName());
+                System.out.println("Camp Vacancy: " + ((Camp) campList.getFromList(i)).getCampInfo().getCurrentParticipantSlots());
+                return true;
             }
         }
         return false;
-    }
+        }
+            
 
     public void viewRegisteredCamps() {
         for (int i=0; i<CampsRegisteredAsParticipant.list.size(); i++){
