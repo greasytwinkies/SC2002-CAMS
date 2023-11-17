@@ -88,7 +88,7 @@ public class StaffMenuController {
                     Main.main(mainArgs);
                     break;
             }
-        } while (choice > 0 && choice < 13);
+        } while (choice > 0 && choice <= 13);
 
     }
 }

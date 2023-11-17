@@ -88,7 +88,7 @@ public class StudentMenuController {
             System.out.println();
             studentMenu.printMenu();
             choice = Integer.valueOf(scanner.nextLine());
-        } while (choice >= 1 && choice < 9);
+        } while (choice >= 1 && choice <= 9);
     }
 
     public Camp searchCamp(CampList campList) { // returns the searched campObject
