@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class StudentMenuController {
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = Main.getScanner();
 
     public StudentMenuController() {
 

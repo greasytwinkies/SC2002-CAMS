@@ -1,5 +1,4 @@
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Staff extends User {
@@ -11,7 +10,7 @@ public class Staff extends User {
     // CampList campMembersList = new CampList();
     CampList campList = new CampList(getName()); // name of list will be staff's name for now
 
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = Main.getScanner();
 
     public Staff(String name, String userID, String password, Faculty facultyInformation) {
         super(name, userID, password, facultyInformation);

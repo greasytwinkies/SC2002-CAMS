@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class CampInformationMenuController {
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = Main.getScanner();
 
     public void CampInformationMenuControl(CampInformation campInfo) {
         CampInformationMenu campInfoMenu = new CampInformationMenu();

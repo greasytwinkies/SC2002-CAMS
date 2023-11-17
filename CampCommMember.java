@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class CampCommMember extends User{
     private Camp camp;
     private int points;
-    Scanner scanner = new Scanner(System.in);
+    Scanner scan = Main.getScanner();
 
     public CampCommMember(String name, String userID, String password, Faculty facultyInformation, Camp camp){
         super(name, userID, password, facultyInformation);

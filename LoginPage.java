@@ -1,9 +1,10 @@
 import java.util.Scanner;
-import java.lang.String;
 
 
 public class LoginPage 
 {
+
+    
     
     public static User login()
 	{
@@ -27,8 +28,7 @@ public class LoginPage
         // campList.addToList(trialCamp);
         // campList.printList();
 
-
-		Scanner scan = new Scanner(System.in);
+        Scanner scan = Main.getScanner();
 		
 		do{
 		
@@ -59,6 +59,7 @@ public class LoginPage
                 System.out.println("Please enter your staff email");
                 String StaffEmail = scan.nextLine();
                 System.out.println("Please enter your staff password");
+                
                 String StaffPassword = scan.nextLine();
 
                 UserID = ExtractUserName(StaffEmail);
@@ -94,7 +95,7 @@ public class LoginPage
     }
 
     public static Student studentLogin(StudentList studentList, String UserID, String StudentPassword){
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = Main.getScanner();
         int sizeStudent = StudentTextDB.getSize();
         for(int i =0; i < sizeStudent; i++)
                 {
@@ -124,7 +125,7 @@ public class LoginPage
     }
 
     public static Staff staffLogin(StaffList staffList, String UserID, String StaffPassword){
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = Main.getScanner();
         int sizeStaff = StaffTextDB.getSize();
         for(int i =0; i < sizeStaff; i++)
                 {
@@ -154,7 +155,7 @@ public class LoginPage
     }
 
     public static void changeStudentPassword(Student student){
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = Main.getScanner();
         System.out.println("Please enter new password");
         String StudentPassword = scan.nextLine();
         student.changePassword(StudentPassword);
@@ -163,7 +164,7 @@ public class LoginPage
     }
 
     public static void changeStaffPassword(Staff staff){
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = Main.getScanner();
         System.out.println("Please enter new password");
         String Staffpassword = scan.nextLine();
         staff.changePassword(Staffpassword);

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Enquiry implements iService {
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = Main.getScanner();;
     private String enquiry;
     private String reply = "";
     protected Student author;

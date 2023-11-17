@@ -4,10 +4,24 @@ Password
 n
 1
 true
+camp
 01-01-2023
 01-01-2023
 01-01-2023
+1
 spms
-4
-4
+10
+10
 this is the camp description
+1
+true
+specific camp
+01-01-2023
+01-01-2023
+01-01-2023
+0
+spms
+10
+10
+this is the camp description
+5

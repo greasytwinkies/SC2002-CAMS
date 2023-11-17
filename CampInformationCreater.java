@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class CampInformationCreater {
     public static CampInformation populateCampInformation(Staff staff){
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = Main.getScanner();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         CampInformation campInformation = new CampInformation();
 

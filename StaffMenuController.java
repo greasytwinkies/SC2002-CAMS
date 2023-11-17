@@ -1,10 +1,8 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class StaffMenuController {
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = Main.getScanner();
 
     public int StaffMenuControl(Staff staff, CampList campList) {
         StaffMenu staffMenu = new StaffMenu();

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class EnquiryList extends List{
-    Scanner scanner = new Scanner(System.in);
+    Scanner scanner = Main.getScanner();;
 
     public EnquiryList(){
         super("List of enquiries");
