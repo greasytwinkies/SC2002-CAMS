@@ -14,7 +14,7 @@ public class StaffMenuController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         Camp camp;
         do {
-            staffMenu.printMenu();  
+            staffMenu.printMenu();
             choice = Integer.valueOf(scanner.nextLine());
             switch (choice) {
                 case 1:
@@ -42,44 +42,51 @@ public class StaffMenuController {
                     String campToggleVisbility = scanner.nextLine();
                     camp = campList.findCamp(campList, campToggleVisbility);
                     campInfoControl.toggleCampVisibility(camp.getCampInfo());
-                    break; 
+                    break;
                 case 5:
                     campList.printList();
                     break;
                 case 6:
                     campList.printUserCamp(staff);
-                    break; 
-            //     case 7:
-            //         staff.viewEnquiries(enquiryList); // insert a enquiryList object
-            //         break;
-            //     case 8:
-            //         staff.replyEnquiries(enquiryList); // insert a enquiryList object
-            //         break;
-            //     case 9:
-            //         staff.approveCampCommitteeSuggestions(suggestionList); // insert a suggestionsList object
-            //         break;
-            //     case 10:
-            //         System.out.println("Enter camp name to print student report");
-            //         String campNameForStudentReport = scanner.nextLine();
-            //         for (int i = 0; i < campList.list.size(); i++) {
-            //             if (((Camp) campList.getFromList(i)).getCampInfo().getCampName() == campNameForStudentReport) {
-            //                 staff.generateStudentList((Camp) campList.getFromList(i));
-            //             }
-            //         }
-            //         break;
-            //     case 11:
-            //         System.out.println("Enter camp name to generate camp committee member report");
-            //         String campNameForCampCommitteeMemberReport = scanner.nextLine();
+                    break;
+                // case 7:
+                // staff.viewEnquiries(enquiryList); // insert a enquiryList object
+                // break;
+                // case 8:
+                // staff.replyEnquiries(enquiryList); // insert a enquiryList object
+                // break;
+                // case 9:
+                // staff.approveCampCommitteeSuggestions(suggestionList); // insert a
+                // suggestionsList object
+                // break;
+                // case 10:
+                // System.out.println("Enter camp name to print student report");
+                // String campNameForStudentReport = scanner.nextLine();
+                // for (int i = 0; i < campList.list.size(); i++) {
+                // if (((Camp) campList.getFromList(i)).getCampInfo().getCampName() ==
+                // campNameForStudentReport) {
+                // staff.generateStudentList((Camp) campList.getFromList(i));
+                // }
+                // }
+                // break;
+                // case 11:
+                // System.out.println("Enter camp name to generate camp committee member
+                // report");
+                // String campNameForCampCommitteeMemberReport = scanner.nextLine();
 
-            //         for (int i = 0; i < campList.list.size(); i++) {
-            //             if (((Camp) campList.getFromList(i)).getCampInfo()
-            //                     .getCampName() == campNameForCampCommitteeMemberReport) {
-            //                 staff.generateCampCommitteeMemberList((Camp) campList.getFromList(i));
-            //             }
-            //         }
-            //         break;
-            //     case 12:
-            //         break;
+                // for (int i = 0; i < campList.list.size(); i++) {
+                // if (((Camp) campList.getFromList(i)).getCampInfo()
+                // .getCampName() == campNameForCampCommitteeMemberReport) {
+                // staff.generateCampCommitteeMemberList((Camp) campList.getFromList(i));
+                // }
+                // }
+                // break;
+                // case 12:
+                // break;
+                case 13:
+                    String[] mainArgs = new String[] {}; // Or any arguments you want to pass
+                    Main.main(mainArgs);
+                    break;
             }
         } while (choice > 0 && choice < 13);
 

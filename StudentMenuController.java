@@ -78,6 +78,9 @@ public class StudentMenuController {
                     }
                     break;
                 case 9:
+                    //go back to the login page
+                    String[] mainArgs = new String[]{}; // Or any arguments you want to pass
+                    Main.main(mainArgs);
                     break;
             }
             System.out.println();
