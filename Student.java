@@ -28,9 +28,6 @@ public class Student extends User
                 System.out.println("There are no camps at all");
                 return false;
             }
-        System.out.println("Error debugging: " + ((Camp) campList.list.get(0)).getCampInfo().getFaculty());
-        System.out.println("Error debugging: " + ((Camp) campList.getFromList(0)).getCampInfo().getCurrentParticipantSlots());
-        System.out.println("Error debudding: " + super.getFacultyInformation()); 
         for(int i = 0; i < campList.list.size(); i++){
             if(((Camp) campList.list.get(i)).getCampInfo().getFaculty() == Faculty.NTU && ((Camp) campList.getFromList(i)).getCampInfo().getCurrentParticipantSlots() != 0){
                     System.out.println("Camp Name: " + ((Camp) campList.getFromList(i)).getCampInfo().getCampName());
