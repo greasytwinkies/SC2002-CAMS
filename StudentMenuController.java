@@ -220,6 +220,16 @@ public class StudentMenuController {
                         student.enquiryMenuController.deleteEnquiry(enquiredCamp);
                     }                  
                     break;
+                
+                case 9: 
+                    CampCommMember campComm = (CampCommMember) student.getCampComm();
+                    if(campComm == null){
+                        System.out.println("You are not a camp committee member.");
+                        break;
+                    }
+                    System.out.println("Successful. Entering committee menu for " + campComm.getCamp().getCampInfo().getCampName());
+                    CampCommMenuController campCommMenuController = new CampCommMenuController();
+                    campCommMenuController.CampCommMenuControl(campComm);
 
             }
             System.out.println();
@@ -227,7 +237,7 @@ public class StudentMenuController {
             System.out.println();
             studentMenu.printMenu();
             choice = Integer.valueOf(scanner.nextLine());
-        } while (choice >= 1 && choice < 9);
+        } while (choice >= 1 && choice < 10);
 
         return LoginPage.Logout();
     }

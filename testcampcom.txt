@@ -31,36 +31,8 @@ KOH1@e.ntu.e
 password
 n
 1
-2
 3
 1
-1
-5
-2
-2
-this is the enquiry
-6
-1
-1
-6
-2
 2
 9
-2
-HUKUMAR@NTU.EDU.SG
-Password
-n
-7
-2
-8
-2
 1
-this is the reply
-13
-1
-KOH1@e.ntu.e
-password
-n
-6
-2
-2

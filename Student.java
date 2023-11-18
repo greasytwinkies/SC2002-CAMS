@@ -109,7 +109,10 @@ public class Student extends User
 
         camp.getCampCommitteeMembersList().addToList(this);
         camp.getCampInfo().setCurrentParticipantSlots(camp.getCampInfo().getCurrentParticipantSlots()-1);
+        CampCommMember campCommMember = new CampCommMember(camp);
+        this.setCampCommMember(campCommMember);
         System.out.println("Successfully registered for " + camp.getCampInfo().getCampName() + " as CAMP COMMITTEE MEMBER !");
+
 
          // TODO: actually add the camp to the campComm variable in Student class
 /*         if (camp.getCampInfo().getCurrentCampCommitteeSlots()!=0 && checkCampDeadline(camp) && !checkCampClash(camp) && checkWithdraw(camp)){ //check vacancy, check date clash, check ddl, check whether is camp comm, check whether withdrawed
@@ -123,6 +126,15 @@ public class Student extends User
         else{
             System.out.println("You can't register for this camp.");
         } */
+    }
+
+
+    public CampCommMember getCampComm(){
+        return this.campCommMember;
+    }
+
+    public void setCampCommMember(CampCommMember campCommMember){
+        this.campCommMember = campCommMember;
     }
 
     public void withdrawCamp(Camp camp){

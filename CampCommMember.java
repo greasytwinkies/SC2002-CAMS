@@ -1,17 +1,24 @@
 import java.util.Scanner;
 
-public class CampCommMember extends User{
+public class CampCommMember{
     private Camp camp;
-    private int points;
+    private static int points;
     Scanner scan = Main.getScanner();
 
-    public CampCommMember(String name, String userID, String password, Faculty facultyInformation, Camp camp){
-        super(name, userID, password, facultyInformation);
+    public CampCommMember(Camp camp){
         this.camp = camp;
         this.points = 0;
     }
 
     public void addPoints(int num){ this.points += num;}
+
+    public int getPoints(){
+        return this.points;
+    }
+
+    public Camp getCamp(){
+        return this.camp;
+    }
 
     // public void submitSuggestions(){
     //     Suggestion suggestion = new Suggestion(this);

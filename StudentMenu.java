@@ -10,7 +10,8 @@ public class StudentMenu implements iMenu {
         System.out.println("(6) View your enquiries");
         System.out.println("(7) Edit enquiry");
         System.out.println("(8) Delete enquiry");
-        System.out.println("(9) Exit menu");
+        System.out.println("(9) Access Camp Committee menu");
+        System.out.println("(10) Exit menu");
         System.out.println("==============================");
     }
 }
