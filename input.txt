@@ -4,7 +4,7 @@ Password
 n
 1
 true
-camp
+specific camp
 01-01-2023
 01-01-2023
 01-01-2023
@@ -15,7 +15,7 @@ spms
 this is the camp description
 1
 true
-specific camp
+NTU camp
 01-01-2023
 01-01-2023
 01-01-2023
@@ -25,3 +25,19 @@ spms
 10
 this is the camp description
 5
+13
+1
+KOH1@e.ntu.e
+password
+n
+1
+5
+3
+1
+1
+5
+1
+this is the entered enquiry
+6
+7
+1

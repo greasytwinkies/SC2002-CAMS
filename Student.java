@@ -1,9 +1,7 @@
-import java.util.Scanner;
-
-import com.sun.tools.javac.Main;
-
-import java.time.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class Student extends User
 {
@@ -82,7 +80,7 @@ public class Student extends User
             Camp camp = (Camp) getCampsRegisteredAsParticipant().getFromList(i);
             System.out.print(i+1 + ") ");
             camp.printCampInfo();
-        } 
+        }
     }
 
     public void registerCampAsAttendee(Camp camp){
@@ -148,7 +146,7 @@ public class Student extends User
     }
 
     public void submitEnquiry(Camp camp){
-        Enquiry enquiry = new Enquiry(this);
+        Enquiry enquiry = new Enquiry(this); //this works
         camp.getEnquiries().addToList(enquiry);
     }
 
@@ -160,9 +158,10 @@ public class Student extends User
         camp.getEnquiries().printUserEnquiry(this);
         System.out.print("Entry to be edited: ");
         int idx = Integer.valueOf(scanner.nextLine());
-        Enquiry enquiry = (Enquiry) camp.getEnquiries().getFromList(idx);
+        Enquiry enquiry = (Enquiry) camp.getEnquiries().getFromList(idx-1);
+
         if (enquiry.getReply().equals("")){
-            camp.getEnquiries().editEnquiries(idx);
+            camp.getEnquiries().editEnquiries(idx-1);
         }
         else{
             System.out.println("You cannot edit your entry");

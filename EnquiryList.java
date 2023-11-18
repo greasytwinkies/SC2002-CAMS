@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class EnquiryList extends List{
     Scanner scanner = Main.getScanner();;
 
-    public EnquiryList(){
+    public EnquiryList(String listName){
         super("List of enquiries");
     }
 

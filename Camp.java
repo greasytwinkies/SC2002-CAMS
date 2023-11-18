@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 public class Camp {
     private CampInformation campInfo;
 
@@ -14,6 +12,7 @@ public class Camp {
         campInformation.setStaffInCharge(staffInCharge);
         CampAttendeesList = new StudentList("Camp Attendees");
         CampCommitteeMembersList = new StudentList("Camp Committee Members");
+        enquiries = new EnquiryList("Enquiry List");
 
     }
 
