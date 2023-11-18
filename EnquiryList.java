@@ -34,7 +34,7 @@ public class EnquiryList extends List{
     }
 
     public void editEnquiries(int idx){
-        Enquiry newEnquiry = (Enquiry) super.list.get(idx-1);
+        Enquiry newEnquiry = (Enquiry) super.list.get(idx);
         newEnquiry.edit();
         System.out.println("Succesfully edited!");
     }

@@ -13,6 +13,8 @@ public class Student extends User
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     LocalDateTime now = LocalDateTime.now();
 
+    EnquiryMenuController enquiryMenuController = new EnquiryMenuController(this);
+
     public Student(String name, String userID, String password, Faculty facultyInformation) {
         super(name, userID, password, facultyInformation);
         CampsRegisteredAsParticipant = new CampList("CampRegisteredList");
@@ -143,42 +145,6 @@ public class Student extends User
         else{
             System.out.println("You are not registered to this camp");
         } */
-    }
-
-    public void submitEnquiry(Camp camp){
-        Enquiry enquiry = new Enquiry(this); //this works
-        camp.getEnquiries().addToList(enquiry);
-    }
-
-    public void viewEnquiries(Camp camp) {
-        camp.getEnquiries().printUserEnquiry(this);
-    }
-
-    public void editEnquiry(Camp camp) {
-        camp.getEnquiries().printUserEnquiry(this);
-        System.out.print("Entry to be edited: ");
-        int idx = Integer.valueOf(scanner.nextLine());
-        Enquiry enquiry = (Enquiry) camp.getEnquiries().getFromList(idx-1);
-
-        if (enquiry.getReply().equals("")){
-            camp.getEnquiries().editEnquiries(idx-1);
-        }
-        else{
-            System.out.println("You cannot edit your entry");
-        }
-    }
-
-    public void deleteEnquiry(Camp camp) {
-        camp.getEnquiries().printUserEnquiry(this);
-        System.out.print("Entry to be deleted: ");
-        int idx = Integer.valueOf(scanner.nextLine());
-        Enquiry enquiry = (Enquiry) camp.getEnquiries().getFromList(idx);
-        if (enquiry.getReply().equals("")){
-            camp.getEnquiries().deleteFromList(idx);
-        }
-        else{
-            System.out.println("You cannot delete your entry");
-        }
     }
 
     public boolean checkWithdraw(Camp camp){

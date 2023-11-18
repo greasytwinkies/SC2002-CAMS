@@ -33,12 +33,13 @@ public class StudentMenuController {
                         System.out.println("Please indicate the camp number you would like to register for:");
                         int campChoice = Integer.valueOf(scanner.nextLine());
                         // next, get the appropriate camp from the list
-                        Camp chosenCamp = (Camp)availableCamps.list.get(campChoice-1);
-                        System.out.println("You have chosen to register for: " + chosenCamp.getCampInfo().getCampName());
+                        Camp chosenCamp = (Camp) availableCamps.list.get(campChoice - 1);
+                        System.out
+                                .println("You have chosen to register for: " + chosenCamp.getCampInfo().getCampName());
                         int registrationChoice;
                         do {
                             System.out.println(
-                                "Select your choice:\n(1) Register as attendee\n(2) Register as Camp Committee Member");
+                                    "Select your choice:\n(1) Register as attendee\n(2) Register as Camp Committee Member");
                             registrationChoice = Integer.valueOf(scanner.nextLine());
                             switch (registrationChoice) {
                                 case 1:
@@ -62,72 +63,79 @@ public class StudentMenuController {
                     student.viewRegisteredCamps();
                     System.out.println("Please indicate the camp number you would like to withdraw from:");
                     int campWithdrawChoice = Integer.valueOf(scanner.nextLine());
-                    Camp withdrawCamp = (Camp)student.getCampsRegisteredAsParticipant().list.get(campWithdrawChoice-1);
+                    Camp withdrawCamp = (Camp) student.getCampsRegisteredAsParticipant().list
+                            .get(campWithdrawChoice - 1);
                     student.withdrawCamp(withdrawCamp);
                     System.out.println("Successfully withdrawn from " + withdrawCamp.getCampInfo().getCampName() + "!");
                     break;
-                 case 5:
+                case 5:
                     System.out.println("Enquiring Camps");
                     availableCamps = student.viewAvailableCamps(campList);
-                    if(student.getCampsRegisteredAsParticipant().list.size() == 0){
+                    if (student.getCampsRegisteredAsParticipant().list.size() == 0) {
                         System.out.println("Please register for a camp before enquiring. ");
-                    }
-                    else{
+                    } else {
                         System.out.println("Enter the index of the camp you want to send enquiry to: ");
                         int enquiringCampNumber = Integer.valueOf(scanner.nextLine());
-                        Camp enquiringCamp = (Camp)availableCamps.list.get(enquiringCampNumber-1);
+                        Camp enquiringCamp = (Camp) availableCamps.list.get(enquiringCampNumber - 1);
                         // Camp enquiringCamp = searchCamp(campList);
-                        student.submitEnquiry(enquiringCamp);
+                        student.enquiryMenuController.submitEnquiry(enquiringCamp);
 
                     }
-                    
-                    
+
                     break;
-              case 6:
+                case 6:
                     System.out.println("Viewing Enquiries");
 
-                    if(student.getCampsRegisteredAsParticipant().list.size() == 0){ //student is not in any camps hence no enquiries
+                    if (student.getCampsRegisteredAsParticipant().list.size() == 0) { // student is not in any camps
+                                                                                      // hence no enquiries
                         System.out.println("No enquiries ");
-                    }
-                    else{
+                    } else {
                         CampList campRegisteredAsParticipant = student.getCampsRegisteredAsParticipant();
                         int sizeOfRegistered = campRegisteredAsParticipant.list.size();
-                        for(int i = 0; i< sizeOfRegistered ; i++){
+                        for (int i = 0; i < sizeOfRegistered; i++) {
                             Camp enquiredCamp = (Camp) campRegisteredAsParticipant.getFromList(i);
-                            student.viewEnquiries(enquiredCamp);
-                            
+                            System.out.println(enquiredCamp.getCampInfo().getCampName());
+                            student.enquiryMenuController.viewEnquiries(enquiredCamp);
+
                         }
                     }
                     break;
-                 case 7:
+                case 7:
                     System.out.println("Editing Enquiry");
-                    if(student.getCampsRegisteredAsParticipant().list.size() == 0){ //student is not in any camps hence no enquiries
+                    if (student.getCampsRegisteredAsParticipant().list.size() == 0) { // student is not in any camps
+                                                                                      // hence no enquiries
                         System.out.println("No enquiries to edit");
-                    }
-                    else{
+                    } else {
                         CampList campRegisteredAsParticipant = student.getCampsRegisteredAsParticipant();
                         int sizeOfRegistered = campRegisteredAsParticipant.list.size();
-                        for(int i = 0; i< sizeOfRegistered ; i++){
+                        for (int i = 0; i < sizeOfRegistered; i++) {
                             Camp enquiredCamp = (Camp) campRegisteredAsParticipant.getFromList(i);
-                            student.editEnquiry(enquiredCamp);
-                            
+                            student.enquiryMenuController.editEnquiry(enquiredCamp);
+
                         }
                     }
-
 
                     // if(student.viewAvailableCamps(campList)){
-                    //     Camp editEnquirecamp = searchCamp(campList);
-                    //     student.editEnquiry(editEnquirecamp);
+                    // Camp editEnquirecamp = searchCamp(campList);
+                    // student.editEnquiry(editEnquirecamp);
                     // }
                     break;
-/*                 case 8:
+                case 8:
                     System.out.println("Deleting Enquiry");
-                    if(student.viewAvailableCamps(campList)){
-                        Camp deleteEnquireCamp = searchCamp(campList);
-                        student.deleteEnquiry(deleteEnquireCamp);
+                    if (!campList.list.isEmpty()) {
+                        CampList campRegisteredAsParticipant = student.getCampsRegisteredAsParticipant();
+                        int sizeOfRegistered = campRegisteredAsParticipant.list.size();
+                        for (int i = 0; i < sizeOfRegistered; i++) {
+                            Camp deleteEnquireCamp = (Camp) campRegisteredAsParticipant.getFromList(i);
+                            student.enquiryMenuController.deleteEnquiry(deleteEnquireCamp);
+                            // Camp deleteEnquireCamp = searchCamp(campList);
+                            // System.out.println("Error debugging 1");
+                            // System.out.println("Camp's Enquiry to be deleted: " + deleteEnquireCamp);
+                            // enquiryMenu.deleteEnquiry(deleteEnquireCamp);
+                        }
+                        break;
+
                     }
-                    break; */
-                
             }
             System.out.println();
             System.out.println();
@@ -139,14 +147,15 @@ public class StudentMenuController {
         return LoginPage.Logout();
     }
 
-    public Camp searchCamp(CampList campList) { // returns the searched campObject
-        System.out.println("Enter the name of the camp: ");
-        String campName = scanner.nextLine();
-        for (int i = 0; i < campList.list.size(); i++) {
-            if (((Camp) campList.getFromList(i)).getCampInfo().getCampName() == campName) {
-                return (Camp) campList.getFromList(i);
-            }
-        }
-        return null;
-    }
+    // public Camp searchCamp(CampList campList) { // not working
+    // System.out.println("Enter the name of the camp: ");
+    // String campName = scanner.nextLine();
+    // for (int i = 0; i < campList.list.size(); i++) {
+    // if (((Camp) campList.getFromList(i)).getCampInfo().getCampName() == campName)
+    // {
+    // return (Camp) campList.getFromList(i);
+    // }
+    // }
+    // return null;
+    // }
 }

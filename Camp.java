@@ -43,7 +43,9 @@ public class Camp {
     //     }
     // }
     public CampInformation getCampInfo(){  return this.campInfo;    }
-    public EnquiryList getEnquiries(){ return this.enquiries;   }
+    public EnquiryList getEnquiries(){ 
+        return enquiries;   
+    }
     // public SuggestionList getSuggestions(){ return this.suggestions;    }
 
     public StudentList getCampAttendeesList() {return CampAttendeesList;}
