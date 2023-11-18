@@ -12,6 +12,7 @@ public class Main {
 
 
         CampList campList = new CampList("campList");
+
         int logout = 0;
 
         do{

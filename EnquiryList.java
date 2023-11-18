@@ -47,7 +47,7 @@ public class EnquiryList extends List{
     public void replyEnquiries(){
         printList();
         System.out.print("Entry to reply to: ");
-        int idx = Integer.valueOf(scanner.nextLine());
+        int idx = Integer.valueOf(scanner.nextLine())-1;
         Enquiry enquiry = (Enquiry) super.list.get(idx);
         enquiry.reply();
         System.out.println("Successfully replied");

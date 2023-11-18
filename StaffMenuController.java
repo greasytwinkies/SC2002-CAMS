@@ -47,12 +47,20 @@ public class StaffMenuController {
                 case 6:
                     campList.printUserCamp(staff);
                     break;
-                // case 7:
-                // staff.viewEnquiries(enquiryList); // insert a enquiryList object
-                // break;
-                // case 8:
-                // staff.replyEnquiries(enquiryList); // insert a enquiryList object
-                // break;
+                case 7:
+                    campList.printUserCamp(staff);
+                    System.out.println("Enter the index of the camp you want to view enquiry of: ");
+                    choice = Integer.valueOf(scanner.nextLine());
+                    camp = (Camp) campList.getFromList(choice-1);
+                    camp.getEnquiries().printList();
+                    break;
+                case 8:
+                    campList.printUserCamp(staff);
+                    System.out.println("Enter the index of the camp you want to reply enquiry of: ");
+                    choice = Integer.valueOf(scanner.nextLine());
+                    camp = (Camp) campList.getFromList(choice-1);
+                    camp.getEnquiries().replyEnquiries();
+                    break;
                 // case 9:
                 // staff.approveCampCommitteeSuggestions(suggestionList); // insert a
                 // suggestionsList object
