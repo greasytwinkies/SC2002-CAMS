@@ -24,7 +24,7 @@ public class EnquiryList extends List{
         int i=1;
         for (Object item : super.list){
             Enquiry e = (Enquiry) item;
-            if (e.author == author){
+            if (e.author.getUserID().equals(author.getUserID())){
                 System.out.print( i + ") ");
                 e.view();
             }
@@ -40,7 +40,7 @@ public class EnquiryList extends List{
     }
 
     public void deleteFromList(int idx){
-        super.list.remove(idx-1);
+        super.list.remove(idx);
         System.out.println("Successfully deleted!");
     }
 
@@ -48,7 +48,7 @@ public class EnquiryList extends List{
         printList();
         System.out.print("Entry to reply to: ");
         int idx = Integer.valueOf(scanner.nextLine());
-        Enquiry enquiry = (Enquiry) super.list.get(idx-1);
+        Enquiry enquiry = (Enquiry) super.list.get(idx);
         enquiry.reply();
         System.out.println("Successfully replied");
     }

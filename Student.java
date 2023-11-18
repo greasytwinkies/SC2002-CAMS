@@ -77,12 +77,16 @@ public class Student extends User
     }
             
 
-    public void viewRegisteredCamps() {
-        for (int i=0; i<getCampsRegisteredAsParticipant().list.size(); i++){
-            Camp camp = (Camp) getCampsRegisteredAsParticipant().getFromList(i);
-            System.out.print(i+1 + ") ");
-            camp.printCampInfo();
-        }
+    // public void viewRegisteredCamps() {
+    //     for (int i=0; i<getCampsRegisteredAsParticipant().list.size(); i++){
+    //         Camp camp = (Camp) getCampsRegisteredAsParticipant().getFromList(i);
+    //         System.out.print(i+1 + ") ");
+    //         camp.printCampInfo();
+    //     }
+    // }
+
+    public void viewRegisteredCamps(CampList campList) {
+        campList.printUserCamp(this);
     }
 
     public void registerCampAsAttendee(Camp camp){
@@ -99,7 +103,7 @@ public class Student extends User
         }
         else{
             System.out.println("You can't register for this camp."); */
-        }
+    }
     
     public void registerCampAsCampComm(Camp camp){
 

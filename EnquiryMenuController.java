@@ -34,11 +34,9 @@ public class EnquiryMenuController {
     }
 
     public void deleteEnquiry(Camp camp) {
-        System.out.println("Error debugging 2");
-        System.out.println("Camp debugging: " + camp);
         camp.getEnquiries().printUserEnquiry(student);
         System.out.print("Entry to be deleted: ");
-        int idx = Integer.valueOf(Main.scan.nextLine());
+        int idx = Integer.valueOf(Main.scan.nextLine())-1;
         System.out.println("Accessing enquiries now");
         Enquiry enquiry = (Enquiry) camp.getEnquiries().getFromList(idx);
         // if (enquiry.getReply().equals("")){ // some error here

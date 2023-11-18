@@ -25,8 +25,8 @@ public class StudentList extends List {
         super.addToList(student);
     }
 
-    public ArrayList<Student> returnStudentList() {
-        return returnStudentList();
+    public ArrayList<Object> returnStudentList() {
+        return super.list;
     }
 
     public Object getFromList(int index){
