@@ -9,9 +9,11 @@ public class StudentMenuController {
 
     public int StudentMenuControl(Student student, CampList campList) {
         StudentMenu studentMenu = new StudentMenu();
-        studentMenu.printMenu();
-        int choice = Integer.valueOf(scanner.nextLine());
+        
+        int choice;
         do {
+            studentMenu.printMenu();
+            choice = Integer.valueOf(scanner.nextLine());
             switch (choice) {
                 case 1: // view camps that are open to student ie camp that is same faculty or ntu level
                     System.out.println("Viewing Available Camps"); // not working yet
@@ -101,7 +103,7 @@ public class StudentMenuController {
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) campList.getFromList(choice-1);
                         student.enquiryMenuController.submitEnquiry(enquiredCamp);
-                    }                  
+                    }
                     break;
                 case 6:
                     System.out.println("Viewing Enquiries");
@@ -137,7 +139,7 @@ public class StudentMenuController {
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) campList.getFromList(choice-1);
                         student.enquiryMenuController.viewEnquiries(enquiredCamp);
-                    }                  
+                    }
                     break;
                 // case 7:
                 //     System.out.println("Editing Enquiry");
@@ -173,7 +175,7 @@ public class StudentMenuController {
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) campList.getFromList(choice-1);
                         student.enquiryMenuController.editEnquiry(enquiredCamp);
-                    }                  
+                    }
                     break;
 
 
@@ -198,7 +200,7 @@ public class StudentMenuController {
                 //         break;
 
                 //     }
-                case 8: 
+                case 8:
                     System.out.println("Deleting Enquiry");
                     System.out.println("1) Available Camps");
                     System.out.println("2) Registered Camps");
@@ -218,10 +220,10 @@ public class StudentMenuController {
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) campList.getFromList(choice-1);
                         student.enquiryMenuController.deleteEnquiry(enquiredCamp);
-                    }                  
+                    }
                     break;
                 
-                case 9: 
+                case 9:
                     CampCommMember campComm = (CampCommMember) student.getCampComm();
                     if(campComm == null){
                         System.out.println("You are not a camp committee member.");
@@ -235,8 +237,6 @@ public class StudentMenuController {
             System.out.println();
             System.out.println();
             System.out.println();
-            studentMenu.printMenu();
-            choice = Integer.valueOf(scanner.nextLine());
         } while (choice >= 1 && choice < 10);
 
         return LoginPage.Logout();

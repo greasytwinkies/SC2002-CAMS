@@ -2,6 +2,7 @@ public class Camp {
     private CampInformation campInfo;
 
     private EnquiryList enquiries;
+    private SuggestionList suggestions;
     // private SuggestionList suggestions;
     private StudentList CampAttendeesList;
     private StudentList CampCommitteeMembersList;
@@ -13,6 +14,7 @@ public class Camp {
         CampAttendeesList = new StudentList("Camp Attendees");
         CampCommitteeMembersList = new StudentList("Camp Committee Members");
         enquiries = new EnquiryList("Enquiry List");
+        suggestions = new SuggestionList("Suggestion List");
 
     }
 
@@ -43,10 +45,8 @@ public class Camp {
     //     }
     // }
     public CampInformation getCampInfo(){  return this.campInfo;    }
-    public EnquiryList getEnquiries(){ 
-        return enquiries;   
-    }
-    // public SuggestionList getSuggestions(){ return this.suggestions;    }
+    public EnquiryList getEnquiries(){ return enquiries;}
+    public SuggestionList getSuggestions(){ return this.suggestions;    }
 
     public StudentList getCampAttendeesList() {return CampAttendeesList;}
 

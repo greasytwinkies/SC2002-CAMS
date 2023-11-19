@@ -6,21 +6,25 @@ public class CampCommMenuController {
     public void CampCommMenuControl(CampCommMember campComm) {
         CampCommMenu campCommMenu = new CampCommMenu();
         Camp camp = campComm.getCamp();
-        campCommMenu.printMenu();
+        
         int choice;
         do {
+            campCommMenu.printMenu();
             choice = Integer.valueOf(scanner.nextLine());
             switch (choice) {
                 case 1:
                     System.out.println(camp.getCampInfo().getCampName());
-                    //TODO print out all the camp info...
+                    //TODO print out all the camp info... maybe do in camp info class
+                    campComm.viewMySuggestions();
                     break;
-            //     case 2:
-            //         campComm.submitSuggestions();
-            //         break;
-            //     case 3:
-            //         campComm.editMySuggestions();
-            //         break;
+                case 2:
+                    Suggestion suggestion = new Suggestion(campComm);
+                    campComm.submitSuggestions(suggestion);
+                    break;
+                case 3:
+                    System.out.println("Editing suggestions: ");
+                    campComm.editMySuggestions();
+                    break;
             //     case 4:
             //         campComm.deleteMySuggestions();
             //         break;
