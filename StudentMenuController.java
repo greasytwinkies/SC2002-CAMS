@@ -31,6 +31,9 @@ public class StudentMenuController {
                 case 3:
                     // first, print out all available camps
                     System.out.println("Viewing Available Camps:");
+                    System.out.println("Camp Name\t\tCamp Vacancies");
+                    System.out.println("\t\t\t(Participant/Camp Committee)");
+                    System.out.println("");
                     CampList availableCamps = student.viewAvailableCamps(campList);
                     if (availableCamps != null) {
                         System.out.println("Please indicate the camp number you would like to register for:");

@@ -1,6 +1,8 @@
 public class StaffMenu implements iMenu {
     public void printMenu() {
         System.out.println("==============================");
+        System.out.println("STAFF MENU");
+        System.out.println("==============================");
         System.out.println("Enter your choice:");
         System.out.println("(1) Create new camp");
         System.out.println("(2) Edit existing camp");
@@ -16,5 +18,6 @@ public class StaffMenu implements iMenu {
         System.out.println("(12) Generate camp committee member performance report");
         System.out.println("(13) Exit Menu");
         System.out.println("==============================");
+        System.out.println("");
     }
 }

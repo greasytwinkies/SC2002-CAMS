@@ -1,6 +1,8 @@
 public class StudentMenu implements iMenu {
     public void printMenu() {
         System.out.println("==============================");
+        System.out.println("STUDENT MENU");
+        System.out.println("==============================");
         System.out.println("Enter your choice:");
         System.out.println("(1) View available camps");
         System.out.println("(2) View registered camps");
@@ -13,5 +15,6 @@ public class StudentMenu implements iMenu {
         System.out.println("(9) Access Camp Committee menu");
         System.out.println("(10) Exit menu");
         System.out.println("==============================");
+        System.out.println("");
     }
 }

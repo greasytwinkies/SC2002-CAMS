@@ -29,7 +29,8 @@ public class LoginPage
 				+ "\n\n1) Student."
 				+ "\n2) Staff."
                 + "\n3) Create new Student/Staff account."
-				+ "\n4) Quit.");
+				+ "\n4) Quit."
+                + "\n");
 		
 		choice = scan.nextInt();
         scan.nextLine();
@@ -38,37 +39,44 @@ public class LoginPage
 			{
 			case(1):
                 System.out.println("Please enter your student email");
+                System.out.println("");
                 String StudentEmail = scan.nextLine();
                 System.out.println("Please enter your student password");
+                System.out.println("");
                 String StudentPassword = scan.nextLine();
-
+                
                 String UserID = ExtractUserName(StudentEmail);
-    
+                
                 System.out.println("USERID: " + UserID + " password: " + StudentPassword);
                 return studentLogin(studentList, UserID, StudentPassword);
 				
-			
-			case(2):
-                System.out.println("Please enter your staff email");
-                String StaffEmail = scan.nextLine();
-                System.out.println("Please enter your staff password");
                 
+            case(2):
+                System.out.println("Please enter your staff email:");
+                System.out.println("");
+                String StaffEmail = scan.nextLine();
+
+                System.out.println("Please enter your staff password:");
+                System.out.println("");
                 String StaffPassword = scan.nextLine();
 
                 UserID = ExtractUserName(StaffEmail);
 
                 System.out.println("USERID: " + UserID + " password: " + StaffPassword);
+                System.out.println("");
                 return staffLogin(staffList, UserID, StaffPassword);
 
             case(3):
-                System.out.println("Create new account. (0): student (1):staff ");
+                System.out.println("Create new account:");
+                System.out.println("1) Student");
+                System.out.println("2) Staff");
                 choice = scan.nextInt();
-                if(choice == 0){
+                if(choice == 1){
                     Student createdStudent = createStudentAccount();
                     StudentTextDB.createStudent(createdStudent);
                     return createdStudent;
                 }
-                else if (choice == 1){
+                else if (choice == 2){
                     System.out.println("Please verify staff access using unique password: ");
                     //TODO: make some sort of check before allowing creating of a staff account
                     Staff createdStaff = createStaffAccount();

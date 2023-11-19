@@ -36,11 +36,13 @@ n
 2
 9
 1
-2
-suggestion made
-2
-second suggestion
 3
+suggestion made
+3
+second suggestion
+4
 2
 editing suggestion
+5
 1
+2

@@ -29,14 +29,6 @@ public class CampCommMember{
         camp.getSuggestions().printUserSuggestions(this);
     }
 
-    public void editMySuggestions(){
-        viewMySuggestions();
-        System.out.println("\n");
-        System.out.print("Entry to be edited: ");
-        int idx = scanner.nextInt();
-        camp.getSuggestions().editSuggestions(idx);
-    }
-
     // public void deleteMySuggestions(){
     //     viewMySuggestions();
     //     System.out.print("Entry to be deleted: ");

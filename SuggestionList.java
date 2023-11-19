@@ -16,7 +16,7 @@ public class SuggestionList extends List {
     } 
 
     public void printUserSuggestions(CampCommMember author){
-        System.out.println("viewing your sugestions: ");
+        System.out.println("Viewing your suggestions: ");
         int i=1;
         for (Object item : super.list){
             Suggestion s = (Suggestion) item;

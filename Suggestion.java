@@ -14,8 +14,9 @@ public class Suggestion implements iService {
 
     @Override
     public void view() {
-        System.out.println("Suggestion: " + suggestion);
-        System.out.println("Status: " + status);
+        System.out.println("Suggestion:" + "\t" + suggestion);
+        System.out.println("   Status:" + "\t" + status);
+        System.out.println("");
     }
 
     @Override
