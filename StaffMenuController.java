@@ -48,17 +48,17 @@ public class StaffMenuController {
                     campList.printUserCamp(staff);
                     break;
                 case 7:
-                    campList.printUserCamp(staff);
-                    System.out.println("Enter the index of the camp you want to view enquiry of: ");
+                    CampList userCamps = campList.printUserCamp(staff);
+                    System.out.println("Enter the index of the camp you want to view enquiry of:");
                     choice = Integer.valueOf(scanner.nextLine());
-                    camp = (Camp) campList.getFromList(choice-1);
+                    camp = (Camp) userCamps.getFromList(choice-1);
                     camp.getEnquiries().printList();
                     break;
                 case 8:
-                    campList.printUserCamp(staff);
-                    System.out.println("Enter the index of the camp you want to reply enquiry of: ");
+                    userCamps = campList.printUserCamp(staff);
+                    System.out.println("Enter the index of the camp you want to reply enquiry to:");
                     choice = Integer.valueOf(scanner.nextLine());
-                    camp = (Camp) campList.getFromList(choice-1);
+                    camp = (Camp) userCamps.getFromList(choice-1);
                     camp.getEnquiries().replyEnquiries();
                     break;
                 // case 9:

@@ -96,10 +96,10 @@ public class StudentMenuController {
                         student.enquiryMenuController.submitEnquiry(enquiredCamp);
                     }
                     else if (choice==2){
-                        campList.printUserCamp(student);
+                        CampList userCamps = campList.printUserCamp(student);
                         System.out.println("Enter the index of the camp you want to submit enquiry to:");
                         choice = Integer.valueOf(scanner.nextLine());
-                        Camp enquiredCamp = (Camp) campList.getFromList(choice-1);
+                        Camp enquiredCamp = (Camp) userCamps.getFromList(choice-1);
                         student.enquiryMenuController.submitEnquiry(enquiredCamp);
                     }                  
                     break;
@@ -132,10 +132,10 @@ public class StudentMenuController {
                         student.enquiryMenuController.viewEnquiries(enquiredCamp);
                     }
                     else if (choice==2){
-                        campList.printUserCamp(student);
+                        CampList userCamps = campList.printUserCamp(student);
                         System.out.println("Enter the index of the camp you want to view enquiry of:");
                         choice = Integer.valueOf(scanner.nextLine());
-                        Camp enquiredCamp = (Camp) campList.getFromList(choice-1);
+                        Camp enquiredCamp = (Camp) userCamps.getFromList(choice-1);
                         student.enquiryMenuController.viewEnquiries(enquiredCamp);
                     }                  
                     break;
@@ -168,10 +168,10 @@ public class StudentMenuController {
                         student.enquiryMenuController.editEnquiry(enquiredCamp);
                     }
                     else if (choice==2){
-                        campList.printUserCamp(student);
+                        CampList userCamps = campList.printUserCamp(student);
                         System.out.println("Enter the index of the camp you want to edit enquiry of:");
                         choice = Integer.valueOf(scanner.nextLine());
-                        Camp enquiredCamp = (Camp) campList.getFromList(choice-1);
+                        Camp enquiredCamp = (Camp) userCamps.getFromList(choice-1);
                         student.enquiryMenuController.editEnquiry(enquiredCamp);
                     }                  
                     break;
@@ -213,10 +213,10 @@ public class StudentMenuController {
                         student.enquiryMenuController.deleteEnquiry(enquiredCamp);
                     }
                     else if (choice==2){
-                        campList.printUserCamp(student);
+                        CampList userCamps = campList.printUserCamp(student);
                         System.out.println("Enter the index of the camp you want to delete enquiry of:");
                         choice = Integer.valueOf(scanner.nextLine());
-                        Camp enquiredCamp = (Camp) campList.getFromList(choice-1);
+                        Camp enquiredCamp = (Camp) userCamps.getFromList(choice-1);
                         student.enquiryMenuController.deleteEnquiry(enquiredCamp);
                     }                  
                     break;

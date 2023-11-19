@@ -49,7 +49,8 @@ public class CampList extends List{
     //     System.out.println("-End of list-");
     // }
 
-    public void printUserCamp(User user){
+    public CampList printUserCamp(User user){
+        CampList userCamps = new CampList(user.getName() + "'s camps");
         System.out.println(super.listName);
         int i =1;
         int flag =0;
@@ -61,6 +62,7 @@ public class CampList extends List{
                     System.out.println(i + ") " + camp.getCampInfo().getCampName() + " (" + camp.getCampInfo().getCurrentParticipantSlots() + " vacancies)");
                     i++;
                     flag=1;
+                    userCamps.addToList(camp);
                 }
             }
             else if (user instanceof Student){
@@ -71,6 +73,7 @@ public class CampList extends List{
                         System.out.println(i + ") " + camp.getCampInfo().getCampName() + " (" + camp.getCampInfo().getCurrentParticipantSlots() + " vacancies)");
                         i++;
                         flag=1;
+                        userCamps.addToList(camp);
                         break;
                     }
                 }
@@ -79,6 +82,7 @@ public class CampList extends List{
             if (flag==0 && user instanceof Staff){  System.out.println("You have not created camps");}
             else if (flag==0 && user instanceof Student){    System.out.println("You have not registered for any camps");}
             else{System.out.println("-End of list-");}
+            return userCamps;
         }
         
 
