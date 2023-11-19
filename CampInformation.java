@@ -162,8 +162,8 @@ public class CampInformation {
 		+  "Registration Closing Date: " + this.RegistrationClosingDate.toString() + "\n"
 		+  "Faculty: " + this.faculty.toString() + "\n"
 		+  "Location: " + this.Location + "\n"
-		+  "Camp Participant Slots (Filled/Empty/Total): " + this.CurrentParticipantSlots + "/" + (this.TotalParticipantSlots - this.CurrentParticipantSlots) + "/" + this.TotalParticipantSlots + "\n"
-		+  "Camp Committee Member Slots (Filled/Empty/Total): " + this.CurrentCampCommitteeSlots + "/" + (this.TotalCampCommitteeSlots - this.CurrentCampCommitteeSlots) + "/" + this.TotalCampCommitteeSlots + "\n"
+		+  "Camp Participant Slots (Empty/Filled/Total): " + this.CurrentParticipantSlots + "/" + (this.TotalParticipantSlots - this.CurrentParticipantSlots) + "/" + this.TotalParticipantSlots + "\n"
+		+  "Camp Committee Member Slots (Empty/Filled/Total): " + this.CurrentCampCommitteeSlots + "/" + (this.TotalCampCommitteeSlots - this.CurrentCampCommitteeSlots) + "/" + this.TotalCampCommitteeSlots + "\n"
 		+  "Description: " + this.Description + "\n"
 		+  "Staff-In-Charge: " + this.getStaffInCharge().getName() + "\n"
 		+ "\n";

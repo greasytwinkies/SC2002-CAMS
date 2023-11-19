@@ -35,20 +35,17 @@ public class CampCommMenuController {
                     campComm.getCamp().getSuggestions().deleteFromList(del);
                     System.out.println("Suggestion successfully deleted.");
                     break;
+                case 6:
+                    campComm.getCamp().getEnquiries().printList();
+                    break;
+                case 7:
+                    campComm.getCamp().getEnquiries().replyEnquiries();
+                    break;
                 case 9:
                     System.out.println("EXITING CAMP COMMITTEE MEMBER MENU");
                     System.out.println("");
                     System.out.println("RETURNING TO STUDENT MENU");
                     break;
-            //     case 4:
-            //         campComm.deleteMySuggestions();
-            //         break;
-            //     case 5:
-            //         campComm.viewEnquiries();
-            //         break;
-            //     case 6:
-            //         campComm.replyEnquiries();
-            //         break;
             //     case 7:
             //         campComm.generateReport();
             //         break;

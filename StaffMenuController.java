@@ -92,6 +92,9 @@ public class StaffMenuController {
                 
                     
             }
+            System.out.println();
+            System.out.println();
+            System.out.println();
         } while (choice > 0 && choice < 13);
 
         return LoginPage.Logout();

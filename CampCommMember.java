@@ -29,23 +29,7 @@ public class CampCommMember{
         camp.getSuggestions().printUserSuggestions(this);
     }
 
-    // public void deleteMySuggestions(){
-    //     viewMySuggestions();
-    //     System.out.print("Entry to be deleted: ");
-    //     int idx = Integer.valueOf(scanner.nextLine());
-    //     camp.getSuggestions().deleteFromList(idx);
-    // }
 
-    // public void viewEnquiries(){
-    //     camp.getEnquiries().printList();
-    // }
-
-    // public void replyEnquiries(){
-    //     camp.getEnquiries().replyEnquiries();
-    //     points+=1;
-    // }
-
-    // public void viewCampDetails(){};
     // public void generateReport(){}; //prob not void bah
     
 }

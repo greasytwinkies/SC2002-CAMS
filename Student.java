@@ -2,11 +2,12 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Student extends User
 {
-    private CampList CampsRegisteredAsParticipant; 
-    private CampList CampsWithdrawnFrom;
+    // private CampList CampsRegisteredAsParticipant; 
+    // private CampList CampsWithdrawnFrom;
     private CampCommMember campCommMember;
     // private CampCommMember campCommMember;
     Scanner scanner = new Scanner(System.in);
@@ -17,12 +18,12 @@ public class Student extends User
 
     public Student(String name, String userID, String password, Faculty facultyInformation) {
         super(name, userID, password, facultyInformation);
-        CampsRegisteredAsParticipant = new CampList("CampRegisteredList");
-        CampsWithdrawnFrom = new CampList("Withdrawn Camps");
+        // CampsRegisteredAsParticipant = new CampList("CampRegisteredList");
+        // CampsWithdrawnFrom = new CampList("Withdrawn Camps");
     }
 
-    public CampList getCampsRegisteredAsParticipant(){  return CampsRegisteredAsParticipant;    }
-    public CampList getCampsWithdrawnFrom(){  return CampsWithdrawnFrom;    }
+    // public CampList getCampsRegisteredAsParticipant(){  return CampsRegisteredAsParticipant;    }
+    // public CampList getCampsWithdrawnFrom(){  return CampsWithdrawnFrom;    }
 
 
     public CampList viewAvailableCamps(CampList campList){
@@ -34,7 +35,9 @@ public class Student extends User
         for(int i = 0; i < campList.list.size(); i++){
             Camp camp = (Camp)campList.list.get(i);
             Faculty campFaculty = camp.getCampInfo().getFaculty();
-            int campVacancies = camp.getCampInfo().getCurrentParticipantSlots();
+            int campVacancies = camp.getCampInfo().getCurrentCampMemberSlots();
+            boolean campVisibility = camp.getCampInfo().getCampVisibility();
+            boolean withdrawn = checkWithdraw(camp);
 
             // TODO: need to extend this code for visibility later
             // TODO: also need to check camp dates, etc. (DONE) 
@@ -42,10 +45,10 @@ public class Student extends User
             // TODO: check if camp already registered for. (DONE)
             // TODO: might have to split this function, it is getting too big
             // first, check if camp has vacancies (DONE)
-            if (campVacancies > 0) {
+            if (campVacancies > 0 && campVisibility && withdrawn) {
                 // now check faculty of camp - two scenarios: school-wide camp or faculty-camp (must match with faculty of user)
                 if ((campFaculty == Faculty.NTU) || super.getFacultyInformation() == campFaculty) {
-                    if(checkCampDeadline(camp) && !isCampRegistered(camp) && !checkCampClash(camp)){ // if present date is before the registration closing date & camps not registered yet
+                    if(checkCampDeadline(camp) && !isCampRegistered(camp,campList) && !checkCampClash(camp,campList)){ // if present date is before the registration closing date & camps not registered yet
                         availableCamps.addToList(camp);
                         continue;
                     }
@@ -84,11 +87,11 @@ public class Student extends User
 
     public void registerCampAsAttendee(Camp camp){
         // do all the checking in the availableCamps function rather than here
-
-
         camp.getCampAttendeesList().addToList(this);
-        getCampsRegisteredAsParticipant().addToList(camp);
+        camp.getCampMembersList().addToList(this);
+        // getCampsRegisteredAsParticipant().addToList(camp);
         camp.getCampInfo().setCurrentParticipantSlots(camp.getCampInfo().getCurrentParticipantSlots()-1);
+        camp.getCampInfo().setCurrentCampMemberSlots(camp.getCampInfo().getCurrentCampMemberSlots()-1);
         System.out.println("Successfully registered for " + camp.getCampInfo().getCampName() + " as PARTICIPANT!");
 /*         if (camp.getCampInfo().getCurrentParticipantSlots() !=0 && checkCampDeadline(camp) && !checkCampClash(camp) && checkWithdraw(camp)){ //check vacancy, check date clash, check ddl, check whether withdrawed
             camp.getCampAttendeesList().addToList(this);
@@ -99,9 +102,10 @@ public class Student extends User
     }
     
     public void registerCampAsCampComm(Camp camp){
-
         camp.getCampCommitteeMembersList().addToList(this);
-        camp.getCampInfo().setCurrentParticipantSlots(camp.getCampInfo().getCurrentParticipantSlots()-1);
+        camp.getCampMembersList().addToList(this);
+        camp.getCampInfo().setCurrentCampCommitteeSlots(camp.getCampInfo().getTotalCampCommitteeSlots()-1);
+        camp.getCampInfo().setCurrentCampMemberSlots(camp.getCampInfo().getCurrentCampMemberSlots()-1);
         CampCommMember campCommMember = new CampCommMember(camp);
         this.setCampCommMember(campCommMember);
         System.out.println("Successfully registered for " + camp.getCampInfo().getCampName() + " as CAMP COMMITTEE MEMBER !");
@@ -130,14 +134,19 @@ public class Student extends User
         this.campCommMember = campCommMember;
     }
 
-    public void withdrawCamp(Camp camp){
-        camp.getCampAttendeesList().list.remove(this);
-        camp.getCampInfo().setCurrentParticipantSlots(camp.getCampInfo().getCurrentParticipantSlots()+1);
-        getCampsRegisteredAsParticipant().list.remove(camp);
-        getCampsWithdrawnFrom().list.add(camp);
+    public boolean withdrawCamp(Camp camp, CampList campList){
+        if (isCampRegistered(camp, campList)){
+            camp.getCampAttendeesList().list.remove(this);
+            camp.getCampMembersList().deleteFromList(this);
+            camp.getWithdrawnStudentList().deleteFromList(this);
+            camp.getCampInfo().setCurrentParticipantSlots(camp.getCampInfo().getCurrentParticipantSlots()+1);
+            camp.getCampInfo().setCurrentCampMemberSlots(camp.getCampInfo().getCurrentCampMemberSlots()+1);
+            return true;
+        }
+        return false;
+        // getCampsRegisteredAsParticipant().list.remove(camp);
+        // getCampsWithdrawnFrom().list.add(camp);
         
-
-
 /*         if (camp.getCampAttendeesList().list.contains(this)){
             camp.getCampAttendeesList().list.remove(this);
             
@@ -156,10 +165,19 @@ public class Student extends User
         } */
     }
 
+    // public boolean checkWithdraw(Camp camp){
+    //     for (int i=0; i<getCampsWithdrawnFrom().list.size(); i++){
+    //         Camp cmp = (Camp) getCampsWithdrawnFrom().list.get(i);
+    //         if (cmp == camp) {return false;}   //got withdraw before
+    //     }
+    //     return true; //nvr withdraw before
+    // }
+
     public boolean checkWithdraw(Camp camp){
-        for (int i=0; i<getCampsWithdrawnFrom().list.size(); i++){
-            Camp cmp = (Camp) getCampsWithdrawnFrom().list.get(i);
-            if (cmp == camp) {return false;}   //got withdraw before
+        ArrayList<Object> withdrawn = camp.getWithdrawnStudentList().returnStudentList();
+        for (Object item : withdrawn){
+            Student student = (Student) item;
+            if (student.getUserID().equals(this.getUserID())) {return false;}   //got withdraw before
         }
         return true; //nvr withdraw before
     }
@@ -171,10 +189,13 @@ public class Student extends User
         else{   return false;}
     }
 
-    public boolean checkCampClash(Camp camp) {
+    public boolean checkCampClash(Camp camp, CampList campList) {
         // Get the start and end dates of the new camp
         LocalDate newCampStartDate = camp.getCampInfo().getStartingDate();
         LocalDate newCampEndDate = camp.getCampInfo().getEndingDate();
+        CampList CampsRegisteredAsParticipant = campList.returnUserCamps(this);
+
+        if(CampsRegisteredAsParticipant==null){return false;}
         
         // Check against all camps that the student is already registered for
         for (int i = 0; i < CampsRegisteredAsParticipant.list.size(); i++) {
@@ -195,13 +216,29 @@ public class Student extends User
         return false; // No clash with any registered camp
     }
 
-    public boolean isCampRegistered(Camp camp){
-        for(int i = 0; i < CampsRegisteredAsParticipant.list.size(); i++){
-            if(((Camp) CampsRegisteredAsParticipant.list.get(i)).getCampInfo().getCampName() == camp.getCampInfo().getCampName()){
-                return true;
-            }
+    // public boolean isCampRegistered(Camp camp){
+    //     for(int i = 0; i < CampsRegisteredAsParticipant.list.size(); i++){
+    //         if(((Camp) CampsRegisteredAsParticipant.list.get(i)).getCampInfo().getCampName() == camp.getCampInfo().getCampName()){
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
+
+    public boolean isCampRegistered(Camp camp, CampList campList){
+        //as a committee
+        ArrayList<Object> committeelist = camp.getCampCommitteeMembersList().returnStudentList();
+        for (Object item : committeelist){
+            Student student = (Student) item;
+            if (student.getUserID().equals(this.getUserID())) {return true;}   //got withdraw before
         }
-        return false;
+        //as a participant
+        CampList campsRegistered = campList.returnUserCamps(this);
+        if (campsRegistered==null){return false;}
+        if (campsRegistered.findCamp(campsRegistered, camp.getCampInfo().getCampName())==null){
+            return false;
+        }
+        return true;
     }
 
 }

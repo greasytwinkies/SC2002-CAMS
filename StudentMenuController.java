@@ -61,17 +61,18 @@ public class StudentMenuController {
                     }
                     break;
                 case 4:
-                    if (student.getCampsRegisteredAsParticipant().list.size() == 0) {
+                    CampList registeredCamps = campList.returnUserCamps(student);
+                    if (registeredCamps==null){
                         System.out.println("You are currently not registered for any camps!");
                         break;
                     }
+     
                     System.out.println("Viewing registered camps:");
                     student.viewRegisteredCamps(campList);
                     System.out.println("Please indicate the camp number you would like to withdraw from:");
                     int campWithdrawChoice = Integer.valueOf(scanner.nextLine());
-                    Camp withdrawCamp = (Camp) student.getCampsRegisteredAsParticipant().list
-                            .get(campWithdrawChoice-1);
-                    student.withdrawCamp(withdrawCamp);
+                    Camp withdrawCamp = (Camp) registeredCamps.getFromList(campWithdrawChoice-1);
+                    student.withdrawCamp(withdrawCamp,campList);
                     System.out.println("Successfully withdrawn from " + withdrawCamp.getCampInfo().getCampName() + "!");
                     break;
                 case 5:
@@ -95,13 +96,22 @@ public class StudentMenuController {
                     if (choice==1){
                         System.out.println("Available Camps:");
                         availableCamps = student.viewAvailableCamps(campList);
+                        if (availableCamps==null){
+                            System.out.println("There are no available camps.");
+                            break;
+                        }
                         System.out.println("Enter the index of the camp you want to submit enquiry to: ");
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) availableCamps.list.get(choice-1);
                         student.enquiryMenuController.submitEnquiry(enquiredCamp);
                     }
                     else if (choice==2){
-                        CampList userCamps = campList.printUserCamp(student);
+                        campList.printUserCamp(student);
+                        CampList userCamps = campList.returnUserCamps(student);
+                        if (userCamps==null){
+                            System.out.println("There are no registered camps.");
+                            break;
+                        }
                         System.out.println("Enter the index of the camp you want to submit enquiry to:");
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) userCamps.getFromList(choice-1);
@@ -131,13 +141,22 @@ public class StudentMenuController {
                     if (choice==1){
                         System.out.println("Available Camps:");
                         availableCamps = student.viewAvailableCamps(campList);
+                        if (availableCamps==null){
+                            System.out.println("There are no available camps.");
+                            break;
+                        }
                         System.out.println("Enter the index of the camp you want to view enquiry of: ");
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) availableCamps.list.get(choice-1);
                         student.enquiryMenuController.viewEnquiries(enquiredCamp);
                     }
                     else if (choice==2){
-                        CampList userCamps = campList.printUserCamp(student);
+                        campList.printUserCamp(student);
+                        CampList userCamps = campList.returnUserCamps(student);
+                        if (userCamps==null){
+                            System.out.println("There are no registered camps.");
+                            break;
+                        }
                         System.out.println("Enter the index of the camp you want to view enquiry of:");
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) userCamps.getFromList(choice-1);
@@ -167,13 +186,22 @@ public class StudentMenuController {
                     if (choice==1){
                         System.out.println("Available Camps:");
                         availableCamps = student.viewAvailableCamps(campList);
+                        if (availableCamps==null){
+                            System.out.println("There are no available camps.");
+                            break;
+                        }
                         System.out.println("Enter the index of the camp you want to edit enquiry of: ");
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) availableCamps.list.get(choice-1);
                         student.enquiryMenuController.editEnquiry(enquiredCamp);
                     }
                     else if (choice==2){
-                        CampList userCamps = campList.printUserCamp(student);
+                        campList.printUserCamp(student);
+                        CampList userCamps = campList.returnUserCamps(student);
+                        if (userCamps==null){
+                            System.out.println("There are no registered camps.");
+                            break;
+                        }
                         System.out.println("Enter the index of the camp you want to edit enquiry of:");
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) userCamps.getFromList(choice-1);
@@ -212,13 +240,22 @@ public class StudentMenuController {
                     if (choice==1){
                         System.out.println("Available Camps:");
                         availableCamps = student.viewAvailableCamps(campList);
+                        if (availableCamps==null){
+                            System.out.println("There are no available camps.");
+                            break;
+                        }
                         System.out.println("Enter the index of the camp you want to delete enquiry of: ");
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) availableCamps.list.get(choice-1);
                         student.enquiryMenuController.deleteEnquiry(enquiredCamp);
                     }
                     else if (choice==2){
-                        CampList userCamps = campList.printUserCamp(student);
+                        campList.printUserCamp(student);
+                        CampList userCamps = campList.returnUserCamps(student);
+                        if (userCamps==null){
+                            System.out.println("There are no registered camps.");
+                            break;
+                        }
                         System.out.println("Enter the index of the camp you want to delete enquiry of:");
                         choice = Integer.valueOf(scanner.nextLine());
                         Camp enquiredCamp = (Camp) userCamps.getFromList(choice-1);
@@ -227,14 +264,15 @@ public class StudentMenuController {
                     break;
                 
                 case 9:
-                    CampCommMember campComm = (CampCommMember) student.getCampComm();
-                    if(campComm == null){
+                    CampCommMember campComm = campList.findCampCommMember(student);
+                    if (campComm==null){
                         System.out.println("You are not a camp committee member.");
                         break;
                     }
                     System.out.println("Successful. Entering committee menu for " + campComm.getCamp().getCampInfo().getCampName());
                     CampCommMenuController campCommMenuController = new CampCommMenuController();
                     campCommMenuController.CampCommMenuControl(campComm);
+                    break;
 
             }
             System.out.println();
