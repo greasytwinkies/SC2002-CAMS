@@ -51,16 +51,6 @@ public class Student extends User
                     }
                 }
             }
-/*             if(((Camp) campList.list.get(i)).getCampInfo().getFaculty() == Faculty.NTU && ((Camp) campList.getFromList(i)).getCampInfo().getCurrentParticipantSlots() != 0){ // NTU-wide
-                    System.out.println("Camp Name: " + ((Camp) campList.getFromList(i)).getCampInfo().getCampName());
-                    System.out.println("Camp Vacancy: " + ((Camp) campList.getFromList(i)).getCampInfo().getCurrentParticipantSlots());
-                    continue;
-            }
-            if(((Camp) campList.list.get(i)).getCampInfo().getFaculty() != Faculty.NTU && super.getFacultyInformation() == ((Camp) campList.getFromList(i)).getCampInfo().getFaculty() && ((Camp) campList.getFromList(i)).getCampInfo().getCurrentParticipantSlots() != 0){ // faculty-specific
-                System.out.println("Camp Name: " + ((Camp) campList.getFromList(i)).getCampInfo().getCampName());
-                System.out.println("Camp Vacancy: " + ((Camp) campList.getFromList(i)).getCampInfo().getCurrentParticipantSlots());
-                continue;
-            } */
         }
         if (availableCamps.list.size() == 0) {
             return null;
@@ -72,7 +62,7 @@ public class Student extends User
             int vacancies = availableCamp.getCampInfo().getCurrentParticipantSlots();
             int campCommVacancies = availableCamp.getCampInfo().getCurrentCampCommitteeSlots();
             System.out.print(x+1 + ") ");
-            System.out.println(availableCamp.getCampInfo().getCampName() + " (" + vacancies + " participant vacancies)" + " (" + campCommVacancies + " camp committee vacancies)");
+            System.out.println(availableCamp.getCampInfo().getCampName() + "\t\t(" + vacancies + "/" + campCommVacancies + ")");
         }
         
         return availableCamps;

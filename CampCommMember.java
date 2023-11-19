@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class CampCommMember{
     private Camp camp;
     private static int points;
-    Scanner scan = Main.getScanner();
+    Scanner scanner = Main.getScanner();
 
     public CampCommMember(Camp camp){
         this.camp = camp;
@@ -20,21 +20,14 @@ public class CampCommMember{
         return this.camp;
     }
 
-    // public void submitSuggestions(){
-    //     Suggestion suggestion = new Suggestion(this);
-    //     camp.getSuggestions().addToList(suggestion);
-    //     points+=1; 
-    // }
+    public void submitSuggestions(Suggestion suggestion){
+        camp.getSuggestions().addToList(suggestion);
+        points+=1;
+    }
 
-    // public void viewMySuggestions(){
-    //     camp.getSuggestions().printUserSuggestions(this);
-    // }
-
-    // public void editMySuggestions(){
-    //     viewMySuggestions();
-    //     System.out.print("Entry to be edited: ");
-    //     int idx = Integer.valueOf(scanner.nextLine());
-    // }
+    public void viewMySuggestions(){
+        camp.getSuggestions().printUserSuggestions(this);
+    }
 
     // public void deleteMySuggestions(){
     //     viewMySuggestions();

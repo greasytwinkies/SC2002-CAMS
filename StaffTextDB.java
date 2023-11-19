@@ -1,11 +1,11 @@
 //read and write textDB (staff)
-import java.io.IOException;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.io.FileInputStream;
-import java.util.Scanner;
-import java.util.List;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 
@@ -119,6 +119,22 @@ public static void saveStaff(String filename, List al) throws IOException {
     finally {
       out.close();
     }
+  }
+
+  public static void createStaff(Staff createdStaff){
+	StaffTextDB txtDB = new StaffTextDB();
+    	String filename = "stafflist.txt" ;
+		try {
+			// read file containing student records.
+			List al = StaffTextDB.readStaffs(filename);
+			// al is an array list containing Student objs
+			al.add(createdStaff);
+			// write Student record/s to file.
+			StaffTextDB.saveStaff(filename, al);
+			size++;
+		}catch (IOException e) {
+			System.out.println("IOException > " + e.getMessage());
+		}
   }
 
   /** Read the contents of the given file. */

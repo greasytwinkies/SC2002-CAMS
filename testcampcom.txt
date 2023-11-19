@@ -7,23 +7,23 @@ true
 specific camp
 01-01-2023
 01-01-2023
-01-01-2023
+12-12-2023
 1
 spms
 10
 10
-this is the camp description
+specific camp description
 1
 true
 NTU camp
 01-01-2023
 01-01-2023
-01-01-2023
+12-12-2023
 0
 spms
 10
 10
-this is the camp description
+NTU camp description
 5
 13
 1
@@ -36,3 +36,13 @@ n
 2
 9
 1
+3
+suggestion made
+3
+second suggestion
+4
+2
+editing suggestion
+5
+1
+2
