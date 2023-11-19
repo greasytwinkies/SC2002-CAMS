@@ -18,6 +18,7 @@ public class CampCommMenuController {
                     break;
                 case 2:
                     campComm.viewMySuggestions();
+                    break;
                 case 3:
                     Suggestion suggestion = new Suggestion(campComm);
                     campComm.submitSuggestions(suggestion);
