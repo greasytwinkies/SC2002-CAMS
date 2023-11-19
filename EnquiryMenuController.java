@@ -37,13 +37,16 @@ public class EnquiryMenuController {
         camp.getEnquiries().printUserEnquiry(student);
         System.out.print("Entry to be deleted: ");
         int idx = Integer.valueOf(Main.scan.nextLine())-1;
-        System.out.println("Accessing enquiries now");
+        if(idx < 0 || idx >= camp.getEnquiries().list.size()){
+            System.out.println("Invalid entry number");
+            return;
+        }
         Enquiry enquiry = (Enquiry) camp.getEnquiries().getFromList(idx);
-        // if (enquiry.getReply().equals("")){ // some error here
-        camp.getEnquiries().deleteFromList(idx);
-        // }
-        // else{
-        //     System.out.println("You cannot delete your entry");
-        // }
+        if (enquiry.getReply().equals("")){ 
+            camp.getEnquiries().deleteFromList(idx);
+        }
+        else{
+            System.out.println("You cannot delete your entry");
+        }
     }
 }
