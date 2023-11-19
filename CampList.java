@@ -59,6 +59,7 @@ public class CampList extends List{
             if(user instanceof Staff){
                 if(camp.getCampInfo().getStaffInCharge().getUserID().equals(user.getUserID())){
                     System.out.println(i + ") " + camp.getCampInfo().getCampName() + " (" + camp.getCampInfo().getCurrentParticipantSlots() + " vacancies)");
+                    i++;
                     flag=1;
                 }
             }
@@ -68,12 +69,12 @@ public class CampList extends List{
                     Student student = (Student) thing;
                     if (student.getUserID().equals(user.getUserID())){
                         System.out.println(i + ") " + camp.getCampInfo().getCampName() + " (" + camp.getCampInfo().getCurrentParticipantSlots() + " vacancies)");
+                        i++;
                         flag=1;
                         break;
                     }
                 }
             }
-            i++;
         }
             if (flag==0 && user instanceof Staff){  System.out.println("You have not created camps");}
             else if (flag==0 && user instanceof Student){    System.out.println("You have not registered for any camps");}

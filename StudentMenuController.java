@@ -65,7 +65,7 @@ public class StudentMenuController {
                     System.out.println("Please indicate the camp number you would like to withdraw from:");
                     int campWithdrawChoice = Integer.valueOf(scanner.nextLine());
                     Camp withdrawCamp = (Camp) student.getCampsRegisteredAsParticipant().list
-                            .get(campWithdrawChoice - 1);
+                            .get(campWithdrawChoice-1);
                     student.withdrawCamp(withdrawCamp);
                     System.out.println("Successfully withdrawn from " + withdrawCamp.getCampInfo().getCampName() + "!");
                     break;

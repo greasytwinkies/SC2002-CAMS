@@ -37,16 +37,18 @@ public class Student extends User
             int campVacancies = camp.getCampInfo().getCurrentParticipantSlots();
 
             // TODO: need to extend this code for visibility later
-            // TODO: also need to check camp dates, etc.
-            // TODO: include camp comm member vacancies.
-            // TODO: check if camp already registered for.
+            // TODO: also need to check camp dates, etc. (DONE) 
+            // TODO: include camp comm member vacancies. (DONE)
+            // TODO: check if camp already registered for. (DONE)
             // TODO: might have to split this function, it is getting too big
-            // first, check if camp has vacancies
+            // first, check if camp has vacancies (DONE)
             if (campVacancies > 0) {
                 // now check faculty of camp - two scenarios: school-wide camp or faculty-camp (must match with faculty of user)
                 if ((campFaculty == Faculty.NTU) || super.getFacultyInformation() == campFaculty) {
-                    availableCamps.addToList(camp);
-                    continue;
+                    if(checkCampDeadline(camp) && !isCampRegistered(camp) && !checkCampClash(camp)){ // if present date is before the registration closing date & camps not registered yet
+                        availableCamps.addToList(camp);
+                        continue;
+                    }
                 }
             }
 /*             if(((Camp) campList.list.get(i)).getCampInfo().getFaculty() == Faculty.NTU && ((Camp) campList.getFromList(i)).getCampInfo().getCurrentParticipantSlots() != 0){ // NTU-wide
@@ -66,10 +68,11 @@ public class Student extends User
         // now print all available camps
         // TODO: print camp faculty?
         for (int x = 0; x < availableCamps.list.size(); x++) {
-            Camp availableCamp = (Camp)availableCamps.list.get(x);
+            Camp availableCamp = (Camp) availableCamps.list.get(x);
             int vacancies = availableCamp.getCampInfo().getCurrentParticipantSlots();
+            int campCommVacancies = availableCamp.getCampInfo().getCurrentCampCommitteeSlots();
             System.out.print(x+1 + ") ");
-            System.out.println(availableCamp.getCampInfo().getCampName() + " (" + vacancies + " vacancies)");
+            System.out.println(availableCamp.getCampInfo().getCampName() + " (" + vacancies + " participant vacancies)" + " (" + campCommVacancies + " camp committee vacancies)");
         }
         
         return availableCamps;
@@ -178,16 +181,35 @@ public class Student extends User
         else{   return false;}
     }
 
-    public boolean checkCampClash(Camp camp){   //true means clash false means no clash
+    public boolean checkCampClash(Camp camp) {
+        // Get the start and end dates of the new camp
         LocalDate newCampStartDate = camp.getCampInfo().getStartingDate();
         LocalDate newCampEndDate = camp.getCampInfo().getEndingDate();
-        for (int i=0; i<CampsRegisteredAsParticipant.list.size(); i++){
-            Camp cmp = (Camp) CampsRegisteredAsParticipant.getFromList(i);
-            LocalDate cmpStartDate = cmp.getCampInfo().getStartingDate();
-            LocalDate cmpEndDate = cmp.getCampInfo().getEndingDate();
-            if (newCampStartDate.isBefore(cmpEndDate) && newCampStartDate.isAfter(cmpStartDate)){   return true;}
-            else if (newCampEndDate.isBefore(cmpEndDate) && newCampEndDate.isAfter(cmpStartDate)){  return true;}
-            else if (newCampStartDate.isBefore(cmpStartDate) && newCampEndDate.isAfter(cmpEndDate)){    return true;}
+        
+        // Check against all camps that the student is already registered for
+        for (int i = 0; i < CampsRegisteredAsParticipant.list.size(); i++) {
+            Camp registeredCamp = (Camp) CampsRegisteredAsParticipant.getFromList(i);
+            LocalDate registeredCampStartDate = registeredCamp.getCampInfo().getStartingDate();
+            LocalDate registeredCampEndDate = registeredCamp.getCampInfo().getEndingDate();
+            
+            // Check for any overlap between the new camp and the registered camp
+            boolean startsDuringAnotherCamp = !newCampStartDate.isAfter(registeredCampEndDate) && !newCampStartDate.isBefore(registeredCampStartDate);
+            boolean endsDuringAnotherCamp = !newCampEndDate.isAfter(registeredCampEndDate) && !newCampEndDate.isBefore(registeredCampStartDate);
+            boolean coversAnotherCamp = newCampStartDate.isBefore(registeredCampStartDate) && newCampEndDate.isAfter(registeredCampEndDate);
+    
+            if (startsDuringAnotherCamp || endsDuringAnotherCamp || coversAnotherCamp) {
+                return true; // There is a clash
+            }
+        }
+        
+        return false; // No clash with any registered camp
+    }
+
+    public boolean isCampRegistered(Camp camp){
+        for(int i = 0; i < CampsRegisteredAsParticipant.list.size(); i++){
+            if(((Camp) CampsRegisteredAsParticipant.list.get(i)).getCampInfo().getCampName() == camp.getCampInfo().getCampName()){
+                return true;
+            }
         }
         return false;
     }
