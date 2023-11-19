@@ -13,8 +13,7 @@ public class CampCommMenuController {
             choice = Integer.valueOf(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    System.out.println(camp.getCampInfo().getCampName());
-                    //TODO print out all the camp info... maybe do in camp info class
+                    System.out.print(camp.getCampInfo().toString());
                     break;
                 case 2:
                     campComm.viewMySuggestions();
