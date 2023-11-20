@@ -48,14 +48,14 @@ public class StaffMenuController {
                     campList.printUserCamp(staff);
                     break;
                 case 7:
-                    CampList userCamps = campList.printUserCamp(staff);
+                    CampList userCamps = campList.returnUserCamps(staff);
                     System.out.println("Enter the index of the camp you want to view enquiry of:");
                     choice = Integer.valueOf(scanner.nextLine());
                     camp = (Camp) userCamps.getFromList(choice-1);
                     camp.getEnquiries().printList();
                     break;
                 case 8:
-                    userCamps = campList.printUserCamp(staff);
+                    userCamps = campList.returnUserCamps(staff);
                     System.out.println("Enter the index of the camp you want to reply enquiry to:");
                     choice = Integer.valueOf(scanner.nextLine());
                     camp = (Camp) userCamps.getFromList(choice-1);
@@ -63,14 +63,14 @@ public class StaffMenuController {
                     break;
                 /* where code modification starts */
                 case 9: // view camp suggestions
-                    userCamps = campList.printUserCamp(staff);
+                    userCamps = campList.returnUserCamps(staff);
                     System.out.println("Enter the index of the camp you want to view suggestions of:");
                     choice = Integer.valueOf(scanner.nextLine());
                     camp = (Camp) userCamps.getFromList(choice-1);
                     camp.getSuggestions().printList();
                 break;
                 case 10: // approve camp suggestions
-                    userCamps = campList.printUserCamp(staff);
+                    userCamps = campList.returnUserCamps(staff);
                     System.out.println("Enter the index of the camp you want to view suggestions of:");
                     choice = Integer.valueOf(scanner.nextLine());
                     camp = (Camp) userCamps.getFromList(choice-1);
