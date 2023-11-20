@@ -61,23 +61,22 @@ public class StaffMenuController {
                     camp = (Camp) userCamps.getFromList(choice-1);
                     camp.getEnquiries().replyEnquiries();
                     break;
-                // case 9:
-                // staff.approveCampCommitteeSuggestions(suggestionList); // insert a
-                // suggestionsList object
-                // break;
-                // case 10:
-                // System.out.println("Enter camp name to print student report");
-                // String campNameForStudentReport = scanner.nextLine();
-                // for (int i = 0; i < campList.list.size(); i++) {
-                // if (((Camp) campList.getFromList(i)).getCampInfo().getCampName() ==
-                // campNameForStudentReport) {
-                // staff.generateStudentList((Camp) campList.getFromList(i));
-                // }
-                // }
-                // break;
+                /* where code modification starts */
+                case 9: // view camp suggestions
+                    userCamps = campList.printUserCamp(staff);
+                    System.out.println("Enter the index of the camp you want to view suggestions of:");
+                    choice = Integer.valueOf(scanner.nextLine());
+                    camp = (Camp) userCamps.getFromList(choice-1);
+                    camp.getSuggestions().printList();
+                break;
+                case 10: // approve camp suggestions
+                    userCamps = campList.printUserCamp(staff);
+                    System.out.println("Enter the index of the camp you want to view suggestions of:");
+                    choice = Integer.valueOf(scanner.nextLine());
+                    camp = (Camp) userCamps.getFromList(choice-1);
+                    camp.getSuggestions().approveSuggestions();
                 // case 11:
-                // System.out.println("Enter camp name to generate camp committee member
-                // report");
+                // System.out.println("Enter camp name to generate camp committee member report");
                 // String campNameForCampCommitteeMemberReport = scanner.nextLine();
 
                 // for (int i = 0; i < campList.list.size(); i++) {
@@ -87,8 +86,8 @@ public class StaffMenuController {
                 // }
                 // }
                 // break;
-                // case 12:
-                // break;
+                case 12:
+                break;
                 
                     
             }

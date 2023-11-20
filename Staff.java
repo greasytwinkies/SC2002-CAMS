@@ -137,6 +137,9 @@ public class Staff extends User {
     // public void replyEnquiries(EnquiryList enquiryList){
     //     enquiryList.replyEnquiries();
     // }
+    // public void viewCampCommitteeSuggestions(SuggestionList suggestionList){
+    //     suggestionList.printList();
+    // }
 
     // public void approveCampCommitteeSuggestions(SuggestionList suggestionList){
     //     suggestionList.approveSuggestions();
