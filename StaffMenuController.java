@@ -91,13 +91,15 @@ public class StaffMenuController {
                 break;
                 case 13:
                     LoginPage.changeStaffPassword(staff);
-                
+                    System.out.println("Please log in again.");
+                    LoginPage.Logout();
+                    break;
                     
             }
             System.out.println();
             System.out.println();
             System.out.println();
-        } while (choice > 0 && choice < 14);
+        } while ((choice > 0 && choice < 14) && LoginPage.getLogout()==0);
 
         return LoginPage.Logout();
 

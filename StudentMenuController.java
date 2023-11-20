@@ -276,13 +276,16 @@ public class StudentMenuController {
                 
                 case 10:
                     LoginPage.changeStudentPassword(student);
+                    System.out.println("Please log in again.");
+                    LoginPage.Logout();
+                    break;
                     
 
             }
             System.out.println();
             System.out.println();
             System.out.println();
-        } while (choice >= 1 && choice < 11);
+        } while ((choice >= 1 && choice < 11) && LoginPage.getLogout()==0);
 
         return LoginPage.Logout();
     }

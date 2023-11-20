@@ -3,12 +3,12 @@ import java.util.Scanner;
 
 public class LoginPage
 {
+    private static int logout = 0;
 
-    
-    
     public static User login()
 	{
 		int choice = 0;
+        setLogout(0);
 
         //create a list of student based on student database
         StudentList studentList = new StudentList("Studentlist");
@@ -286,11 +286,20 @@ public class LoginPage
         
     }
 
-    public static int Logout(){
-        return 1;
+    
+
+    public static int getLogout(){
+        return logout;
     }
 
+    public static void setLogout(int i){
+        logout = i;
+    }
 
+    public static int Logout(){
+        setLogout(1);
+        return getLogout();
+    }
 
     
 }
