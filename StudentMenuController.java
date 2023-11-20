@@ -273,12 +273,16 @@ public class StudentMenuController {
                     CampCommMenuController campCommMenuController = new CampCommMenuController();
                     campCommMenuController.CampCommMenuControl(campComm);
                     break;
+                
+                case 10:
+                    LoginPage.changeStudentPassword(student);
+                    
 
             }
             System.out.println();
             System.out.println();
             System.out.println();
-        } while (choice >= 1 && choice < 10);
+        } while (choice >= 1 && choice < 11);
 
         return LoginPage.Logout();
     }

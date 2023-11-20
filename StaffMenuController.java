@@ -68,13 +68,14 @@ public class StaffMenuController {
                     choice = Integer.valueOf(scanner.nextLine());
                     camp = (Camp) userCamps.getFromList(choice-1);
                     camp.getSuggestions().printList();
-                break;
+                    break;
                 case 10: // approve camp suggestions
                     userCamps = campList.returnUserCamps(staff);
                     System.out.println("Enter the index of the camp you want to view suggestions of:");
                     choice = Integer.valueOf(scanner.nextLine());
                     camp = (Camp) userCamps.getFromList(choice-1);
                     camp.getSuggestions().approveSuggestions();
+                    break;
                 // case 11:
                 // System.out.println("Enter camp name to generate camp committee member report");
                 // String campNameForCampCommitteeMemberReport = scanner.nextLine();
@@ -88,13 +89,15 @@ public class StaffMenuController {
                 // break;
                 case 12:
                 break;
+                case 13:
+                    LoginPage.changeStaffPassword(staff);
                 
                     
             }
             System.out.println();
             System.out.println();
             System.out.println();
-        } while (choice > 0 && choice < 13);
+        } while (choice > 0 && choice < 14);
 
         return LoginPage.Logout();
 

@@ -254,20 +254,36 @@ public class LoginPage
 
     public static void changeStudentPassword(Student student){
         Scanner scan = Main.getScanner();
-        System.out.println("Please enter new password");
-        String StudentPassword = scan.nextLine();
-        student.changePassword(StudentPassword);
-        StudentTextDB.updatePassword(student);
-        System.out.println("Successfully updated password!");
+        System.out.println("Please enter old password");
+        String oldStudentPassword = scan.nextLine();
+        if(oldStudentPassword.equals(student.getPassword())){
+            System.out.println("Please enter new password");
+            String StudentPassword = scan.nextLine();
+            student.changePassword(StudentPassword);
+            StudentTextDB.updatePassword(student);
+            System.out.println("Successfully updated password!");
+        }
+        else{
+            System.out.println("Wrong password entered. Unable to update password.");
+        }
+
     }
 
     public static void changeStaffPassword(Staff staff){
         Scanner scan = Main.getScanner();
-        System.out.println("Please enter new password");
-        String Staffpassword = scan.nextLine();
-        staff.changePassword(Staffpassword);
-        StaffTextDB.updatePassword(staff);
-        System.out.println("Successfully updated password!");
+        System.out.println("Please enter old password");
+        String oldStaffpassword = scan.nextLine();
+        if(oldStaffpassword.equals(staff.getPassword())){
+            System.out.println("Please enter new password");
+            String Staffpassword = scan.nextLine();
+            staff.changePassword(Staffpassword);
+            StaffTextDB.updatePassword(staff);
+            System.out.println("Successfully updated password!");
+        }
+        else{
+            System.out.println("Wrong password entered. Unable to update password.");
+        }
+        
     }
 
     public static int Logout(){
