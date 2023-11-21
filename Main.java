@@ -18,13 +18,18 @@ public class Main {
         do{
         Object user = LoginPage.login();
 
-        if( user instanceof Student){
+        if(user == null){
+            System.out.print("Log in again");
+            user = LoginPage.login();
+        }
+
+        else if( user instanceof Student){
             Student student = (Student) user;
             StudentMenuController studentMenuController = new StudentMenuController();
             logout = studentMenuController.StudentMenuControl(student, campList);
 
         }
-        else {
+        else if (user instanceof Staff) {
             Staff staff = (Staff) user;
             StaffMenuController staffMenuController = new StaffMenuController();
             logout =  staffMenuController.StaffMenuControl(staff, campList);
