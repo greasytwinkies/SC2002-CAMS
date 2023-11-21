@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class CampInformationMenuController {
     Scanner scanner = Main.getScanner();
 
-    public void CampInformationMenuControl(CampInformation campInfo) {
+    public void CampInformationMenuControl(CampInformation campInfo, CampList campList) {
         CampInformationMenu campInfoMenu = new CampInformationMenu();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         int choice;
@@ -33,9 +33,16 @@ public class CampInformationMenuController {
                 case 2:
                     System.out.print("Current camp name: ");
                     System.out.println(campInfo.getCampName());
-                    System.out.println("Enter new camp name: ");
-                    String newCampName = scanner.nextLine();
-                    campInfo.setCampName(newCampName);
+                    while(true) {
+                        System.out.println("Enter new camp name: ");
+                        String newCampName = scanner.nextLine();
+                        Camp camp = campList.findCamp(campList, newCampName);
+                        if (camp==null){
+                            campInfo.setCampName(newCampName);
+                            break;
+                        }
+                        System.out.println("There's an existing camp with the same name.");        
+                    }
                     break;
                 case 3:
                     System.out.print("Current camp starting date: ");

@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public abstract class List {
 
@@ -14,11 +13,12 @@ public abstract class List {
 
     public abstract void printList();
 
-    public void addToList(Object item) {
+    public void addToList(Object item, Comparator comparator) {
         if (this.list.contains(item)) {
             System.out.println("Item already exists in list");
         } else {
             this.list.add(item);
+            Collections.sort(list, comparator);
             //System.out.println("Successfully added item");
         }
     };

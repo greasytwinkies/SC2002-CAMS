@@ -19,7 +19,7 @@ public class StaffMenuController {
             choice = Integer.valueOf(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    CampInformation campInformation = CampInformationCreater.populateCampInformation(staff);
+                    CampInformation campInformation = CampInformationCreater.populateCampInformation(staff, campList);
                     camp = new Camp(campInformation, staff);
                     campList.addToList(camp);
                     campList.printList();
@@ -29,7 +29,7 @@ public class StaffMenuController {
                     System.out.println("Enter the Camp Name to edit it");
                     String campToEdit = scanner.nextLine();
                     camp = campList.findCamp(campList, campToEdit);
-                    campInfoControl.CampInformationMenuControl(camp.getCampInfo());
+                    campInfoControl.CampInformationMenuControl(camp.getCampInfo(), campList);
                     break;
                 case 3:
                     System.out.println("Enter the Camp Name to delete it: ");

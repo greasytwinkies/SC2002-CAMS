@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class StudentList extends List {
+    NameComparator comparator = new NameComparator();
 
     public StudentList(String listName) {
         super(listName);
@@ -18,11 +20,11 @@ public class StudentList extends List {
     }
 
     public void addToList(Student student) {
-        super.addToList(student);
+        super.addToList(student, comparator);
     }
 
     public void deleteFromList(Student student) {
-        super.addToList(student);
+        super.deleteFromList(student);
     }
 
     public ArrayList<Object> returnStudentList() {
@@ -31,5 +33,11 @@ public class StudentList extends List {
 
     public Object getFromList(int index){
         return super.getFromList(index);
+    }
+
+    class NameComparator implements Comparator<Student> {
+        public int compare(Student s1, Student s2) {
+            return s1.getName().compareTo(s2.getName());
+        }
     }
 }
