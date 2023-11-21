@@ -98,8 +98,6 @@ public class LoginPage {
         System.out.println("Thank you for using NTU's CAM service."
                 + "\nWe Hope to see you again soon.");
 
-        User user = new User("nil", "nil", "nil", Faculty.NTU);
-
         return null;
     }
 
@@ -198,9 +196,15 @@ public class LoginPage {
         for (int i = 0; i < sizeStudent; i++) {
             Student student = (Student) studentList.getFromList(i);
 
-            System.out.println(student.getUserID());
+            // try{
+            //     System.out.println(student.getUserID());
+            // }
+            // catch (NullPointerException e){
+            //     continue;
+            // }
 
-            if (UserID.equals(ExtractUserName(student.getUserID()))
+            try{
+                if (UserID.equals(ExtractUserName(student.getUserID()))
                     && StudentPassword.equals(student.getPassword())) {
                 System.out.println("Username and Password accepted!");
                 if (student.getPassword().equals("password")) {
@@ -214,9 +218,15 @@ public class LoginPage {
                 }
                 return student;
             }
+            }
+            catch(NullPointerException e){
+                break;
+            }
+            
+            
         }
+        System.out.println("Log in failed\n");
         System.out.println("Invalid user or wrong password");
-        System.out.println("Log in failed");
         return null;
 
     }
@@ -227,9 +237,9 @@ public class LoginPage {
         for (int i = 0; i < sizeStaff; i++) {
             Staff staff = (Staff) staffList.getFromList(i);
 
-            System.out.println(staff.getUserID());
-
-            if (UserID.equals(ExtractUserName(staff.getUserID()))
+            //System.out.println(staff.getUserID());
+            try{
+                if (UserID.equals(ExtractUserName(staff.getUserID()))
                     && StaffPassword.equals(staff.getPassword())) {
                 System.out.println("Username and Password accepted!");
                 if (staff.getPassword().equals("Password")) {
@@ -243,9 +253,14 @@ public class LoginPage {
                 }
                 return staff;
             }
+            }
+            catch (NullPointerException e){
+                break;
+            }
+            
         }
+        System.out.println("Log in failed\n");
         System.out.println("Invalid user or wrong password");
-        System.out.println("Log in failed");
         return null;
 
     }
