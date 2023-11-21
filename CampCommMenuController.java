@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class CampCommMenuController {
@@ -41,16 +42,20 @@ public class CampCommMenuController {
                 case 7:
                     campComm.getCamp().getEnquiries().replyEnquiries();
                     break;
+                case 8:
+                    StudentReport studentReport = new StudentReport();
+                    try {
+                        studentReport.printReport(camp);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Student report printed to studentReport.txt");
+                    break;
                 case 9:
                     System.out.println("EXITING CAMP COMMITTEE MEMBER MENU");
                     System.out.println("");
                     System.out.println("RETURNING TO STUDENT MENU");
                     break;
-            //     case 7:
-            //         campComm.generateReport();
-            //         break;
-            //     case 8:
-            //         break;
             }
         } while (choice > 0 && choice < 9);
     }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.FileNotFoundException;
 
 public class CampCommitteeReport implements Report {
 
@@ -7,7 +8,7 @@ public class CampCommitteeReport implements Report {
         //student name\t
         StudentList campMembersList = camp.getCampMembersList();
         if (campMembersList.list.size() == 0) { 
-            System.out.println("There are no camp committee members in this camp!\n");
+            System.out.println(">>> NO CAMP COMMITTEE MEMBERS <<< \n");
             return;
         }
         int count = 0;

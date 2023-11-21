@@ -45,8 +45,7 @@ public class StudentMenuController {
                         int campChoice = Integer.valueOf(scanner.nextLine());
                         // next, get the appropriate camp from the list
                         Camp chosenCamp = (Camp) availableCamps.list.get(campChoice - 1);
-                        System.out
-                                .println("You have chosen to register for: " + chosenCamp.getCampInfo().getCampName());
+                        System.out.println("You have chosen to register for: " + chosenCamp.getCampInfo().getCampName());
                         int registrationChoice;
                         do {
                             System.out.println(
