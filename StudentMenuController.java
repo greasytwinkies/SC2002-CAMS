@@ -12,6 +12,11 @@ public class StudentMenuController {
         
         int choice;
         do {
+            System.out.println("\nHello, " + student.getName() + "!");
+            CampCommMember campComm = campList.findCampCommMember(student);
+                    if (campComm!=null){
+                        System.out.println("You're a Camp Committee Member of " + campComm.getCamp().getCampInfo().getCampName());
+                    }
             studentMenu.printMenu();
             choice = Integer.valueOf(scanner.nextLine());
             switch (choice) {
@@ -264,7 +269,6 @@ public class StudentMenuController {
                     break;
                 
                 case 9:
-                    CampCommMember campComm = campList.findCampCommMember(student);
                     if (campComm==null){
                         System.out.println("You are not a camp committee member.");
                         break;

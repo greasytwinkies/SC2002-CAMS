@@ -3,7 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class CampInformationCreater {
-    public static CampInformation populateCampInformation(Staff staff){
+    public static CampInformation populateCampInformation(Staff staff, CampList campList){
         Scanner scanner = Main.getScanner();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         CampInformation campInformation = new CampInformation();
@@ -13,9 +13,16 @@ public class CampInformationCreater {
         campInformation.setCampVisibility(scanner.nextBoolean());
         scanner.nextLine();
 
-        System.out.println("Enter the Camp Name: ");
-        String campName = scanner.nextLine();
-        campInformation.setCampName(campName);
+        while(true) {
+            System.out.println("Enter the Camp Name: ");
+            String campName = scanner.nextLine();
+            Camp camp = campList.findCamp(campList, campName);
+            if (camp==null){
+                campInformation.setCampName(campName);
+                break;
+            }
+            System.out.println("There's an existing camp with the same name.");        
+        }
 
         System.out.println("Enter the Camp Starting Date: ");
         String startingDateUnformatted = scanner.nextLine();
