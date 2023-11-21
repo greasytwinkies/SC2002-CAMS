@@ -8,6 +8,7 @@ public class CampInformationMenuController {
     public void CampInformationMenuControl(CampInformation campInfo, CampList campList) {
         CampInformationMenu campInfoMenu = new CampInformationMenu();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        CampNameComparator comparator = new CampNameComparator();
         int choice;
         do {
             campInfoMenu.printMenu();
@@ -39,6 +40,7 @@ public class CampInformationMenuController {
                         Camp camp = campList.findCamp(campList, newCampName);
                         if (camp==null){
                             campInfo.setCampName(newCampName);
+                            campList.updateList(comparator);
                             break;
                         }
                         System.out.println("There's an existing camp with the same name.");        

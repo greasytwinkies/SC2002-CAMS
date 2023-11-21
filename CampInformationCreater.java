@@ -7,6 +7,7 @@ public class CampInformationCreater {
         Scanner scanner = Main.getScanner();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         CampInformation campInformation = new CampInformation();
+        CampNameComparator comparator = new CampNameComparator();
 
 
         System.out.println("Do you want your camp to be visible?: (true/false)");
@@ -19,6 +20,7 @@ public class CampInformationCreater {
             Camp camp = campList.findCamp(campList, campName);
             if (camp==null){
                 campInformation.setCampName(campName);
+                campList.updateList(comparator);
                 break;
             }
             System.out.println("There's an existing camp with the same name.");        

@@ -13,6 +13,10 @@ public abstract class List {
 
     public abstract void printList();
 
+    public void updateList(Comparator comparator){
+        Collections.sort(list, comparator);
+    }
+
     public void addToList(Object item, Comparator comparator) {
         if (this.list.contains(item)) {
             System.out.println("Item already exists in list");

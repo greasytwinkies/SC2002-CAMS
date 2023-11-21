@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class EnquiryList extends List{
     Scanner scanner = Main.getScanner();
-    NameComparator comparator = new NameComparator();
+    EnquiryComparator comparator = new EnquiryComparator();
 
 
     public EnquiryList(String listName){
@@ -43,6 +43,7 @@ public class EnquiryList extends List{
     public void editEnquiries(int idx){
         Enquiry newEnquiry = (Enquiry) super.list.get(idx);
         newEnquiry.edit();
+        updateList(comparator);
         System.out.println("Succesfully edited!");
     }
 
@@ -60,9 +61,4 @@ public class EnquiryList extends List{
         System.out.println("Successfully replied");
     }
 
-    class NameComparator implements Comparator<Enquiry> {
-        public int compare(Enquiry e1, Enquiry e2) {
-            return e1.getEnquiry().compareTo(e2.getEnquiry());
-        }
-    }
 }

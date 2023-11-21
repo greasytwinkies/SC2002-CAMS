@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class CampList extends List{
-    Comparator comparator = new NameComparator();
+    CampNameComparator comparator = new CampNameComparator();
 
     public CampList(String CampName){
         super(CampName);
@@ -138,9 +138,4 @@ public class CampList extends List{
         return null;
     }
 
-    class NameComparator implements Comparator<Camp> {
-        public int compare(Camp c1, Camp c2) {
-            return c1.getCampInfo().getCampName().compareTo(c2.getCampInfo().getCampName());
-        }
-    }
 }

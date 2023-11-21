@@ -1,7 +1,7 @@
-import java.util.Comparator;
+import java.util.*;
 
 public class SuggestionList extends List {
-    NameComparator comparator = new NameComparator();
+    SuggestionComparator comparator = new SuggestionComparator();
 
     public SuggestionList(String listName){
         super(listName);
@@ -40,6 +40,8 @@ public class SuggestionList extends List {
     public void editSuggestions(int idx){
         Suggestion newSuggestion = (Suggestion) super.list.get(idx-1);
         newSuggestion.edit();
+        updateList(comparator);
+        // ArrayList<Suggestion> s = returnList();
     }
 
     public void deleteFromList(int idx){
@@ -53,10 +55,5 @@ public class SuggestionList extends List {
         Suggestion sug = (Suggestion) super.list.get(idx-1);
         sug.approve();
     }
-    
-    class NameComparator implements Comparator<Suggestion> {
-        public int compare(Suggestion s1, Suggestion s2) {
-            return s1.getSuggestion().compareTo(s2.getSuggestion());
-        }
-    }
+
 }
