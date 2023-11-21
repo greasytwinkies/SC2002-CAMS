@@ -76,19 +76,52 @@ public class StaffMenuController {
                     camp = (Camp) userCamps.getFromList(choice-1);
                     camp.getSuggestions().approveSuggestions();
                     break;
-                // case 11:
-                // System.out.println("Enter camp name to generate camp committee member report");
-                // String campNameForCampCommitteeMemberReport = scanner.nextLine();
-
-                // for (int i = 0; i < campList.list.size(); i++) {
-                // if (((Camp) campList.getFromList(i)).getCampInfo()
-                // .getCampName() == campNameForCampCommitteeMemberReport) {
-                // staff.generateCampCommitteeMemberList((Camp) campList.getFromList(i));
-                // }
-                // }
-                // break;
+                case 11: // student report
+                    System.out.println("Print student report for 1) All your camps or 2) A specific camp\n");
+                    choice = Integer.valueOf(scanner.nextLine());
+                    userCamps = campList.returnUserCamps(staff);
+                    if (choice == 1) {
+                        // TODO: implement this function
+/*                         for (int i=0; i<=userCamps.list.size(); i++) {
+                            camp = (Camp) userCamps.getFromList(i);
+                            System.out.println("Printing student report for " + camp.getCampInfo().getCampName() + ":\n");
+                            StudentReport studentReport = new StudentReport();
+                            studentReport.printReport(camp);
+                        } */
+                    }
+                    if (choice == 2) {
+                        campList.printUserCamp(staff);
+                        userCamps = campList.returnUserCamps(staff);
+                        System.out.println("Enter index of camp you want to generate a student report for:\n");
+                        choice = Integer.valueOf(scanner.nextLine());
+                        camp = (Camp) userCamps.getFromList(choice-1);
+                        System.out.println("Printing student report for " + camp.getCampInfo().getCampName() + ":\n");
+                        StudentReport studentReport = new StudentReport();
+                        studentReport.printReport(camp);
+                    }
+                    break;
                 case 12:
-                break;
+                    System.out.println("Print camp committee performance report for 1) All your camps or 2) A specific camp\n");
+                    choice = Integer.valueOf(scanner.nextLine());
+                    userCamps = campList.returnUserCamps(staff);
+                    if (choice == 1) {
+                        for (int i=0; i<=userCamps.list.size(); i++) {
+                            camp = (Camp) userCamps.getFromList(i);
+                            System.out.println("Printing camp committee member performance report for " + camp.getCampInfo().getCampName() + ":\n");
+                            CampCommitteeReport campCommitteeReport = new CampCommitteeReport();
+                            campCommitteeReport.printReport(camp);
+                        }
+                    }
+                    if (choice == 2) {
+                        campList.printUserCamp(staff);
+                        System.out.println("Enter the index of the camp you want to generate a committee member report for:\n");
+                        choice = Integer.valueOf(scanner.nextLine());
+                        camp = (Camp) userCamps.getFromList(choice-1);
+                        System.out.println("Printing camp committee member performance report for " + camp.getCampInfo().getCampName() + ":\n");
+                        CampCommitteeReport campCommitteeReport = new CampCommitteeReport();
+                        campCommitteeReport.printReport(camp);
+                    }
+                    break;
                 case 13:
                     LoginPage.changeStaffPassword(staff);
                     System.out.println("Please log in again.");
