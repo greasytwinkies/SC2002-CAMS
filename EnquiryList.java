@@ -1,10 +1,17 @@
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class EnquiryList extends List{
-    Scanner scanner = Main.getScanner();;
+    Scanner scanner = Main.getScanner();
+    NameComparator comparator = new NameComparator();
+
 
     public EnquiryList(String listName){
         super("List of enquiries");
+    }
+
+    public void addToList(Enquiry e){
+        super.addToList(e, comparator);
     }
 
     public void printList(){
@@ -51,5 +58,11 @@ public class EnquiryList extends List{
         Enquiry enquiry = (Enquiry) super.list.get(idx);
         enquiry.reply();
         System.out.println("Successfully replied");
+    }
+
+    class NameComparator implements Comparator<Enquiry> {
+        public int compare(Enquiry e1, Enquiry e2) {
+            return e1.getEnquiry().compareTo(e2.getEnquiry());
+        }
     }
 }

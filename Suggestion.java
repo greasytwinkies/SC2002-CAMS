@@ -12,6 +12,8 @@ public class Suggestion implements iService {
         this.author = author;
     }
 
+    public String getSuggestion(){return this.suggestion;}
+
     @Override
     public void view() {
         System.out.println("Suggestion:" + "\t" + suggestion);

@@ -1,6 +1,14 @@
+import java.util.Comparator;
+
 public class SuggestionList extends List {
+    NameComparator comparator = new NameComparator();
+
     public SuggestionList(String listName){
         super(listName);
+    }
+
+    public void addToList(Suggestion s){
+        super.addToList(s, comparator);
     }
 
     public void printList(){
@@ -46,4 +54,9 @@ public class SuggestionList extends List {
         sug.approve();
     }
     
+    class NameComparator implements Comparator<Suggestion> {
+        public int compare(Suggestion s1, Suggestion s2) {
+            return s1.getSuggestion().compareTo(s2.getSuggestion());
+        }
+    }
 }
