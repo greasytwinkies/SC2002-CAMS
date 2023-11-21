@@ -1,10 +1,13 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class StaffMenuController {
     Scanner scanner = Main.getScanner();
 
-    public int StaffMenuControl(Staff staff, CampList campList) {
+    public int StaffMenuControl(Staff staff, CampList campList) throws FileNotFoundException {
         StaffMenu staffMenu = new StaffMenu();
         CampInformationMenuController campInfoControl = new CampInformationMenuController();
 
@@ -77,37 +80,34 @@ public class StaffMenuController {
                     camp.getSuggestions().approveSuggestions();
                     break;
                 case 11: // student report
-                    System.out.println("Print student report for 1) All your camps or 2) A specific camp\n");
-                    choice = Integer.valueOf(scanner.nextLine());
+                    // first, prompt user if they want to print student report for 1) all your created camps 2) a specific camp
+                    // next, prompt user for micro-level filtering: 1) all attendees 2) participants only 3) camp comm only 4) specific individual.
+                    StudentReport studentReport = new StudentReport();
                     userCamps = campList.returnUserCamps(staff);
-                    if (choice == 1) {
-                        // TODO: implement this function
-/*                         for (int i=0; i<=userCamps.list.size(); i++) {
-                            camp = (Camp) userCamps.getFromList(i);
-                            System.out.println("Printing student report for " + camp.getCampInfo().getCampName() + ":\n");
-                            StudentReport studentReport = new StudentReport();
-                            studentReport.printReport(camp);
-                        } */
+                    System.out.println("Print student report for 1) All your created camps or 2) A specific camp\n");
+                    int campFilter = Integer.valueOf(scanner.nextLine());
+                    if (campFilter == 1) { // print all camps
+                        studentReport.printReportsForAllCamps(userCamps);
                     }
-                    if (choice == 2) {
+                    else if (campFilter == 2) { // print one camp only
                         campList.printUserCamp(staff);
                         userCamps = campList.returnUserCamps(staff);
                         System.out.println("Enter index of camp you want to generate a student report for:\n");
                         choice = Integer.valueOf(scanner.nextLine());
                         camp = (Camp) userCamps.getFromList(choice-1);
-                        System.out.println("Printing student report for " + camp.getCampInfo().getCampName() + ":\n");
-                        StudentReport studentReport = new StudentReport();
                         studentReport.printReport(camp);
                     }
+                    System.out.println("Student reports printed to studentReport.txt");
                     break;
                 case 12:
                     System.out.println("Print camp committee performance report for 1) All your camps or 2) A specific camp\n");
                     choice = Integer.valueOf(scanner.nextLine());
                     userCamps = campList.returnUserCamps(staff);
                     if (choice == 1) {
+                        System.out.println("Printing Camp Committee Member performance report for ALL your camps:\n");
                         for (int i=0; i<=userCamps.list.size(); i++) {
                             camp = (Camp) userCamps.getFromList(i);
-                            System.out.println("Printing camp committee member performance report for " + camp.getCampInfo().getCampName() + ":\n");
+                            System.out.println(camp.getCampInfo().getCampName() + ":");
                             CampCommitteeReport campCommitteeReport = new CampCommitteeReport();
                             campCommitteeReport.printReport(camp);
                         }
@@ -117,7 +117,7 @@ public class StaffMenuController {
                         System.out.println("Enter the index of the camp you want to generate a committee member report for:\n");
                         choice = Integer.valueOf(scanner.nextLine());
                         camp = (Camp) userCamps.getFromList(choice-1);
-                        System.out.println("Printing camp committee member performance report for " + camp.getCampInfo().getCampName() + ":\n");
+                        System.out.println("Printing Camp Committee Member Report for " + camp.getCampInfo().getCampName() + ":");
                         CampCommitteeReport campCommitteeReport = new CampCommitteeReport();
                         campCommitteeReport.printReport(camp);
                     }

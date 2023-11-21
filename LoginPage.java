@@ -98,7 +98,6 @@ public class LoginPage {
         System.out.println("Thank you for using NTU's CAM service."
                 + "\nWe Hope to see you again soon.");
 
-        scan.close();
         User user = new User("nil", "nil", "nil", Faculty.NTU);
 
         return null;
