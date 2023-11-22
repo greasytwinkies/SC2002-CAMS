@@ -67,7 +67,7 @@ public class StudentMenuController {
                 case 4:
                     CampList registeredCamps = campList.returnUserCamps(student);
                     if (registeredCamps==null){
-                        System.out.println("You are currently not registered for any camps!");
+                        System.out.println("You are currently not registered for any camps.");
                         break;
                     }
      
@@ -101,7 +101,6 @@ public class StudentMenuController {
                         System.out.println("Available Camps:");
                         availableCamps = student.viewAvailableCamps(campList);
                         if (availableCamps==null){
-                            System.out.println("There are no available camps.");
                             break;
                         }
                         System.out.println("Enter the index of the camp you want to submit enquiry to: ");
@@ -113,7 +112,6 @@ public class StudentMenuController {
                         campList.printUserCamp(student);
                         CampList userCamps = campList.returnUserCamps(student);
                         if (userCamps==null){
-                            System.out.println("There are no registered camps.");
                             break;
                         }
                         System.out.println("Enter the index of the camp you want to submit enquiry to:");
@@ -146,7 +144,6 @@ public class StudentMenuController {
                         System.out.println("Available Camps:");
                         availableCamps = student.viewAvailableCamps(campList);
                         if (availableCamps==null){
-                            System.out.println("There are no available camps.");
                             break;
                         }
                         System.out.println("Enter the index of the camp you want to view enquiry of: ");
@@ -158,7 +155,6 @@ public class StudentMenuController {
                         campList.printUserCamp(student);
                         CampList userCamps = campList.returnUserCamps(student);
                         if (userCamps==null){
-                            System.out.println("There are no registered camps.");
                             break;
                         }
                         System.out.println("Enter the index of the camp you want to view enquiry of:");
@@ -167,20 +163,6 @@ public class StudentMenuController {
                         student.enquiryMenuController.viewEnquiries(enquiredCamp);
                     }
                     break;
-                // case 7:
-                //     System.out.println("Editing Enquiry");
-                //     if (student.getCampsRegisteredAsParticipant().list.size() == 0) { // student is not in any camps
-                //                                                                       // hence no enquiries
-                //         System.out.println("No enquiries to edit");
-                //     } else {
-                //         CampList campRegisteredAsParticipant = student.getCampsRegisteredAsParticipant();
-                //         int sizeOfRegistered = campRegisteredAsParticipant.list.size();
-                //         for (int i = 0; i < sizeOfRegistered; i++) {
-                //             enquiredCamp = (Camp) campRegisteredAsParticipant.getFromList(i);
-                //             student.enquiryMenuController.editEnquiry(enquiredCamp);
-
-                //         }
-                //     }
                 case 7:
                     System.out.println("Editing Enquiry");
                     System.out.println("1) Available Camps");
@@ -191,7 +173,6 @@ public class StudentMenuController {
                         System.out.println("Available Camps:");
                         availableCamps = student.viewAvailableCamps(campList);
                         if (availableCamps==null){
-                            System.out.println("There are no available camps.");
                             break;
                         }
                         System.out.println("Enter the index of the camp you want to edit enquiry of: ");
@@ -203,7 +184,6 @@ public class StudentMenuController {
                         campList.printUserCamp(student);
                         CampList userCamps = campList.returnUserCamps(student);
                         if (userCamps==null){
-                            System.out.println("There are no registered camps.");
                             break;
                         }
                         System.out.println("Enter the index of the camp you want to edit enquiry of:");
@@ -245,7 +225,6 @@ public class StudentMenuController {
                         System.out.println("Available Camps:");
                         availableCamps = student.viewAvailableCamps(campList);
                         if (availableCamps==null){
-                            System.out.println("There are no available camps.");
                             break;
                         }
                         System.out.println("Enter the index of the camp you want to delete enquiry of: ");
@@ -257,7 +236,6 @@ public class StudentMenuController {
                         campList.printUserCamp(student);
                         CampList userCamps = campList.returnUserCamps(student);
                         if (userCamps==null){
-                            System.out.println("There are no registered camps.");
                             break;
                         }
                         System.out.println("Enter the index of the camp you want to delete enquiry of:");
@@ -269,7 +247,8 @@ public class StudentMenuController {
                 
                 case 9:
                     if (campComm==null){
-                        System.out.println("You are not a camp committee member.");
+                        System.out.println("ERROR: CANNOT ACCESS CAMP COMMITTEE MENU");
+                        System.out.println("You are not currently a committee member for any camp!");
                         break;
                     }
                     System.out.println("Successful. Entering committee menu for " + campComm.getCamp().getCampInfo().getCampName());
@@ -278,7 +257,7 @@ public class StudentMenuController {
                     break;
                 
                 case 10:
-                    LoginPage.changeStudentPassword(student);
+                    LoginPage.changePassword(student);
                     System.out.println("Please log in again.");
                     LoginPage.Logout();
                     break;

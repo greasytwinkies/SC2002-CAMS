@@ -123,7 +123,7 @@ public class StaffMenuController {
                     }
                     break;
                 case 13:
-                    LoginPage.changeStaffPassword(staff);
+                    LoginPage.changePassword(staff);
                     System.out.println("Please log in again.");
                     LoginPage.Logout();
                     break;

@@ -27,8 +27,7 @@ public class LoginPage {
                     + "\n\n1) Student."
                     + "\n2) Staff."
                     + "\n3) Create new Student/Staff account."
-                    + "\n4) Quit."
-                    + "\n");
+                    + "\n\nEnter any other number to quit.");
 
             boolean validInput = false;
             while (!validInput) {
@@ -37,7 +36,7 @@ public class LoginPage {
                     validInput = true;
                     scan.nextLine();
                 } catch (InputMismatchException e ) {
-                    System.out.println("Please enter a number instead.");
+                    System.out.println("Please enter a number.");
                     scan.nextLine();
                 }
             }
@@ -206,15 +205,13 @@ public class LoginPage {
             try{
                 if (UserID.equals(ExtractUserName(student.getUserID()))
                     && StudentPassword.equals(student.getPassword())) {
-                System.out.println("Username and Password accepted!");
+                System.out.println(">>> LOGIN SUCCESSFUL <<<\n");
                 if (student.getPassword().equals("password")) {
-
-                    System.out.println("Your password has not been changed"
-                            + "\nWould you like to change your password? (Y/N)");
-
-                    if (scan.nextLine().toUpperCase().equals("Y")) {
-                        changeStudentPassword(student);
-                    }
+                    System.out.println("Your password has not been changed.");
+                    System.out.println("Please change your password.");
+                    changePassword(student);
+                    // force student to log out
+                    return null;
                 }
                 return student;
             }
@@ -237,64 +234,77 @@ public class LoginPage {
         for (int i = 0; i < sizeStaff; i++) {
             Staff staff = (Staff) staffList.getFromList(i);
 
-            //System.out.println(staff.getUserID());
+            // try{
+            //     System.out.println(student.getUserID());
+            // }
+            // catch (NullPointerException e){
+            //     continue;
+            // }
+
             try{
                 if (UserID.equals(ExtractUserName(staff.getUserID()))
                     && StaffPassword.equals(staff.getPassword())) {
-                System.out.println("Username and Password accepted!");
-                if (staff.getPassword().equals("Password")) {
-
-                    System.out.println("Your password has not been changed"
-                            + "\nWould you like to change your password? (Y/N)");
-
-                    if (scan.nextLine().toUpperCase().equals("Y")) {
-                        changeStaffPassword(staff);
-                    }
+                System.out.println(">>> LOGIN SUCCESSFUL <<<\n");
+                if (staff.getPassword().equals("password")) {
+                    System.out.println("Your password has not been changed.");
+                    System.out.println("Please change your password.");
+                    changePassword(staff);
+                    // force staff to log out
+                    return null;
                 }
                 return staff;
             }
             }
-            catch (NullPointerException e){
+            catch(NullPointerException e){
                 break;
             }
+            
             
         }
         System.out.println("Log in failed\n");
         System.out.println("Invalid user or wrong password");
         return null;
-
     }
 
-    public static void changeStudentPassword(Student student) {
+    public static void changePassword(User user) {
         Scanner scan = Main.getScanner();
-        System.out.println("Please enter old password");
-        String oldStudentPassword = scan.nextLine();
-        if (oldStudentPassword.equals(student.getPassword())) {
-            System.out.println("Please enter new password");
-            String StudentPassword = scan.nextLine();
-            student.changePassword(StudentPassword);
-            StudentTextDB.updatePassword(student);
-            System.out.println("Successfully updated password!");
-        } else {
-            System.out.println("Wrong password entered. Unable to update password.");
-        }
-
-    }
-
-    public static void changeStaffPassword(Staff staff) {
-        Scanner scan = Main.getScanner();
-        System.out.println("Please enter old password");
-        String oldStaffpassword = scan.nextLine();
-        if (oldStaffpassword.equals(staff.getPassword())) {
-            System.out.println("Please enter new password");
-            String Staffpassword = scan.nextLine();
-            staff.changePassword(Staffpassword);
-            StaffTextDB.updatePassword(staff);
-            System.out.println("Successfully updated password!");
-        } else {
-            System.out.println("Wrong password entered. Unable to update password.");
-        }
-
+        String prevPassInput = "";
+        String newPass = "";
+        String prevPass = user.getPassword();
+        boolean oldPassMatch = false;
+        boolean checkNewPass = false;
+        do {
+            System.out.println("Please enter old password:");
+            prevPassInput = scan.nextLine();
+            System.out.println("");
+            if (prevPassInput.equals(prevPass)) {
+                oldPassMatch = true;
+                // prompt for new password
+                // block user from entering previous password again
+                do {
+                    System.out.println("Please enter new password:");
+                    newPass = scan.nextLine();
+                    System.out.println("");
+                    if (newPass.equals("password")) {
+                        System.out.println("Cannot change password to default password!");
+                        System.out.println("Please try again.");
+                    }
+                    else if (newPass.equals(prevPass)) {
+                        System.out.println("Cannot enter same password as old password.");
+                        System.out.println("Please try again.");
+                    }
+                    else {
+                        checkNewPass = true;
+                        user.changePassword(newPass);
+                        if (user instanceof Student ) {StudentTextDB.updatePassword((Student)user);};
+                        if (user instanceof Staff ) {StaffTextDB.updatePassword((Staff)user);};
+                        System.out.println("Successfully updated password!");
+                        System.out.println("Please log back in to verify the changes.");
+                    }
+                } while (checkNewPass == false);
+            }
+            else { System.out.println("Incorrect password entered. Please try again!"); }
+        } while (oldPassMatch == false);
     }
 
     public static int getLogout() {
