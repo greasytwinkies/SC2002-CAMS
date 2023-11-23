@@ -42,37 +42,33 @@ public class LoginPage {
             }
 
             switch (choice) {
-                case (1):
-                    System.out.println("Please enter your student email");
+                case 1:
+                    System.out.println("Please enter your student ID");
                     System.out.println("");
-                    String StudentEmail = scan.nextLine();
+                    String studentID = scan.nextLine();
 
                     System.out.println("Please enter your student password");
                     System.out.println("");
                     String StudentPassword = scan.nextLine();
 
-                    String UserID = ExtractUserName(StudentEmail);
-
-                    System.out.println("USERID: " + UserID + " password: " + StudentPassword);
+                    System.out.println("USERID: " + studentID + " password: " + StudentPassword);
                     System.out.println("");
-                    return studentLogin(studentList, UserID, StudentPassword);
+                    return studentLogin(studentList, studentID, StudentPassword);
 
-                case (2):
-                    System.out.println("Please enter your staff email:");
+                case 2:
+                    System.out.println("Please enter your staff ID:");
                     System.out.println("");
-                    String StaffEmail = scan.nextLine();
+                    String staffID = scan.nextLine();
 
                     System.out.println("Please enter your staff password:");
                     System.out.println("");
                     String StaffPassword = scan.nextLine();
 
-                    UserID = ExtractUserName(StaffEmail);
-
-                    System.out.println("USERID: " + UserID + " password: " + StaffPassword);
+                    System.out.println("USERID: " + staffID + " password: " + StaffPassword);
                     System.out.println("");
-                    return staffLogin(staffList, UserID, StaffPassword);
+                    return staffLogin(staffList, staffID, StaffPassword);
 
-                case (3):
+                case 3:
                     System.out.println("Create new account:");
                     System.out.println("1) Student");
                     System.out.println("2) Staff");
@@ -105,7 +101,7 @@ public class LoginPage {
         if (EndIndex != -1) {
             return (Email.substring(0, EndIndex));
         } else {
-            return ("Invalid Email.");
+            return "Invalid Email.";
         }
     }
 
@@ -203,7 +199,7 @@ public class LoginPage {
             // }
 
             try{
-                if (UserID.equals(ExtractUserName(student.getUserID()))
+                if (UserID.toLowerCase().equals(ExtractUserName(student.getUserID()).toLowerCase())
                     && StudentPassword.equals(student.getPassword())) {
                 System.out.println(">>> LOGIN SUCCESSFUL <<<\n");
                 if (student.getPassword().equals("password")) {
@@ -242,7 +238,7 @@ public class LoginPage {
             // }
 
             try{
-                if (UserID.equals(ExtractUserName(staff.getUserID()))
+                if (UserID.toLowerCase().equals(ExtractUserName(staff.getUserID()).toLowerCase())
                     && StaffPassword.equals(staff.getPassword())) {
                 System.out.println(">>> LOGIN SUCCESSFUL <<<\n");
                 if (staff.getPassword().equals("password")) {

@@ -170,27 +170,4 @@ public static void saveStudent(String filename, List al) throws IOException {
 		}
 
   }
-
-// public static void main(String[] aArgs)  {
-//     	StudentTextDB txtDB = new StudentTextDB();
-//     	String filename = "studentlist.txt" ;
-// 		try {
-// 			// read file containing Professor records.
-// 			List al = StudentTextDB.readStudents(filename) ;
-// 			for (int i = 0 ; i < al.size() ; i++) {
-// 					Student student = (Student)al.get(i);
-// 					System.out.println("Name " + student.getName() );
-// 					System.out.println("Email " + student.getUserID() );
-// 					System.out.println("faculty " + student.getFacultyInformation());
-// 					System.out.println("password " + student.getPassword());
-// 			}
-// 			Student s1 = new Student("daddy sean","DAD@ntu.edu.sg","im so hot", "MACS");
-// 			// al is an array list containing Professor objs
-// 			al.add(s1);
-// 			// write Professor record/s to file.
-// 			StudentTextDB.saveStudent(filename, al);
-// 		}catch (IOException e) {
-// 			System.out.println("IOException > " + e.getMessage());
-// 		}
-//   }
 }
