@@ -1,6 +1,4 @@
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintStream;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -52,17 +50,31 @@ public class StaffMenuController {
                     break;
                 case 7:
                     CampList userCamps = campList.returnUserCamps(staff);
+                    campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to view enquiry of:");
                     choice = Integer.valueOf(scanner.nextLine());
-                    camp = (Camp) userCamps.getFromList(choice-1);
-                    camp.getEnquiries().printList();
+                    try{
+                        camp = (Camp) userCamps.getFromList(choice-1);
+                        camp.getEnquiries().printList();
+                    }
+                    catch (NullPointerException e){
+                        System.out.println("This camp does not exist!");
+                    }
+                    
                     break;
                 case 8:
                     userCamps = campList.returnUserCamps(staff);
+                    campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to reply enquiry to:");
                     choice = Integer.valueOf(scanner.nextLine());
-                    camp = (Camp) userCamps.getFromList(choice-1);
-                    camp.getEnquiries().replyEnquiries();
+                    try{
+                        camp = (Camp) userCamps.getFromList(choice-1);
+                        camp.getEnquiries().replyEnquiries();
+                    }
+                    catch(NullPointerException e){
+                        System.out.println("This camp does not exist!");
+                    }
+                    
                     break;
                 /* where code modification starts */
                 case 9: // view camp suggestions
