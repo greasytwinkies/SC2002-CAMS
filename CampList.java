@@ -59,7 +59,7 @@ public class CampList extends List{
 
             if(user instanceof Staff){
                 if(camp.getCampInfo().getStaffInCharge().getUserID().equals(user.getUserID())){
-                    System.out.println(i + ") " + camp.getCampInfo().getCampName() + " (" + camp.getCampInfo().getCurrentParticipantSlots() + " participant vacancies " + camp.getCampInfo().getCurrentCampCommitteeSlots() + " camp committee vacancies)");
+                    System.out.println(i + ") " + camp.getCampInfo().getCampName());
                     i++;
                     flag=1;                
                 }
@@ -69,7 +69,7 @@ public class CampList extends List{
                 for (Object thing : attendees){
                     Student student = (Student) thing;
                     if (student.getUserID().equals(user.getUserID())){
-                        System.out.println(i + ") " + camp.getCampInfo().getCampName() + " (" + camp.getCampInfo().getCurrentParticipantSlots() + " vacancies)");
+                        System.out.println(i + ") " + camp.getCampInfo().getCampName());
                         i++;
                         flag=1;
                         break;
