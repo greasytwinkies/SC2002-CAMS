@@ -104,7 +104,14 @@ public class CampInformationCreater {
         campInformation.setCurrentParticipantSlots(campParticipantSlots);
     
         System.out.println("Enter the total number of camp Comittee Slots: ");
-        int campCommSlots = scanner.nextInt();
+        int campCommSlots;
+        do{
+            campCommSlots  = scanner.nextInt();
+            if(campCommSlots >10){
+                System.out.println("Maximum number of camp committee allowed is 10. Please re-enter.");
+            }
+        }while(campCommSlots >10);
+        
         campInformation.setTotalCampCommitteeSlots(campCommSlots);
         campInformation.setCurrentCampCommitteeSlots(campCommSlots);
         campInformation.setCurrentCampMemberSlots(campInformation.getCurrentCampCommitteeSlots()+campInformation.getCurrentParticipantSlots());
