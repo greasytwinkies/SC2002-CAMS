@@ -122,10 +122,15 @@ public class CampInformationMenuController {
         if(input.toUpperCase().equals("Y")){
             campinfo.setCampVisibility(true);
         }else if(input.toUpperCase().equals("N")){
-            campinfo.setCampVisibility(false);
+            if(campinfo.getCurrentCampMemberSlots() == 0){
+                campinfo.setCampVisibility(false);
+            }
+            else{
+                System.out.println("Cannot set camp to hidden. Your camp has members");
+            }
         }
         String visibility = Boolean.toString(campinfo.getCampVisibility());
-        System.out.print(campinfo.getCampName() + " visibility status successfully changed to: " + visibility + "\n");
+        System.out.print(campinfo.getCampName() + " visibility status currently set as: " + visibility + "\n");
         
 
     }
