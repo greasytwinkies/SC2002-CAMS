@@ -82,30 +82,35 @@ public class CampInformationMenuController {
                     campInfo.setLocation(newCampLocation);
                     break;
                 case 8:
-                    System.out.print("Current camp participant slots: ");
+                    System.out.print("Current camp participant vacancy: ");
                     System.out.println(campInfo.getCurrentParticipantSlots());
-                    System.out.println("Enter new number of participant slots: ");
+                    System.out.println("Enter new total number of participant slots: ");
                     int newCampParticipantSlots = Integer.valueOf(scanner.nextLine());
+                    int occupied = campInfo.getTotalParticipantSlots()-campInfo.getCurrentParticipantSlots();
                     campInfo.setTotalParticipantSlots(newCampParticipantSlots);
+                    campInfo.setCurrentParticipantSlots(campInfo.getTotalParticipantSlots()- occupied);
                     break;
                 case 9:
-                    System.out.println("Current camp committee slots: " + campInfo.getCurrentParticipantSlots());
-                    System.out.println("Enter new number of committee slots: ");
+                    System.out.println("Current camp committee vacancy: " + campInfo.getCurrentCampCommitteeSlots());
+                    System.out.println("Enter new total number of committee slots: ");
                     int newCampCommitteeSlots;
                     do{
-                        newCampCommitteeSlots  = scanner.nextInt();
+                        newCampCommitteeSlots  = Integer.valueOf(scanner.nextLine());
                         if(newCampCommitteeSlots >10){
                             System.out.println("Maximum number of camp committee allowed is 10. Please re-enter.");
                         }
                     }while(newCampCommitteeSlots >10);
-                    campInfo.setTotalParticipantSlots(newCampCommitteeSlots);
+                    occupied = campInfo.getTotalCampCommitteeSlots()-campInfo.getCurrentCampCommitteeSlots();
+                    
+                    campInfo.setTotalCampCommitteeSlots(newCampCommitteeSlots);
+                    campInfo.setCurrentCampCommitteeSlots(campInfo.getTotalCampCommitteeSlots()-occupied);
                     break;
                 case 10:
                     System.out.print("Current camp description: ");
                     System.out.println(campInfo.getDescription());
                     System.out.println("Enter new camp description: ");
                     String newCampDescription = scanner.nextLine();
-                    campInfo.setLocation(newCampDescription);
+                    campInfo.setDescription(newCampDescription);
                     break;
                 case 11:
                     break;
