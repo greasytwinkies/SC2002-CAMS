@@ -7,4 +7,4 @@ CHERN|YCHERN@e.ntu.edu.sg|SCSE|password
 LEE|LE51@e.ntu.edu.sg|SCSE|password
 ERNEST|ELI34@e.ntu.edu.sg|EEE|password
 LIU|SL22@e.ntu.edu.sg|NBS|password
-KOH|KOH1@e.ntu.edu.sg|ADM|password
+KOH|KOH1@e.ntu.edu.sg|ADM|Cabbage

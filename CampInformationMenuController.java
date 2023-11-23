@@ -43,7 +43,7 @@ public class CampInformationMenuController {
                             campList.updateList(comparator);
                             break;
                         }
-                        System.out.println("There's an existing camp with the same name.");        
+                        System.out.println("There's an existing camp with the same name.");
                     }
                     break;
                 case 3:
@@ -91,7 +91,13 @@ public class CampInformationMenuController {
                 case 9:
                     System.out.println("Current camp committee slots: " + campInfo.getCurrentParticipantSlots());
                     System.out.println("Enter new number of committee slots: ");
-                    int newCampCommitteeSlots = Integer.valueOf(scanner.nextLine());
+                    int newCampCommitteeSlots;
+                    do{
+                        newCampCommitteeSlots  = scanner.nextInt();
+                        if(newCampCommitteeSlots >10){
+                            System.out.println("Maximum number of camp committee allowed is 10. Please re-enter.");
+                        }
+                    }while(newCampCommitteeSlots >10);
                     campInfo.setTotalParticipantSlots(newCampCommitteeSlots);
                     break;
                 case 10:

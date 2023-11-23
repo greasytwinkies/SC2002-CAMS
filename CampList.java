@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.ArrayList;
 
 public class CampList extends List{
     CampNameComparator comparator = new CampNameComparator();
@@ -59,7 +59,7 @@ public class CampList extends List{
 
             if(user instanceof Staff){
                 if(camp.getCampInfo().getStaffInCharge().getUserID().equals(user.getUserID())){
-                    System.out.println(i + ") " + camp.getCampInfo().getCampName() + " (" + camp.getCampInfo().getCurrentParticipantSlots() + " vacancies)");
+                    System.out.println(i + ") " + camp.getCampInfo().getCampName() + " (" + camp.getCampInfo().getCurrentParticipantSlots() + " participant vacancies " + camp.getCampInfo().getCurrentCampCommitteeSlots() + " camp committee vacancies)");
                     i++;
                     flag=1;                
                 }
