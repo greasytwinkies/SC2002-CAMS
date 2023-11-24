@@ -56,7 +56,13 @@ public class StudentMenuController {
                                     student.registerCampAsAttendee(chosenCamp);
                                     break;
                                 case 2:
-                                    student.registerCampAsCampComm(chosenCamp);
+                                    if(student.getCampComm() == null){
+                                        student.registerCampAsCampComm(chosenCamp);
+                                    }
+                                    else{
+                                        System.out.println("You are already a camp committee of "+ student.getCampComm().getCamp().getCampInfo().getCampName()+ " cannot register to this camp as a camp committee. ");
+                                    }
+                                    
                                     break;
                                 default:
                                     System.out.println("Invalid choice, please try again.");
@@ -70,7 +76,6 @@ public class StudentMenuController {
                         System.out.println("You are currently not registered for any camps.");
                         break;
                     }
-     
                     System.out.println("Viewing registered camps:");
                     student.viewRegisteredCamps(campList);
                     System.out.println("Please indicate the camp number you would like to withdraw from:");
