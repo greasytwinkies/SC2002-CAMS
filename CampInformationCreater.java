@@ -1,50 +1,67 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CampInformationCreater {
-    public static CampInformation populateCampInformation(Staff staff, CampList campList){
+    public static CampInformation populateCampInformation(Staff staff, CampList campList) {
         Scanner scanner = Main.getScanner();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         CampInformation campInformation = new CampInformation();
         CampNameComparator comparator = new CampNameComparator();
 
+        boolean validInput = false;
 
-        System.out.println("Do you want your camp to be visible?: (true/false)");
-        campInformation.setCampVisibility(scanner.nextBoolean());
-        scanner.nextLine();
+        while (!validInput) {
+            System.out.print("Do you want your camp to be visible?: (true/false) ");
+            String input = scanner.nextLine().trim();
 
-        while(true) {
+            if ("true".equalsIgnoreCase(input) || "false".equalsIgnoreCase(input)) {
+                validInput = true;
+                // If you need the boolean value, you can convert the string to boolean like
+                // this
+                boolean isCampVisible = Boolean.parseBoolean(input.toLowerCase());
+                campInformation.setCampVisibility(isCampVisible);
+                // Proceed with the value of isCampVisible
+            } else {
+                System.out.println("Invalid input. Please enter 'true' or 'false'.");
+            }
+        }
+
+        while (true) {
             System.out.println("Enter the Camp Name: ");
             String campName = scanner.nextLine();
             Camp camp = campList.findCamp(campList, campName);
-            if (camp==null){
+            if (camp == null) {
                 campInformation.setCampName(campName);
                 campList.updateList(comparator);
                 break;
             }
-            System.out.println("There's an existing camp with the same name.");        
+            System.out.println("There's an existing camp with the same name.");
         }
 
         LocalDate currentDate = LocalDate.now();
         boolean validDate = false;
-        LocalDate registrationClosingDate = currentDate ;
+        LocalDate registrationClosingDate = currentDate;
         do {
             try {
                 System.out.println("Enter the Camp Registration Closing Date: ");
                 String registrationClosingDateUnformatted = scanner.nextLine();
                 registrationClosingDate = LocalDate.parse(registrationClosingDateUnformatted, formatter);
-            }
-            catch (DateTimeParseException e) {
+            } catch (DateTimeParseException e) {
                 System.out.println("Please enter a date in the format of DD-MM-YYYY.");
                 continue;
             }
-            if (registrationClosingDate.isAfter(currentDate)) { validDate = true; break; }
-            System.out.println("Camp registration closing date cannot be before or equal to current date! (Current date: " + currentDate + ")");
+            if (registrationClosingDate.isAfter(currentDate)) {
+                validDate = true;
+                break;
+            }
+            System.out
+                    .println("Camp registration closing date cannot be before or equal to current date! (Current date: "
+                            + currentDate + ")");
         } while (validDate == false);
         campInformation.setRegistrationClosingDate(registrationClosingDate);
-
 
         // make sure registration closing date is after current date
 
@@ -55,12 +72,14 @@ public class CampInformationCreater {
                 System.out.println("Enter the Camp Starting Date: ");
                 String startingDateUnformatted = scanner.nextLine();
                 startingDate = LocalDate.parse(startingDateUnformatted, formatter);
-            }
-            catch (DateTimeParseException e) {
+            } catch (DateTimeParseException e) {
                 System.out.println("Please enter a date in the format of DD-MM-YYYY.");
                 continue;
             }
-            if (startingDate.isAfter(registrationClosingDate) || startingDate.isEqual(registrationClosingDate)) { validDate = true; break; }
+            if (startingDate.isAfter(registrationClosingDate) || startingDate.isEqual(registrationClosingDate)) {
+                validDate = true;
+                break;
+            }
             System.out.println("Camp starting date cannot be before registration closing date!");
         } while (validDate == false);
         campInformation.setStartingDate(startingDate);
@@ -74,12 +93,14 @@ public class CampInformationCreater {
                 System.out.println("Enter the Camp Ending Date: ");
                 String endingDateUnformatted = scanner.nextLine();
                 endingDate = LocalDate.parse(endingDateUnformatted, formatter);
-            }
-            catch (DateTimeParseException e) {
+            } catch (DateTimeParseException e) {
                 System.out.println("Please enter a date in the format of DD-MM-YYYY.");
                 continue;
             }
-            if (endingDate.isAfter(startingDate) || endingDate.isEqual(startingDate)) { validDate = true; break; }
+            if (endingDate.isAfter(startingDate) || endingDate.isEqual(startingDate)) {
+                validDate = true;
+                break;
+            }
             System.out.println("Camp ending date cannot be before starting date!");
         } while (validDate == false);
         campInformation.setEndingDate(endingDate);
@@ -88,13 +109,13 @@ public class CampInformationCreater {
 
         System.out.println("Enter the faculty: 0 for NTU-wide and 1 for faculty-specific");
         int ans = scanner.nextInt();
-        if(ans == 0){
+        if (ans == 0) {
             campInformation.setFaculty(Faculty.NTU);
-        }else if(ans == 1){
+        } else if (ans == 1) {
             campInformation.setFaculty(staff.getFacultyInformation());
         }
         scanner.nextLine();
-        
+
         System.out.println("Enter the Camp Location ");
         campInformation.setLocation(scanner.nextLine());
 
@@ -102,27 +123,29 @@ public class CampInformationCreater {
         int campParticipantSlots = scanner.nextInt();
         campInformation.setTotalParticipantSlots(campParticipantSlots);
         campInformation.setCurrentParticipantSlots(campParticipantSlots);
-    
+
         System.out.println("Enter the total number of camp Comittee Slots: ");
         int campCommSlots;
-        do{
-            campCommSlots  = scanner.nextInt();
-            if(campCommSlots >10){
+        do {
+            campCommSlots = scanner.nextInt();
+            if (campCommSlots > 10) {
                 System.out.println("Maximum number of camp committee allowed is 10. Please re-enter.");
             }
-        }while(campCommSlots >10);
-        
+        } while (campCommSlots > 10);
+
         campInformation.setTotalCampCommitteeSlots(campCommSlots);
         campInformation.setCurrentCampCommitteeSlots(campCommSlots);
-        campInformation.setCurrentCampMemberSlots(campInformation.getCurrentCampCommitteeSlots()+campInformation.getCurrentParticipantSlots());
+        campInformation.setCurrentCampMemberSlots(
+                campInformation.getCurrentCampCommitteeSlots() + campInformation.getCurrentParticipantSlots());
         scanner.nextLine();
 
         System.out.println("Enter the Camp Description: ");
         campInformation.setDescription(scanner.nextLine());
 
-        //System.out.println("Enter the staff in charge "); //staff in charge is the staff that created the camp
-        //campInformation.setStaffInCharge(scanner.nextLine());
-    
+        // System.out.println("Enter the staff in charge "); //staff in charge is the
+        // staff that created the camp
+        // campInformation.setStaffInCharge(scanner.nextLine());
+
         return campInformation;
     }
 

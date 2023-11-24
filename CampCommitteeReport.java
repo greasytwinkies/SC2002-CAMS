@@ -10,7 +10,7 @@ public class CampCommitteeReport implements Report {
         }
         int count = 0;
         System.out.println("Name\tPoints");
-        for (int i=0; i<=campMembersList.list.size(); i++) {
+        for (int i=0; i<campMembersList.list.size(); i++) {
             Student student = (Student) campMembersList.list.get(i);
             if (student.getCampComm().getCamp().equals(camp)) {
                 count++;
