@@ -41,6 +41,7 @@ public class CampCommMenuController {
                     break;
                 case 7:
                     campComm.getCamp().getEnquiries().replyEnquiries();
+                    campComm.addPoints(1);
                     break;
                 case 8:
                     StudentReport studentReport = new StudentReport();

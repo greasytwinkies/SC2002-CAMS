@@ -27,8 +27,8 @@ public class StaffMenuController {
                     CampList userCamps = campList.returnUserCamps(staff);
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to edit: ");
-                    int option = Integer.valueOf(scanner.nextLine())-1;
-                    camp = (Camp) userCamps.getFromList(option);
+                    int option = Integer.valueOf(scanner.nextLine());
+                    camp = (Camp) userCamps.getFromList(option-1);
                     // if there are students or camp comm members, not supposed to edit
                     if(camp.getCampAttendeesList().list.size() != 0 && camp.getCampCommitteeMembersList().list.size() != 0){
                         campInfoControl.CampInformationMenuControl(camp.getCampInfo(), campList);
@@ -41,8 +41,8 @@ public class StaffMenuController {
                     userCamps = campList.returnUserCamps(staff);
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to delete: ");
-                    option = Integer.valueOf(scanner.nextLine())-1;
-                    camp = (Camp) userCamps.getFromList(option);
+                    option = Integer.valueOf(scanner.nextLine());
+                    camp = (Camp) userCamps.getFromList(option-1);
                     boolean done = campList.deleteFromList(camp);
                     if (done){ System.out.println("Successfully deleted");}
                     // delete from staff's list of camps too
@@ -51,8 +51,8 @@ public class StaffMenuController {
                     userCamps = campList.returnUserCamps(staff);
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp to toggle visibility of: ");
-                    option = Integer.valueOf(scanner.nextLine())-1;
-                    camp = (Camp) userCamps.getFromList(option);
+                    option = Integer.valueOf(scanner.nextLine());
+                    camp = (Camp) userCamps.getFromList(option-1);
                     campInfoControl.toggleCampVisibility(camp.getCampInfo());
                     break;
                 case 5:
@@ -65,9 +65,9 @@ public class StaffMenuController {
                     userCamps = campList.returnUserCamps(staff);
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to view enquiry of:");
-                    option = Integer.valueOf(scanner.nextLine())-1;
+                    option = Integer.valueOf(scanner.nextLine());
                     try{
-                        camp = (Camp) userCamps.getFromList(choice);
+                        camp = (Camp) userCamps.getFromList(option-1);
                         if(camp.getEnquiries() == null){
                             break;
                         }else{
@@ -83,9 +83,9 @@ public class StaffMenuController {
                     userCamps = campList.returnUserCamps(staff);
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to reply enquiry to:");
-                    choice = Integer.valueOf(scanner.nextLine())-1;
+                    option = Integer.valueOf(scanner.nextLine());
                     try{
-                        camp = (Camp) userCamps.getFromList(choice);
+                        camp = (Camp) userCamps.getFromList(option-1);
                         camp.getEnquiries().replyEnquiries();
                     }
                     catch(NullPointerException e){
@@ -97,16 +97,16 @@ public class StaffMenuController {
                     userCamps = campList.returnUserCamps(staff);
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to view suggestions of:");
-                    choice = Integer.valueOf(scanner.nextLine())-1;
-                    camp = (Camp) userCamps.getFromList(choice);
+                    option = Integer.valueOf(scanner.nextLine());
+                    camp = (Camp) userCamps.getFromList(option-1);
                     camp.getSuggestions().printList();
                     break;
                 case 10: // approve camp suggestions
                     userCamps = campList.returnUserCamps(staff);
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to view suggestions of:");
-                    choice = Integer.valueOf(scanner.nextLine())-1;
-                    camp = (Camp) userCamps.getFromList(choice);
+                    option = Integer.valueOf(scanner.nextLine());
+                    camp = (Camp) userCamps.getFromList(option-1);
                     camp.getSuggestions().approveSuggestions();
                     break;
                 case 11: // student report
@@ -123,8 +123,8 @@ public class StaffMenuController {
                         campList.printUserCamp(staff);
                         userCamps = campList.returnUserCamps(staff);
                         System.out.println("Enter index of camp you want to generate a student report for:\n");
-                        choice = Integer.valueOf(scanner.nextLine());
-                        camp = (Camp) userCamps.getFromList(choice-1);
+                        option = Integer.valueOf(scanner.nextLine());
+                        camp = (Camp) userCamps.getFromList(option-1);
                         studentReport.printReport(camp);
                     }
                     System.out.println("Student reports printed to studentReport.txt");
@@ -135,8 +135,8 @@ public class StaffMenuController {
                         break;
                     }
                     System.out.println("Print camp committee performance report for 1) All your camps or 2) A specific camp\n");
-                    choice = Integer.valueOf(scanner.nextLine());
-                    if (choice == 1) {
+                    option = Integer.valueOf(scanner.nextLine());
+                    if (option == 1) {
                         System.out.println("Printing Camp Committee Member performance report for ALL your camps:\n");
                         for (int i=0; i< userCamps.list.size(); i++) {
                             camp = (Camp) userCamps.getFromList(i);
@@ -145,11 +145,11 @@ public class StaffMenuController {
                             campCommitteeReport.printReport(camp); 
                         }
                     }
-                    if (choice == 2) {
+                    if (option == 2) {
                         campList.printUserCamp(staff);
                         System.out.println("Enter the index of the camp you want to generate a committee member report for:\n");
-                        choice = Integer.valueOf(scanner.nextLine());
-                        camp = (Camp) userCamps.getFromList(choice-1);
+                        option = Integer.valueOf(scanner.nextLine());
+                        camp = (Camp) userCamps.getFromList(option-1);
                         System.out.println("Printing Camp Committee Member Report for " + camp.getCampInfo().getCampName() + ":");
                         CampCommitteeReport campCommitteeReport = new CampCommitteeReport();
                         campCommitteeReport.printReport(camp);

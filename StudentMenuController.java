@@ -34,7 +34,7 @@ public class StudentMenuController {
                     campList.printUserCamp(student);
                     System.out.println("Camp Registered as Camp Committee Member:");
                     CampCommMember person = campList.findCampCommMember(student);
-                    if (person!=null){System.out.println(person.getCamp());}
+                    if (person!=null){System.out.println(person.getCamp().getCampInfo().getCampName());}
                     else{System.out.println("-You are not in charge of any camps!");}
                     break;
                 case 3:
