@@ -40,8 +40,8 @@ public class CampInformationCreater {
                 System.out.println("Please enter a date in the format of DD-MM-YYYY.");
                 continue;
             }
-            if (registrationClosingDate.isAfter(currentDate) || registrationClosingDate.isEqual(currentDate)) { validDate = true; break; }
-            System.out.println("Camp registration closing date cannot be before current date! (Current date: " + currentDate + ")");
+            if (registrationClosingDate.isAfter(currentDate)) { validDate = true; break; }
+            System.out.println("Camp registration closing date cannot be before or equal to current date! (Current date: " + currentDate + ")");
         } while (validDate == false);
         campInformation.setRegistrationClosingDate(registrationClosingDate);
 

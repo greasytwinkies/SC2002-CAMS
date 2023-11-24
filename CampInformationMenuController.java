@@ -65,12 +65,12 @@ public class CampInformationMenuController {
                             continue;
                         }
                         // registration closing date cannot be BEFORE currentDate, cannot be after starting and ending date
-                        if (checkDate(registrationClosingDate, currentDate) && checkDate(campInfo.getStartingDate(), registrationClosingDate) && checkDate(campInfo.getEndingDate(), registrationClosingDate)) {
+                        if (checkDate(registrationClosingDate, currentDate) && !registrationClosingDate.isEqual(currentDate) && checkDate(campInfo.getStartingDate(), registrationClosingDate) && checkDate(campInfo.getEndingDate(), registrationClosingDate)) {
                             validDate = true;
                             System.out.println("Successfully changed camp registration deadline to " + registrationClosingDate);
                             break;
                         }
-                        System.out.println("Registration closing date cannot be before current date and/or after camp starting date or camp ending date. Please try again.");
+                        System.out.println("Registration closing date cannot be before or equal to current date and/or after camp starting date or camp ending date. Please try again.");
                         } while (validDate == false);
                     campInfo.setRegistrationClosingDate(registrationClosingDate);
                     break;
