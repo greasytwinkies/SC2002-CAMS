@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class SuggestionList extends List {
     SuggestionComparator comparator = new SuggestionComparator();
 
@@ -12,6 +10,7 @@ public class SuggestionList extends List {
     }
 
     public void printList(){
+        if (this.list.size()>0){
         System.out.println(super.listName + ":");
         int i=1;
         for (Object item : super.list){
@@ -21,6 +20,9 @@ public class SuggestionList extends List {
             i++;
         }
         System.out.println("-End of List-");
+        }
+        else{   System.out.println("There are no suggestions!");}
+    
     } 
 
     public void printUserSuggestions(CampCommMember author){
@@ -38,22 +40,24 @@ public class SuggestionList extends List {
     }
 
     public void editSuggestions(int idx){
-        Suggestion newSuggestion = (Suggestion) super.list.get(idx-1);
+        Suggestion newSuggestion = (Suggestion) super.list.get(idx);
         newSuggestion.edit();
         updateList(comparator);
         // ArrayList<Suggestion> s = returnList();
     }
 
     public void deleteFromList(int idx){
-        super.list.remove(idx-1);
+        super.list.remove(idx);
     }
 
     public void approveSuggestions(){
         printList();
-        System.out.print("Entry to approve/reject: ");
-        int idx = Integer.valueOf(scanner.nextLine());
-        Suggestion sug = (Suggestion) super.list.get(idx-1);
-        sug.approve();
+        if (this.list.size()>0){
+            System.out.print("Entry to approve/reject: ");
+            int idx = Integer.valueOf(scanner.nextLine())-1;
+            Suggestion sug = (Suggestion) super.list.get(idx);
+            sug.approve();
+        }
     }
 
 }

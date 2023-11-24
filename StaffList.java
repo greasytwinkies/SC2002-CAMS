@@ -1,5 +1,3 @@
-import java.util.Comparator;
-
 public class StaffList extends List
 {
     NameComparator comparator = new NameComparator();
@@ -19,23 +17,7 @@ public class StaffList extends List
         System.out.println("-End of List-\n");
     }
 
-   
-
     public void addToList(Staff staff) {
         super.addToList(staff, comparator);
-    }
-
-    public void deleteFromList(Staff staff) {
-        super.deleteFromList(staff);
-    }
-
-    // public List[] returnStaffList() {
-    //     return returnStaffList();
-    // }
-
-    class NameComparator implements Comparator<Staff> {
-        public int compare(Staff s1, Staff s2) {
-            return s1.getName().compareTo(s2.getName());
-        }
     }
 }

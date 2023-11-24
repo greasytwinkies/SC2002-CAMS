@@ -1,5 +1,4 @@
 import java.time.*;
-import java.time.chrono.ChronoLocalDateTime;
 
 public class CampInformation {
 	private boolean CampVisibility;

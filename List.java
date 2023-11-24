@@ -13,26 +13,27 @@ public abstract class List {
 
     public abstract void printList();
 
-    public void updateList(Comparator comparator){
+    public boolean updateList(Comparator comparator){
         Collections.sort(list, comparator);
+        return true;
     }
 
-    public void addToList(Object item, Comparator comparator) {
+    public boolean addToList(Object item, Comparator comparator) {
         if (this.list.contains(item)) {
-            System.out.println("Item already exists in list");
+            return false;
         } else {
             this.list.add(item);
             Collections.sort(list, comparator);
-            //System.out.println("Successfully added item");
+            return true;
         }
     };
 
-    public void deleteFromList(Object item) {
+    public boolean deleteFromList(Object item) {
         if (this.list.contains(item)) {
             this.list.remove(item);
-            System.out.println("Successfully removed a item!");
+            return true;
         } else {
-            System.out.println("Error: item does not exist in list");
+            return false;
         }
     };
 
@@ -40,7 +41,6 @@ public abstract class List {
         if (index >= 0 && index < this.list.size()) {
             return this.list.get(index);
         } else {
-            System.out.println("Error: Index out of bounds");
             return null; // or throw an exception
         }
     }

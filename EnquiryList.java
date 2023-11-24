@@ -1,4 +1,3 @@
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class EnquiryList extends List{
@@ -15,15 +14,18 @@ public class EnquiryList extends List{
     }
 
     public void printList(){
-        System.out.println(super.listName + ": ");
-        int i=1;
-        for (Object item : super.list){
-            Enquiry e = (Enquiry) item;
-            System.out.print( i + ") ");
-            e.view();
-            i++;
+        if (this.list.size()>0){
+            System.out.println(super.listName + ": ");
+            int i=1;
+            for (Object item : super.list){
+                Enquiry e = (Enquiry) item;
+                System.out.print( i + ") ");
+                e.view();
+                i++;
+            }
+            System.out.println("-End of List-");
         }
-        System.out.println("-End of List-");
+    else{   System.out.println("There are no enquiries!");}
     }  
 
     public void printUserEnquiry(Student author){
@@ -48,17 +50,20 @@ public class EnquiryList extends List{
     }
 
     public void deleteFromList(int idx){
-        super.list.remove(idx);
-        System.out.println("Successfully deleted!");
+        Enquiry e = (Enquiry) super.list.remove(idx);
+        if (e!=null){ System.out.println("Successfully deleted!");}
+        else System.out.println("Cannot delete!");
     }
 
     public void replyEnquiries(){
         printList();
-        System.out.print("Entry to reply to: ");
-        int idx = Integer.valueOf(scanner.nextLine())-1;
-        Enquiry enquiry = (Enquiry) super.list.get(idx);
-        enquiry.reply();
-        System.out.println("Successfully replied");
+        if (this.list.size()>0){
+            System.out.print("Entry to reply to: ");
+            int idx = Integer.valueOf(scanner.nextLine())-1;
+            Enquiry enquiry = (Enquiry) super.list.get(idx);
+            enquiry.reply();
+            System.out.println("Successfully replied");
+        }
     }
 
 }

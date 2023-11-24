@@ -26,13 +26,13 @@ public class CampCommMenuController {
                 case 4:
                     campComm.viewMySuggestions();
                     System.out.println("Enter number of suggestion to be edited: ");
-                    int idx = Integer.valueOf(scanner.nextLine());
+                    int idx = Integer.valueOf(scanner.nextLine())-1;
                     campComm.getCamp().getSuggestions().editSuggestions(idx);
                     break;
                 case 5:
                     campComm.viewMySuggestions();
                     System.out.println("Enter number of suggestion to be deleted: ");
-                    int del = Integer.valueOf(scanner.nextLine());
+                    int del = Integer.valueOf(scanner.nextLine())-1;
                     campComm.getCamp().getSuggestions().deleteFromList(del);
                     System.out.println("Suggestion successfully deleted.");
                     break;

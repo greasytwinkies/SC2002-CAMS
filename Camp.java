@@ -11,7 +11,7 @@ public class Camp {
 
     public Camp(CampInformation campInformation, Staff staffInCharge){
         this.campInfo = campInformation;
-        campInformation.setStaffInCharge(staffInCharge);
+        this.campInfo.setStaffInCharge(staffInCharge);
         CampAttendeesList = new StudentList("Camp Attendees");
         CampCommitteeMembersList = new StudentList("Camp Committee Members");
         enquiries = new EnquiryList("Enquiry List");

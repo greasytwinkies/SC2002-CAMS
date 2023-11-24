@@ -24,22 +24,29 @@ public class StaffMenuController {
                     // add to staff's list of camps
                     break;
                 case 2:
-                    System.out.println("Enter the Camp Name to edit it");
-                    String campToEdit = scanner.nextLine();
-                    camp = campList.findCamp(campList, campToEdit);
+                    CampList userCamps = campList.returnUserCamps(staff);
+                    campList.printUserCamp(staff);
+                    System.out.println("Enter the index of the camp you want to edit: ");
+                    int option = Integer.valueOf(scanner.nextLine())-1;
+                    camp = (Camp) userCamps.getFromList(option);
                     campInfoControl.CampInformationMenuControl(camp.getCampInfo(), campList);
                     break;
                 case 3:
-                    System.out.println("Enter the Camp Name to delete it: ");
-                    String campToDelete = scanner.nextLine();
-                    camp = campList.findCamp(campList, campToDelete);
-                    campList.deleteFromList(camp);
+                    userCamps = campList.returnUserCamps(staff);
+                    campList.printUserCamp(staff);
+                    System.out.println("Enter the index of the camp you want to delete: ");
+                    option = Integer.valueOf(scanner.nextLine())-1;
+                    camp = (Camp) userCamps.getFromList(option);
+                    boolean done = campList.deleteFromList(camp);
+                    if (done){ System.out.println("Successfully deleted");}
                     // delete from staff's list of camps too
                     break;
                 case 4:
-                    System.out.println("Enter the Camp Name to toggle visibility: ");
-                    String campToggleVisbility = scanner.nextLine();
-                    camp = campList.findCamp(campList, campToggleVisbility);
+                    userCamps = campList.returnUserCamps(staff);
+                    campList.printUserCamp(staff);
+                    System.out.println("Enter the index of the camp to toggle visibility of: ");
+                    option = Integer.valueOf(scanner.nextLine())-1;
+                    camp = (Camp) userCamps.getFromList(option);
                     campInfoControl.toggleCampVisibility(camp.getCampInfo());
                     break;
                 case 5:
@@ -49,46 +56,46 @@ public class StaffMenuController {
                     campList.printUserCamp(staff);
                     break;
                 case 7:
-                    CampList userCamps = campList.returnUserCamps(staff);
+                    userCamps = campList.returnUserCamps(staff);
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to view enquiry of:");
-                    choice = Integer.valueOf(scanner.nextLine());
+                    option = Integer.valueOf(scanner.nextLine())-1;
                     try{
-                        camp = (Camp) userCamps.getFromList(choice-1);
+                        camp = (Camp) userCamps.getFromList(choice);
                         camp.getEnquiries().printList();
                     }
                     catch (NullPointerException e){
                         System.out.println("This camp does not exist!");
                     }
-                    
                     break;
                 case 8:
                     userCamps = campList.returnUserCamps(staff);
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to reply enquiry to:");
-                    choice = Integer.valueOf(scanner.nextLine());
+                    choice = Integer.valueOf(scanner.nextLine())-1;
                     try{
-                        camp = (Camp) userCamps.getFromList(choice-1);
+                        camp = (Camp) userCamps.getFromList(choice);
                         camp.getEnquiries().replyEnquiries();
                     }
                     catch(NullPointerException e){
                         System.out.println("This camp does not exist!");
                     }
-                    
                     break;
                 /* where code modification starts */
                 case 9: // view camp suggestions
                     userCamps = campList.returnUserCamps(staff);
+                    campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to view suggestions of:");
-                    choice = Integer.valueOf(scanner.nextLine());
-                    camp = (Camp) userCamps.getFromList(choice-1);
+                    choice = Integer.valueOf(scanner.nextLine())-1;
+                    camp = (Camp) userCamps.getFromList(choice);
                     camp.getSuggestions().printList();
                     break;
                 case 10: // approve camp suggestions
                     userCamps = campList.returnUserCamps(staff);
+                    campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to view suggestions of:");
-                    choice = Integer.valueOf(scanner.nextLine());
-                    camp = (Camp) userCamps.getFromList(choice-1);
+                    choice = Integer.valueOf(scanner.nextLine())-1;
+                    camp = (Camp) userCamps.getFromList(choice);
                     camp.getSuggestions().approveSuggestions();
                     break;
                 case 11: // student report

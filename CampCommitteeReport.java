@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.io.FileNotFoundException;
-
 public class CampCommitteeReport implements Report {
 
     @Override

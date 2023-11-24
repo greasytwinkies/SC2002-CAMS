@@ -82,34 +82,34 @@ public class Student extends User
     // }
 
     public void viewRegisteredCamps(CampList campList) {
+        System.out.println("Camps Registered as Participant:");
         campList.printUserCamp(this);
     }
 
     public void registerCampAsAttendee(Camp camp){
         // do all the checking in the availableCamps function rather than here
-        camp.getCampAttendeesList().addToList(this);
-        camp.getCampMembersList().addToList(this);
-        // getCampsRegisteredAsParticipant().addToList(camp);
-        camp.getCampInfo().setCurrentParticipantSlots(camp.getCampInfo().getCurrentParticipantSlots()-1);
-        camp.getCampInfo().setCurrentCampMemberSlots(camp.getCampInfo().getCurrentCampMemberSlots()-1);
-        System.out.println("Successfully registered for " + camp.getCampInfo().getCampName() + " as PARTICIPANT!");
-/*         if (camp.getCampInfo().getCurrentParticipantSlots() !=0 && checkCampDeadline(camp) && !checkCampClash(camp) && checkWithdraw(camp)){ //check vacancy, check date clash, check ddl, check whether withdrawed
+        if (camp.getCampInfo().getCurrentParticipantSlots()>0){
             camp.getCampAttendeesList().addToList(this);
-            CampsRegisteredAsParticipant.addToList(camp);
+            camp.getCampMembersList().addToList(this);
+            // getCampsRegisteredAsParticipant().addToList(camp);
+            camp.getCampInfo().setCurrentParticipantSlots(camp.getCampInfo().getCurrentParticipantSlots()-1);
+            camp.getCampInfo().setCurrentCampMemberSlots(camp.getCampInfo().getCurrentCampMemberSlots()-1);
+            System.out.println("Successfully registered for " + camp.getCampInfo().getCampName() + " as PARTICIPANT!");
         }
-        else{
-            System.out.println("You can't register for this camp."); */
+        else{System.out.println("The camp is full!");}
     }
     
     public void registerCampAsCampComm(Camp camp){
-        camp.getCampCommitteeMembersList().addToList(this);
-        camp.getCampMembersList().addToList(this);
-        camp.getCampInfo().setCurrentCampCommitteeSlots(camp.getCampInfo().getTotalCampCommitteeSlots()-1);
-        camp.getCampInfo().setCurrentCampMemberSlots(camp.getCampInfo().getCurrentCampMemberSlots()-1);
-        CampCommMember campCommMember = new CampCommMember(camp);
-        this.setCampCommMember(campCommMember);
-        System.out.println("Successfully registered for " + camp.getCampInfo().getCampName() + " as CAMP COMMITTEE MEMBER !");
-
+        if (camp.getCampInfo().getCurrentCampCommitteeSlots()>0){
+            camp.getCampCommitteeMembersList().addToList(this);
+            camp.getCampMembersList().addToList(this);
+            camp.getCampInfo().setCurrentCampCommitteeSlots(camp.getCampInfo().getTotalCampCommitteeSlots()-1);
+            camp.getCampInfo().setCurrentCampMemberSlots(camp.getCampInfo().getCurrentCampMemberSlots()-1);
+            CampCommMember campCommMember = new CampCommMember(camp);
+            this.setCampCommMember(campCommMember);
+            System.out.println("Successfully registered for " + camp.getCampInfo().getCampName() + " as CAMP COMMITTEE MEMBER !");
+        }
+        else{System.out.println("The camp is full!");}
 
          // TODO: actually add the camp to the campComm variable in Student class
 /*         if (camp.getCampInfo().getCurrentCampCommitteeSlots()!=0 && checkCampDeadline(camp) && !checkCampClash(camp) && checkWithdraw(camp)){ //check vacancy, check date clash, check ddl, check whether is camp comm, check whether withdrawed
@@ -138,7 +138,7 @@ public class Student extends User
         if (isCampRegistered(camp, campList)){
             camp.getCampAttendeesList().list.remove(this);
             camp.getCampMembersList().deleteFromList(this);
-            camp.getWithdrawnStudentList().deleteFromList(this);
+            camp.getWithdrawnStudentList().addToList(this);
             camp.getCampInfo().setCurrentParticipantSlots(camp.getCampInfo().getCurrentParticipantSlots()+1);
             camp.getCampInfo().setCurrentCampMemberSlots(camp.getCampInfo().getCurrentCampMemberSlots()+1);
             return true;
