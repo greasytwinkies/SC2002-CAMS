@@ -32,6 +32,10 @@ public class StudentMenuController {
                     System.out.println("Viewing Registered Camps");
                     // student.viewRegisteredCamps(campList);
                     campList.printUserCamp(student);
+                    System.out.println("Camp Registered as Camp Committee Member:");
+                    CampCommMember person = campList.findCampCommMember(student);
+                    if (person!=null){System.out.println(person.getCamp());}
+                    else{System.out.println("-You are not in charge of any camps!");}
                     break;
                 case 3:
                     // first, print out all available camps
@@ -81,8 +85,8 @@ public class StudentMenuController {
                     System.out.println("Please indicate the camp number you would like to withdraw from:");
                     int campWithdrawChoice = Integer.valueOf(scanner.nextLine());
                     Camp withdrawCamp = (Camp) registeredCamps.getFromList(campWithdrawChoice-1);
-                    student.withdrawCamp(withdrawCamp,campList);
-                    System.out.println("Successfully withdrawn from " + withdrawCamp.getCampInfo().getCampName() + "!");
+                    boolean done = student.withdrawCamp(withdrawCamp,campList);
+                    if (done) System.out.println("Successfully withdrawn from " + withdrawCamp.getCampInfo().getCampName() + "!");
                     break;
                 case 5:
                     System.out.println("Enquiring Camps");
