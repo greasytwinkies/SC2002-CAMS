@@ -25,20 +25,22 @@ public class StaffMenuController {
                     break;
                 case 2:
                     CampList userCamps = campList.returnUserCamps(staff);
+                    if (userCamps == null) { System.out.println("You have not created any camps."); break;}
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to edit: ");
                     int option = Integer.valueOf(scanner.nextLine());
                     camp = (Camp) userCamps.getFromList(option-1);
                     // if there are students or camp comm members, not supposed to edit
-                    if(camp.getCampAttendeesList().list.size() != 0 && camp.getCampCommitteeMembersList().list.size() != 0){
+                    if(camp.getCampAttendeesList().list.size() == 0 && camp.getCampCommitteeMembersList().list.size() == 0){
                         campInfoControl.CampInformationMenuControl(camp.getCampInfo(), campList);
                     }else{
-                        System.out.println("Cannot edit as there are already people inside camp");
+                        System.out.println("Cannot edit as there are already people inside camp.");
                         break;
                     }
                     break;
                 case 3:
                     userCamps = campList.returnUserCamps(staff);
+                    if (userCamps == null) { System.out.println("You have not created any camps."); break;}
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to delete: ");
                     option = Integer.valueOf(scanner.nextLine());
@@ -49,6 +51,7 @@ public class StaffMenuController {
                     break;
                 case 4:
                     userCamps = campList.returnUserCamps(staff);
+                    if (userCamps == null) { System.out.println("You have not created any camps."); break;}
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp to toggle visibility of: ");
                     option = Integer.valueOf(scanner.nextLine());
@@ -56,13 +59,59 @@ public class StaffMenuController {
                     campInfoControl.toggleCampVisibility(camp.getCampInfo());
                     break;
                 case 5:
-                    campList.printList();
+                    CampList allCamps = campList;
+                    int counter=0;
+                    System.out.println("Filter camps by: 1) No filter 2) Date 3) Location 4) Faculty");
+                    option = Integer.valueOf(scanner.nextLine());
+                    switch (option) {
+                        case 1:
+                            allCamps.printList(); 
+                            break;
+                        case 2:
+                            System.out.println("Enter month of camp start date:");
+                            int month = Integer.valueOf(scanner.nextLine());
+                            for (int i=0; i<allCamps.list.size(); i++) {
+                                Camp camp1 = (Camp) allCamps.list.get(i);
+                                if (camp1.getCampInfo().getStartingDate().getMonthValue() == month) { 
+                                    counter++;
+                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName());
+                                }
+                            }
+                            if (counter == 0) { System.out.println("There are no camps that start in this month.");} 
+                            break;
+                        case 3:
+                            System.out.println("Enter location of camp: ");
+                            String location = scanner.nextLine();
+                            for (int i=0; i<allCamps.list.size(); i++) {
+                                Camp camp1 = (Camp) allCamps.list.get(i);
+                                if (camp1.getCampInfo().getLocation().equals(location)) { 
+                                    counter++;
+                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName());
+                                }
+                            }
+                            if (counter == 0) { System.out.println("There are no camps at the specified location.");} 
+                            break;
+                        case 4:
+                            System.out.println("Enter faculty of camp: ");
+                            Faculty faculty = Faculty.valueOf(scanner.nextLine().toUpperCase());
+                            for (int i=0; i<allCamps.list.size(); i++) {
+                                Camp camp1 = (Camp) allCamps.list.get(i);
+                                if (camp1.getCampInfo().getFaculty().equals(faculty)) { 
+                                    counter++;
+                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName());
+                                }
+                            }
+                            if (counter == 0) { System.out.println("There are no camps under the specified faculty.");} 
+                            break;
+                    }
+                    // filters: dates, location, faculty
                     break;
                 case 6:
                     campList.printUserCamp(staff);
                     break;
                 case 7:
                     userCamps = campList.returnUserCamps(staff);
+                    if (userCamps == null) { System.out.println("You have not created any camps."); break;}
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to view enquiry of:");
                     option = Integer.valueOf(scanner.nextLine());
@@ -81,6 +130,7 @@ public class StaffMenuController {
                     break;
                 case 8:
                     userCamps = campList.returnUserCamps(staff);
+                    if (userCamps == null) { System.out.println("You have not created any camps."); break;}
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to reply enquiry to:");
                     option = Integer.valueOf(scanner.nextLine());
@@ -95,6 +145,7 @@ public class StaffMenuController {
                 /* where code modification starts */
                 case 9: // view camp suggestions
                     userCamps = campList.returnUserCamps(staff);
+                    if (userCamps == null) { System.out.println("You have not created any camps."); break;}
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to view suggestions of:");
                     option = Integer.valueOf(scanner.nextLine());
@@ -103,6 +154,7 @@ public class StaffMenuController {
                     break;
                 case 10: // approve camp suggestions
                     userCamps = campList.returnUserCamps(staff);
+                    if (userCamps == null) { System.out.println("You have not created any camps."); break;}
                     campList.printUserCamp(staff);
                     System.out.println("Enter the index of the camp you want to view suggestions of:");
                     option = Integer.valueOf(scanner.nextLine());
@@ -114,6 +166,7 @@ public class StaffMenuController {
                     // next, prompt user for micro-level filtering: 1) all attendees 2) participants only 3) camp comm only 4) specific individual.
                     StudentReport studentReport = new StudentReport();
                     userCamps = campList.returnUserCamps(staff);
+                    if (userCamps == null) { System.out.println("You have not created any camps."); break;}
                     System.out.println("Print student report for 1) All your created camps or 2) A specific camp\n");
                     int campFilter = Integer.valueOf(scanner.nextLine());
                     if (campFilter == 1) { // print all camps
@@ -131,9 +184,7 @@ public class StaffMenuController {
                     break;
                 case 12:
                     userCamps = campList.returnUserCamps(staff);
-                    if(userCamps == null){
-                        break;
-                    }
+                    if (userCamps == null) { System.out.println("You have not created any camps."); break;}
                     System.out.println("Print camp committee performance report for 1) All your camps or 2) A specific camp\n");
                     option = Integer.valueOf(scanner.nextLine());
                     if (option == 1) {

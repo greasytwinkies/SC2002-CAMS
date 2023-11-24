@@ -11,6 +11,7 @@ public class StudentMenuController {
         StudentMenu studentMenu = new StudentMenu();
         
         int choice;
+        int option;
         do {
             System.out.println("\nHello, " + student.getName() + "!");
             CampCommMember campComm = campList.findCampCommMember(student);
@@ -21,8 +22,51 @@ public class StudentMenuController {
             choice = Integer.valueOf(scanner.nextLine());
             switch (choice) {
                 case 1: // view camps that are open to student ie camp that is same faculty or ntu level
-                    System.out.println("Viewing Available Camps"); // not working yet
-                    student.viewAvailableCamps(campList);
+                    CampList allCamps = student.returnAvailableCamps(campList);
+                    int counter=0;
+                    System.out.println("Filter camps by: 1) No filter 2) Date 3) Location 4) Faculty");
+                    option = Integer.valueOf(scanner.nextLine());
+                    switch (option) {
+                        case 1:
+                            allCamps.printList(); 
+                            break;
+                        case 2:
+                            System.out.println("Enter month of camp start date:");
+                            int month = Integer.valueOf(scanner.nextLine());
+                            for (int i=0; i<allCamps.list.size(); i++) {
+                                Camp camp1 = (Camp) allCamps.list.get(i);
+                                if (camp1.getCampInfo().getStartingDate().getMonthValue() == month) { 
+                                    counter++;
+                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName());
+                                }
+                            }
+                            if (counter == 0) { System.out.println("There are no camps that start in this month.");} 
+                            break;
+                        case 3:
+                            System.out.println("Enter location of camp: ");
+                            String location = scanner.nextLine();
+                            for (int i=0; i<allCamps.list.size(); i++) {
+                                Camp camp1 = (Camp) allCamps.list.get(i);
+                                if (camp1.getCampInfo().getLocation().equals(location)) { 
+                                    counter++;
+                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName());
+                                }
+                            }
+                            if (counter == 0) { System.out.println("There are no camps at the specified location.");} 
+                            break;
+                        case 4:
+                            System.out.println("Enter faculty of camp: ");
+                            Faculty faculty = Faculty.valueOf(scanner.nextLine().toUpperCase());
+                            for (int i=0; i<allCamps.list.size(); i++) {
+                                Camp camp1 = (Camp) allCamps.list.get(i);
+                                if (camp1.getCampInfo().getFaculty().equals(faculty)) { 
+                                    counter++;
+                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName());
+                                }
+                            }
+                            if (counter == 0) { System.out.println("There are no camps under the specified faculty.");} 
+                            break;
+                    }
                     break;
                 case 2:
                     // if (student.getCampsRegisteredAsParticipant().list.size() == 0) {

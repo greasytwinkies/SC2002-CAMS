@@ -71,6 +71,52 @@ public class Student extends User
         return availableCamps;
 
     }
+
+    public CampList returnAvailableCamps(CampList campList){
+        CampList availableCamps = new CampList("Camps available to student");
+        if(campList.list.size() == 0){
+                System.out.println("There are currently no available camps!");
+                return null;
+            }
+        for(int i = 0; i < campList.list.size(); i++){
+            Camp camp = (Camp)campList.list.get(i);
+            Faculty campFaculty = camp.getCampInfo().getFaculty();
+            int campVacancies = camp.getCampInfo().getCurrentCampMemberSlots();
+            boolean campVisibility = camp.getCampInfo().getCampVisibility();
+            boolean withdrawn = checkWithdraw(camp);
+
+            // TODO: need to extend this code for visibility later
+            // TODO: also need to check camp dates, etc. (DONE) 
+            // TODO: include camp comm member vacancies. (DONE)
+            // TODO: check if camp already registered for. (DONE)
+            // TODO: might have to split this function, it is getting too big
+            // first, check if camp has vacancies (DONE)
+            if (campVacancies > 0 && campVisibility && withdrawn) {
+                // now check faculty of camp - two scenarios: school-wide camp or faculty-camp (must match with faculty of user)
+                if ((campFaculty == Faculty.NTU) || super.getFacultyInformation() == campFaculty) {
+                    if(checkCampDeadline(camp) && !isCampRegistered(camp,campList) && !checkCampClash(camp,campList)){ // if present date is before the registration closing date & camps not registered yet
+                        availableCamps.addToList(camp);
+                        continue;
+                    }
+                }
+            }
+        }
+        if (availableCamps.list.size() == 0) {
+            return null;
+        }
+        // now print all available camps
+        // TODO: print camp faculty?
+/*         for (int x = 0; x < availableCamps.list.size(); x++) {
+            Camp availableCamp = (Camp) availableCamps.list.get(x);
+            int vacancies = availableCamp.getCampInfo().getCurrentParticipantSlots();
+            int campCommVacancies = availableCamp.getCampInfo().getCurrentCampCommitteeSlots();
+            System.out.print(x+1 + ") ");
+            System.out.println(availableCamp.getCampInfo().getCampName() + "\t\t(" + vacancies + "/" + campCommVacancies + ")");
+        } */
+        
+        return availableCamps;
+
+    }
             
 
     // public void viewRegisteredCamps() {
