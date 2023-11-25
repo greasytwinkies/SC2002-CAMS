@@ -90,10 +90,6 @@ public class StudentMenuController {
                     }
                     break;
                 case 2:
-                    // if (student.getCampsRegisteredAsParticipant().list.size() == 0) {
-                    //     System.out.println("You are currently not registered for any camps!");
-                    //     break;
-                    // }
                     System.out.println("Viewing Registered Camps");
                     // student.viewRegisteredCamps(campList);
                     campList.printUserCamp(student);
@@ -155,18 +151,6 @@ public class StudentMenuController {
                     break;
                 case 5:
                     System.out.println("Enquiring Camps");
-                    // availableCamps = student.viewAvailableCamps(campList);
-                    // if (student.getCampsRegisteredAsParticipant().list.size() == 0) {
-                    //     System.out.println("Please register for a camp before enquiring. ");
-                    // } else {
-                    //     System.out.println("Enter the index of the camp you want to send enquiry to: ");
-                    //     int enquiringCampNumber = Integer.valueOf(scanner.nextLine());
-                    //     Camp enquiringCamp = (Camp) availableCamps.list.get(enquiringCampNumber - 1);
-                    //     // Camp enquiringCamp = searchCamp(campList);
-                    //     student.enquiryMenuController.submitEnquiry(enquiringCamp);
-
-                    // }
-                    // break;
                     System.out.println("1) Available Camps");
                     System.out.println("2) Registered Camps");
                     System.out.println("Enter the type of camps you want to submit enquiry to: ");
@@ -196,20 +180,6 @@ public class StudentMenuController {
                     break;
                 case 6:
                     System.out.println("Viewing Enquiries");
-
-                    // if (student.getCampsRegisteredAsParticipant().list.size() == 0) { // student is not in any camps
-                    //                                                                   // hence no enquiries
-                    //     System.out.println("No enquiries ");
-                    // } else {
-                    //     CampList campRegisteredAsParticipant = student.getCampsRegisteredAsParticipant();
-                    //     int sizeOfRegistered = campRegisteredAsParticipant.list.size();
-                    //     for (int i = 0; i < sizeOfRegistered; i++) {
-                    //         Camp enquiredCamp = (Camp) campRegisteredAsParticipant.getFromList(i);
-                    //         System.out.println(enquiredCamp.getCampInfo().getCampName());
-                    //         student.enquiryMenuController.viewEnquiries(enquiredCamp);
-
-                    //     }
-                    // }
                     System.out.println("1) Available Camps");
                     System.out.println("2) Registered Camps");
                     System.out.println("Enter the type of camps you want to view enquiry of: ");
@@ -266,29 +236,6 @@ public class StudentMenuController {
                         student.enquiryMenuController.editEnquiry(enquiredCamp);
                     }
                     break;
-
-
-                //     // if(student.viewAvailableCamps(campList)){
-                //     // Camp editEnquirecamp = searchCamp(campList);
-                //     // student.editEnquiry(editEnquirecamp);
-                //     // }
-                //     break;
-                // case 8:
-                //     System.out.println("Deleting Enquiry");
-                //     if (!campList.list.isEmpty()) {
-                //         CampList campRegisteredAsParticipant = student.getCampsRegisteredAsParticipant();
-                //         int sizeOfRegistered = campRegisteredAsParticipant.list.size();
-                //         for (int i = 0; i < sizeOfRegistered; i++) {
-                //             Camp deleteEnquireCamp = (Camp) campRegisteredAsParticipant.getFromList(i);
-                //             student.enquiryMenuController.deleteEnquiry(deleteEnquireCamp);
-                //             // Camp deleteEnquireCamp = searchCamp(campList);
-                //             // System.out.println("Error debugging 1");
-                //             // System.out.println("Camp's Enquiry to be deleted: " + deleteEnquireCamp);
-                //             // enquiryMenu.deleteEnquiry(deleteEnquireCamp);
-                //         }
-                //         break;
-
-                //     }
                 case 8:
                     System.out.println("Deleting Enquiry");
                     System.out.println("1) Available Camps");
@@ -346,16 +293,4 @@ public class StudentMenuController {
 
         return LoginPage.Logout();
     }
-
-    // public Camp searchCamp(CampList campList) { // not working
-    // System.out.println("Enter the name of the camp: ");
-    // String campName = scanner.nextLine();
-    // for (int i = 0; i < campList.list.size(); i++) {
-    // if (((Camp) campList.getFromList(i)).getCampInfo().getCampName() == campName)
-    // {
-    // return (Camp) campList.getFromList(i);
-    // }
-    // }
-    // return null;
-    // }
 }
