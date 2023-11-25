@@ -9,12 +9,20 @@ public class StaffMenuController {
         StaffMenu staffMenu = new StaffMenu();
         CampInformationMenuController campInfoControl = new CampInformationMenuController();
 
-        int choice;
+        int choice=0;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         Camp camp;
         do {
             staffMenu.printMenu();
-            choice = Integer.valueOf(scanner.nextLine());
+            int valid=0;
+            while (valid ==0){
+                try {
+                    choice = Integer.valueOf(scanner.nextLine());  
+                    valid=1;                  
+                } catch (Exception NumberFormatException) {
+                    System.out.println("Please enter again!");
+                }
+            }
             switch (choice) {
                 case 1:
                     CampInformation campInformation = CampInformationCreater.populateCampInformation(staff, campList);
@@ -68,8 +76,18 @@ public class StaffMenuController {
                             allCamps.printList(); 
                             break;
                         case 2:
-                            System.out.println("Enter month of camp start date:");
-                            int month = Integer.valueOf(scanner.nextLine());
+                            valid = 0;
+                            int month=0;
+                            while(valid==0){
+                                System.out.println("Enter month of camp start date:");
+                                try{
+                                    month = Integer.valueOf(scanner.nextLine());
+                                    valid=1;                                    
+                                } catch (Exception NumberFormatException) {
+                                    System.out.println("Please enter the integer form of the month");
+                                }
+                            }
+                                                        
                             for (int i=0; i<allCamps.list.size(); i++) {
                                 Camp camp1 = (Camp) allCamps.list.get(i);
                                 if (camp1.getCampInfo().getStartingDate().getMonthValue() == month) { 
@@ -122,7 +140,7 @@ public class StaffMenuController {
                         }else{
                             camp.getEnquiries().printList();
                         }
-                        System.out.println("Error debugging: (3)");
+                        // System.out.println("Error debugging: (3)");
                     }
                     catch (NullPointerException e){
                         System.out.println("This camp does not exist!");

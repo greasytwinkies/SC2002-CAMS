@@ -10,7 +10,7 @@ public class StudentMenuController {
     public int StudentMenuControl(Student student, CampList campList) {
         StudentMenu studentMenu = new StudentMenu();
         
-        int choice;
+        int choice=0;
         int option;
         do {
             System.out.println("\nHello, " + student.getName() + "!");
@@ -19,10 +19,21 @@ public class StudentMenuController {
                         System.out.println("You're a Camp Committee Member of " + campComm.getCamp().getCampInfo().getCampName());
                     }
             studentMenu.printMenu();
-            choice = Integer.valueOf(scanner.nextLine());
+            int valid=0;
+            while (valid ==0){
+                try {
+                    choice = Integer.valueOf(scanner.nextLine());  
+                    valid=1;                  
+                } catch (Exception NumberFormatException) {
+                    System.out.println("Please enter again!");
+                }
+            }
             switch (choice) {
                 case 1: // view camps that are open to student ie camp that is same faculty or ntu level
                     CampList allCamps = student.returnAvailableCamps(campList);
+                    if (allCamps == null){
+                        break;
+                    }
                     int counter=0;
                     System.out.println("Filter camps by: 1) No filter 2) Date 3) Location 4) Faculty");
                     option = Integer.valueOf(scanner.nextLine());
@@ -31,8 +42,18 @@ public class StudentMenuController {
                             allCamps.printList(); 
                             break;
                         case 2:
-                            System.out.println("Enter month of camp start date:");
-                            int month = Integer.valueOf(scanner.nextLine());
+                            valid = 0;
+                            int month=0;
+                            while(valid==0){
+                                System.out.println("Enter month of camp start date:");
+                                try{
+                                    month = Integer.valueOf(scanner.nextLine());
+                                    valid=1;                                    
+                                } catch (Exception NumberFormatException) {
+                                    System.out.println("Please enter the integer form of the month");
+                                }
+                            }
+                                                        
                             for (int i=0; i<allCamps.list.size(); i++) {
                                 Camp camp1 = (Camp) allCamps.list.get(i);
                                 if (camp1.getCampInfo().getStartingDate().getMonthValue() == month) { 
@@ -76,10 +97,10 @@ public class StudentMenuController {
                     System.out.println("Viewing Registered Camps");
                     // student.viewRegisteredCamps(campList);
                     campList.printUserCamp(student);
-                    System.out.println("Camp Registered as Camp Committee Member:");
+                    System.out.println("\nCamp Registered as Camp Committee Member:");
                     CampCommMember person = campList.findCampCommMember(student);
                     if (person!=null){System.out.println(person.getCamp().getCampInfo().getCampName());}
-                    else{System.out.println("-You are not in charge of any camps!");}
+                    else{System.out.println("You are not in charge of any camps!");}
                     break;
                 case 3:
                     // first, print out all available camps
@@ -301,7 +322,7 @@ public class StudentMenuController {
                 case 9:
                     if (campComm==null){
                         System.out.println("ERROR: CANNOT ACCESS CAMP COMMITTEE MENU");
-                        System.out.println("You are not currently a committee member for any camp!");
+                        System.out.println("You are currently not a committee member for any camp!");
                         break;
                     }
                     System.out.println("Successful. Entering committee menu for " + campComm.getCamp().getCampInfo().getCampName());
@@ -314,13 +335,14 @@ public class StudentMenuController {
                     System.out.println("Please log in again.");
                     LoginPage.Logout();
                     break;
-                    
-
+                
+                case 11: 
+                    break;
             }
             System.out.println();
             System.out.println();
             System.out.println();
-        } while ((choice >= 1 && choice < 11) && LoginPage.getLogout()==0);
+        } while ((choice >= 1 && choice < 10) && LoginPage.getLogout()==0);
 
         return LoginPage.Logout();
     }

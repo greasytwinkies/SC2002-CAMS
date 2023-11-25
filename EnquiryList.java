@@ -29,7 +29,7 @@ public class EnquiryList extends List{
     }  
 
     public void printUserEnquiry(Student author){
-        System.out.println(super.listName + " by " + author.getUserID() + ": " );
+        System.out.println(super.listName + " by " + author.getName() + ": " );
         int i=1;
         for (Object item : super.list){
             Enquiry e = (Enquiry) item;
@@ -40,6 +40,17 @@ public class EnquiryList extends List{
             i++;
         }
         System.out.println("-End of List-");
+    }
+
+    public EnquiryList returnUserEnquiry(Student author){
+        EnquiryList newlist = new EnquiryList("Enquiries by " + author.getName());
+        for (Object item : super.list){
+            Enquiry e = (Enquiry) item;
+            if (e.author.getUserID().equals(author.getUserID())){
+                newlist.addToList(e);;
+            }
+        }
+        return newlist;
     }
 
     public void editEnquiries(int idx){

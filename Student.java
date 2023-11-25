@@ -56,6 +56,7 @@ public class Student extends User
             }
         }
         if (availableCamps.list.size() == 0) {
+            System.out.println("There are currently no available camps!");
             return null;
         }
         // now print all available camps
@@ -102,6 +103,7 @@ public class Student extends User
             }
         }
         if (availableCamps.list.size() == 0) {
+            System.out.println("There are currently no available camps!");
             return null;
         }
         // now print all available camps

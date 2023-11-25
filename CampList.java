@@ -23,7 +23,8 @@ public class CampList extends List{
     }
 
     public void printUserCamp(User user){
-        System.out.println(super.listName);
+        if (user instanceof Staff){ System.out.println("Camps created by " + user.getName() + ":");}
+        else {System.out.println("Camps Registered as Camp Attendee:");}
         int i =1;
         int flag =0;
         for (Object item : super.list){

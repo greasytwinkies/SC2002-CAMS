@@ -12,10 +12,20 @@ public class EnquiryMenuController {
     }
 
     public void viewEnquiries(Camp camp) {
+        EnquiryList myEnquiry = camp.getEnquiries().returnUserEnquiry(student);
+        if (myEnquiry.list.size()==0){
+            System.out.println("There are no enquiries to be viewed");
+            return;
+        }
         camp.getEnquiries().printUserEnquiry(student);
     }
 
     public void editEnquiry(Camp camp) {
+        EnquiryList myEnquiry = camp.getEnquiries().returnUserEnquiry(student);
+        if (myEnquiry.list.size()==0){
+            System.out.println("There are no enquiries to be edited");
+            return;
+        }
         camp.getEnquiries().printUserEnquiry(student);
         System.out.print("Entry to be edited: ");
         int idx = Integer.valueOf(Main.scan.nextLine()) - 1;
@@ -34,6 +44,11 @@ public class EnquiryMenuController {
     }
 
     public void deleteEnquiry(Camp camp) {
+        EnquiryList myEnquiry = camp.getEnquiries().returnUserEnquiry(student);
+        if (myEnquiry.list.size()==0){
+            System.out.println("There are no enquiries to be deleted");
+            return;
+        }
         camp.getEnquiries().printUserEnquiry(student);
         System.out.print("Entry to be deleted: ");
         int idx = Integer.valueOf(Main.scan.nextLine())-1;
