@@ -4,20 +4,55 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ *  Represents a student object within the CAMS System, extends User class functionality
+ */
+
 public class Student extends User
 {
+
+    /**
+     *  A Camp Committee member object
+     */
     private CampCommMember campCommMember;
+
+     /**
+     *  scanner object for receiving inputs
+     */
     Scanner scanner = new Scanner(System.in);
+
+    /**
+     *  Date time formatter for formatting specific calender dates
+     */
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    /**
+     *  now refers to the current date 
+     */
     LocalDateTime now = LocalDateTime.now();
 
+    /**
+     *  An EnquiryMenuController object, for student objects to access enquiries
+     */
     EnquiryMenuController enquiryMenuController = new EnquiryMenuController(this);
 
+    
+    /**
+     * Creates a student object with a name, userID, password, and faculty. Inherits from User
+     * @param name This is the name of the Student
+     * @param userID This is the students userID
+     * @param password This is the students password to access CAMS
+     * @param facultyInformation This is the students faculty that they are a part of
+     */
     public Student(String name, String userID, String password, Faculty facultyInformation) {
         super(name, userID, password, facultyInformation);
     }
 
-
+    /**
+     * Method to view all available camps to a Student, through checking for vacancies, faculty, and visibility
+     * @param campList The main camplist of all camps
+     * @return a camplist of available camps to students
+     */
     public CampList viewAvailableCamps(CampList campList){
         CampList availableCamps = new CampList("Camps available to student");
         if(campList.list.size() == 0){
@@ -65,6 +100,11 @@ public class Student extends User
 
     }
 
+    /**
+     * Method to return all available camps that a student is eligible for.
+     * @param campList The main camplist of all camps
+     * @return camplist That a student may take part in
+     */
     public CampList returnAvailableCamps(CampList campList){
         CampList availableCamps = new CampList("Camps available to student");
         if(campList.list.size() == 0){
@@ -97,11 +137,19 @@ public class Student extends User
     }
 
 
+    /**
+     * Method for a student to view all the camps they have registered for (as a camp committee member, or as a participant)
+     * @param campList A list of all camps
+     */
     public void viewRegisteredCamps(CampList campList) {
         System.out.println("Camps Registered as Participant:");
         campList.printUserCamp(this);
     }
 
+    /**
+     * Method for a Student to register for a camp as a participant
+     * @param camp The camp that a student wants to register for
+     */
     public void registerCampAsAttendee(Camp camp){
         // do all the checking in the availableCamps function rather than here
         if (camp.getCampInfo().getCurrentParticipantSlots()>0){
@@ -115,6 +163,10 @@ public class Student extends User
         else{System.out.println("The camp is full!");}
     }
     
+    /**
+     * Method for a Student to register for a camp as a Camp Committee Member
+     * @param camp The camp that the student wants to register for
+     */
     public void registerCampAsCampComm(Camp camp){
         if (camp.getCampInfo().getCurrentCampCommitteeSlots()>0){
             camp.getCampCommitteeMembersList().addToList(this);
@@ -129,14 +181,28 @@ public class Student extends User
     }
 
 
+    /**
+     * Method that returns a Camp Committee Member object
+     * @return The Camp Committee Member object
+     */
     public CampCommMember getCampComm(){
         return this.campCommMember;
     }
 
+    /**
+     * Method to set a indicate that a student is a Camp Committee Member
+     * @param campCommMember Set a Student as a Camp Committee object
+     */
     public void setCampCommMember(CampCommMember campCommMember){
         this.campCommMember = campCommMember;
     }
 
+    /**
+     * Method to withdraw a student from a camp. It checks if student is registered, before withdrawal.
+     * @param camp The camp that the student is a member of
+     * @param campList The main camp List
+     * @return True if successfully withdrawn, else false.
+     */
     public boolean withdrawCamp(Camp camp, CampList campList){
         if (isCampRegistered(camp, campList)){
             camp.getCampAttendeesList().list.remove(this);
@@ -150,6 +216,11 @@ public class Student extends User
     }
 
 
+    /**
+     * Method for checking if a Student has withdrawn from a camp in the past.
+     * @param camp The camp that is being checked for student withdrawal
+     * @return False if a student has been withdrawn from the camp before, else true.
+     */
     public boolean checkWithdraw(Camp camp){
         ArrayList<Object> withdrawn = camp.getWithdrawnStudentList().returnStudentList();
         for (Object item : withdrawn){
@@ -159,6 +230,11 @@ public class Student extends User
         return true; //nvr withdraw before
     }
 
+    /**
+     * Method to check a camps registration deadline
+     * @param camp The camp being checked for its deadline
+     * @return True if current date is before camp deadline
+     */
     public boolean checkCampDeadline(Camp camp){
         LocalDate curDate = LocalDate.now();
         LocalDate regDdl = camp.getCampInfo().getRegistrationClosingDate();
@@ -166,6 +242,12 @@ public class Student extends User
         else{   return false;}
     }
 
+    /**
+     * Method to check is a students camp registration clashes with any other camps they have registered for
+     * @param camp Main camp a student is registering for
+     * @param campList List of Camps that a student has also registered for
+     * @return True if there is a clash, False otherwise.
+     */
     public boolean checkCampClash(Camp camp, CampList campList) {
         // Get the start and end dates of the new camp
         LocalDate newCampStartDate = camp.getCampInfo().getStartingDate();
@@ -193,6 +275,13 @@ public class Student extends User
         return false; // No clash with any registered camp
     }
 
+
+    /**
+     * Method to deetermine if a student has registered for a specific camp, as a committee member, or as a participant
+     * @param camp Camp that they have registered for
+     * @param campList To cross check with all other camps student has registered for as a participant
+     * @return True if Student has registered for the camp, false otherwise
+     */
     public boolean isCampRegistered(Camp camp, CampList campList){
         //as a committee
         ArrayList<Object> committeelist = camp.getCampCommitteeMembersList().returnStudentList();

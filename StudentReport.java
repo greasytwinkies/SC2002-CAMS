@@ -1,10 +1,21 @@
 import java.io.*;
 import java.util.Scanner;
 
+/**
+ * Class to create a Student Report of a specific camp, implements the Report interface
+ */
 public class StudentReport implements Report {
 
+    /**
+     * Scanner object too receive inputs
+     */
     Scanner scanner = Main.getScanner();
 
+
+    /**
+     * Method to print a Camps report
+     * @param camp Camp of the report to be printed
+     */
     @Override
     public void printReport(Camp camp) throws FileNotFoundException {
         StudentList filterList = filter(camp);
@@ -15,10 +26,20 @@ public class StudentReport implements Report {
         System.setOut(console);
     }
 
+    /**
+     * Method to print the Report with specific filter
+     * @param camp Name of the camp for the report
+     * @param filterList The list of Students to be printed
+     */
     public void printReportFiltered (Camp camp, StudentList filterList) {
         printList(camp, filterList);
     }
 
+    /**
+     * Method to print list of Students, indicating if they are Participants or Committee members.
+     * @param camp Camp to generate a List for
+     * @param filterList Filtered list of students being used
+     */
     public void printList(Camp camp, StudentList filterList) {
         System.out.println(camp.getCampInfo().getCampName());
         if (filterList.list.size() == 0) {
@@ -42,9 +63,33 @@ public class StudentReport implements Report {
         System.out.println("");
     }
 
+    /**
+     * Method to filter a camps participants by all of its members
+     * @param camp Camp to be filtered
+     * @return List of all Camp Members, including both particiants and camp committee members
+     */
     public StudentList filterAllAttendees(Camp camp) { return camp.getCampMembersList(); }
+
+    /**
+     * Method to filter a camps members by only its participants, not its camp comm members
+     * @param camp Camp to be filtered
+     * @return List of all participant members
+     */
     public StudentList filterAllParticipants(Camp camp) { return camp.getCampAttendeesList(); }
+
+     /**
+     * Method to filter a camps members by only its camp comm members, not its participants
+     * @param camp Camp to be filtered
+     * @return List of all camp comm members
+     */
     public StudentList filterAllCampComm(Camp camp) { return camp.getCampCommitteeMembersList(); }
+
+    /**
+     * Method to find a specific student in a camp
+     * @param camp Camp to be filtered
+     * @param name Name of the Student to be located
+     * @return a StudentList of the student
+     */
     public StudentList filterByName (Camp camp, String name )
     {             
             StudentList student = new StudentList("specific student");
@@ -58,6 +103,11 @@ public class StudentReport implements Report {
             return student;
     }
 
+    /**
+     * Method to print a reports for all camps in a camp list
+     * @param campList List of camps to generate reports of
+     * @throws FileNotFoundException When camp list does not exist
+     */
     public void printReportsForAllCamps (CampList campList) throws FileNotFoundException {
         System.out.println("Filter all camps by: 1) All camp attendees 2) Camp participants only 3) Camp Committee members only 4) A specific individual\n");
         int filter = Integer.valueOf(scanner.nextLine());
@@ -90,6 +140,11 @@ public class StudentReport implements Report {
         System.setOut(console);
     }
 
+    /**
+     * Method to filter a specific camp by certain parameters
+     * @param camp Camp to be filtered
+     * @return The filtered camp (By Camp comm, Participants, all)
+     */
     public StudentList filter(Camp camp) {
         System.out.println("Filter by: 1) All camp attendees 2) Camp participants only 3) Camp Committee members only 4) A specific individual\n");
         int filter = Integer.valueOf(scanner.nextLine());

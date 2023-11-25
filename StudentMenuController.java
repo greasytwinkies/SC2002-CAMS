@@ -1,12 +1,24 @@
 import java.util.Scanner;
 
+/**
+ * Controls the interactions between the Student class and the Student Menu, 
+ */
 public class StudentMenuController {
     Scanner scanner = Main.getScanner();
 
+    /**
+     * Creates a StudentMenuController
+     */
     public StudentMenuController() {
 
     }
 
+    /**
+     * Creates Student Menu Controller to facilitate interactions between students input and the Page
+     * @param student A student object
+     * @param campList A list of Camps that the Student is able to view, and is apart of
+     * @return an int for a student to exit and return to the main Login Page
+     */
     public int StudentMenuControl(Student student, CampList campList) {
         StudentMenu studentMenu = new StudentMenu();
         

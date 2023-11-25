@@ -8,8 +8,8 @@ public interface Report {
 
     /**
      * Method for other classes to implement reports
-     * @param camp
-     * @throws FileNotFoundException
+     * @param camp takes in a camp object
+     * @throws FileNotFoundException When this file cannot be found
      */
     public void printReport(Camp camp) throws FileNotFoundException;
 }

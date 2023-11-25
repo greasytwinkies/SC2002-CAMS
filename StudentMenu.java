@@ -3,6 +3,10 @@
 */
 
 public class StudentMenu implements iMenu {
+
+    /**
+     * Method to Print the Menu for Students options.
+     */
     public void printMenu() {
         System.out.println("==============================");
         System.out.println("STUDENT MENU");

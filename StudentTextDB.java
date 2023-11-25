@@ -9,12 +9,28 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 
+/**
+ * Class to manage all Student objects within the CAMS system. Database of Student objects with their information.
+ */
 public class StudentTextDB {
 	
+
+	/**
+	 * size of the number of Student Objects within the data base
+	 */
 	private static int size;
+
+	/**
+	 * Seperator for ease of formatting Student data
+	 */
 	public static final String SEPARATOR = "|";
 
-    // an example of reading
+    /**
+	 * Method to read in a Students information, and then create student object, then add to an array
+	 * @param filename Filename where Student data is located
+	 * @return an Array of student with all the data
+	 * @throws IOException when file name does not exist
+	 */
 	public static ArrayList readStudents(String filename) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList)read(filename);
@@ -38,6 +54,13 @@ public class StudentTextDB {
 			return alr ;
 	}
 
+	/**
+	 * Method to read a filename for students data, and add it to an array except for a specific student
+	 * @param filename Name of file being read
+	 * @param student Student who is not to be in the list
+	 * @return array of student objects with their data fields, except for specified student
+	 * @throws IOException if filename does not exist
+	 */
 	public static ArrayList readStudentsExcept(String filename, Student student) throws IOException {
 		// read String from text file
 		ArrayList stringArray = (ArrayList)read(filename);
@@ -68,7 +91,14 @@ public class StudentTextDB {
 	}
 
   // an example of saving
-public static void saveStudent(String filename, List al) throws IOException {
+
+    /** 
+	 * Method to save a Students information into the database
+	 * @param filename File for student data to be written into
+	 * @param al List of Student objects
+	 * @throws IOException if filename does not exist
+	 */
+	public static void saveStudent(String filename, List al) throws IOException {
 		List alw = new ArrayList() ;// to store Professors data
 
         for (int i = 0 ; i < al.size() ; i++) {
@@ -87,6 +117,13 @@ public static void saveStudent(String filename, List al) throws IOException {
 	}
 
   /** Write fixed content to the given file. */
+
+  /**
+   * Method to write a students data into a database file
+   * @param fileName Name of the file
+   * @param data Students data to be added to the file
+   * @throws IOException if file name does not exist
+   */
   public static void write(String fileName, List data) throws IOException  {
     PrintWriter out = new PrintWriter(new FileWriter(fileName));
 
@@ -101,6 +138,11 @@ public static void saveStudent(String filename, List al) throws IOException {
   }
 
   //create a new student
+
+  /**
+   * Method to create a student and save it within the StudentText Data base
+   * @param createdStudent Students information whose being written into the data base
+   */
   public static void createStudent(Student createdStudent){
 	StudentTextDB txtDB = new StudentTextDB();
     	String filename = "studentlist.txt" ;
@@ -118,6 +160,13 @@ public static void saveStudent(String filename, List al) throws IOException {
   }
 
   /** Read the contents of the given file. */
+
+  /**
+   * Method to read in a file, and return a list of all of its information
+   * @param fileName file to be read
+   * @return List of information from the file
+   * @throws IOException if file does not exist
+   */
   public static List read(String fileName) throws IOException {
 	List data = new ArrayList() ;
     Scanner scanner = new Scanner(new FileInputStream(fileName));
@@ -132,6 +181,10 @@ public static void saveStudent(String filename, List al) throws IOException {
     return data;
   }
 
+  /**
+   * Method to input Student objects from Student list into the Student Text Data Base.
+   * @param studenList List of students to be added to the database.
+   */
   public static void populateStudentList(StudentList studenList){
 		StudentTextDB txtDB = new StudentTextDB();
     	String filename = "studentlist.txt" ;
@@ -153,10 +206,19 @@ public static void saveStudent(String filename, List al) throws IOException {
 		}
   }
 
+
+  /**
+   * Method to get the size of the database (how many student objects)
+   * @return size of data base
+   */
   public static int getSize(){
 	return size;
   }
 
+  /**
+   * Method to update a students password
+   * @param student Student whose password is to be updated
+   */
   public static void updatePassword(Student student){
 		StudentTextDB txtDB = new StudentTextDB();
     	String filename = "studentlist.txt" ;
