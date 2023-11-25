@@ -1,3 +1,7 @@
+/**
+    Represents menu options for staff
+*/
+
 public class StaffMenu implements iMenu {
     public void printMenu() {
         System.out.println("==============================");

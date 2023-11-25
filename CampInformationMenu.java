@@ -1,3 +1,7 @@
+/**
+    Represents menu options of editing a camp
+*/
+
 public class CampInformationMenu implements iMenu {
     public void printMenu() {
         System.out.println("==============================");
