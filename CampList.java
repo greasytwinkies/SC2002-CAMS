@@ -1,16 +1,29 @@
 import java.util.ArrayList;
-
+/**
+    Represents the list of all camps.
+*/
 public class CampList extends List{
     CampNameComparator comparator = new CampNameComparator();
 
-    public CampList(String CampName){
-        super(CampName);
+    /**
+     * Creates a list.
+     * @param ListName The name of the list.
+     */
+    public CampList(String ListName){
+        super(ListName);
     }
 
+    /**
+     * Adds the item to the list.
+     * @param item The item to be added to the list.
+     */
     public void addToList(Object item){
         super.addToList(item, comparator);
     }
 
+    /**
+     * Prints the list of camps.
+     */
     public void printList(){
         System.out.println(this.listName + ": ");
         int i = 1;

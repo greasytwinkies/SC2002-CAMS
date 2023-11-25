@@ -1,5 +1,12 @@
+/**
+    Represents the report of camp committee members.
+*/
 public class CampCommitteeReport implements Report {
 
+    /**
+     * Prints the report of the camp committee members in the camp, indicating how many points the camp committee member has.
+     * @param camp This is the camp for which the camp commitee report would be printed based on.
+     */
     @Override
     public void printReport(Camp camp) {
         //student name\t

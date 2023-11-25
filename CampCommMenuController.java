@@ -1,9 +1,15 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+/**
+    Represents the controller that controls the interaction betwween camp committee member and camp committee menu options.
+*/
 public class CampCommMenuController {
     Scanner scanner = Main.getScanner();
 
+    /**
+     * Takes in the choice of what the camp committee member would like to do.
+     * @param campComm This is the camp committee interacting with the controller.
+     */
     public void CampCommMenuControl(CampCommMember campComm) {
         CampCommMenu campCommMenu = new CampCommMenu();
         Camp camp = campComm.getCamp();
