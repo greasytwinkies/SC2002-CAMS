@@ -28,8 +28,5 @@ public class CampCommMember{
     public void viewMySuggestions(){
         camp.getSuggestions().printUserSuggestions(this);
     }
-
-
-    // public void generateReport(){}; //prob not void bah
     
 }

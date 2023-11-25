@@ -76,16 +76,6 @@ public class StaffTextDB {
 			}
 			return alr ;
 	}
-
-	//
-	// public static Faculty getFacultyFromString(String facultyStr) {
-	// 	for (Faculty faculty : Faculty.values()) {
-	// 		if (faculty.name().equalsIgnoreCase(facultyStr)) {
-	// 			return faculty;
-	// 		}
-	// 	}
-	// 	return null; // or throw an exception or return a default value
-	// }
 	
 
   // an example of saving
@@ -190,26 +180,4 @@ public static void saveStaff(String filename, List al) throws IOException {
 
 }
 
-// public static void main(String[] aArgs)  {
-//     	StaffTextDB txtDB = new StaffTextDB();
-//     	String filename = "stafflist.txt" ;
-// 		try {
-// 			// read file containing Professor records.
-// 			ArrayList al = StaffTextDB.readStaffs(filename) ;
-// 			for (int i = 0 ; i < al.size() ; i++) {
-// 					Staff staff = (Staff)al.get(i);
-// 					System.out.println("Name " + staff.getName() );
-// 					System.out.println("Email " + staff.getUserID() );
-// 					System.out.println("faculty " + staff.getFacultyInformation());
-// 					System.out.println("password " + staff.getPassword());
-// 			}
-// 			Staff s1 = new Staff("daddy sean","DAD@ntu.edu.sg","im so hot", "MACS");
-// 			// al is an array list containing Professor objs
-// 			al.add(s1);
-// 			// write Professor record/s to file.
-// 			StaffTextDB.saveStaff(filename, al);
-// 		}catch (IOException e) {
-// 			System.out.println("IOException > " + e.getMessage());
-// 		}
-//   }
 }
