@@ -17,7 +17,7 @@ public class SuggestionList extends List {
 
     /**
     * Adds the given suggestion to the list.
-    * @param e The suggestion object to be added to the list.
+    * @param s The suggestion object to be added to the list.
     */
     public void addToList(Suggestion s){
         super.addToList(s, comparator);

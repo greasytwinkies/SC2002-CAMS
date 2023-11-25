@@ -75,7 +75,7 @@ public abstract class List {
 
     /**
     * Returns the object that corresponds to the given index in the list.
-    * @param idx The index of the object in the list to be returned.
+    * @param index The index of the object in the list to be returned.
     * @return Returns the object corresponding to the given index in the list. Returns null if the index specified is out of bounds.
     */
     public Object getFromList(int index) {
