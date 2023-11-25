@@ -39,7 +39,10 @@ public class StudentMenuController {
                     option = Integer.valueOf(scanner.nextLine());
                     switch (option) {
                         case 1:
-                            allCamps.printList(); 
+                            System.out.println("Camp Name\t\tCamp Vacancies");
+                            System.out.println("\t\t\t(Participant/Camp Committee)");
+                            System.out.println("");
+                            student.viewAvailableCamps(campList);
                             break;
                         case 2:
                             valid = 0;
@@ -53,12 +56,16 @@ public class StudentMenuController {
                                     System.out.println("Please enter the integer form of the month");
                                 }
                             }
-                                                        
+                            System.out.println("Camp Name\t\tCamp Vacancies");
+                            System.out.println("\t\t\t(Participant/Camp Committee)");
+                            System.out.println("");                           
                             for (int i=0; i<allCamps.list.size(); i++) {
                                 Camp camp1 = (Camp) allCamps.list.get(i);
+                                int vacancies = camp1.getCampInfo().getCurrentParticipantSlots();
+                                int campCommVacancies = camp1.getCampInfo().getCurrentCampCommitteeSlots();
                                 if (camp1.getCampInfo().getStartingDate().getMonthValue() == month) { 
                                     counter++;
-                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName());
+                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName()+ "\t\t(" + vacancies + "/" + campCommVacancies + ")");
                                 }
                             }
                             if (counter == 0) { System.out.println("There are no camps that start in this month.");} 
@@ -66,11 +73,16 @@ public class StudentMenuController {
                         case 3:
                             System.out.println("Enter location of camp: ");
                             String location = scanner.nextLine();
+                            System.out.println("Camp Name\t\tCamp Vacancies");
+                            System.out.println("\t\t\t(Participant/Camp Committee)");
+                            System.out.println("");
                             for (int i=0; i<allCamps.list.size(); i++) {
                                 Camp camp1 = (Camp) allCamps.list.get(i);
+                                int vacancies = camp1.getCampInfo().getCurrentParticipantSlots();
+                                int campCommVacancies = camp1.getCampInfo().getCurrentCampCommitteeSlots();
                                 if (camp1.getCampInfo().getLocation().equals(location)) { 
                                     counter++;
-                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName());
+                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName()+ "\t\t(" + vacancies + "/" + campCommVacancies + ")");
                                 }
                             }
                             if (counter == 0) { System.out.println("There are no camps at the specified location.");} 
@@ -78,11 +90,16 @@ public class StudentMenuController {
                         case 4:
                             System.out.println("Enter faculty of camp: ");
                             Faculty faculty = Faculty.valueOf(scanner.nextLine().toUpperCase());
+                            System.out.println("Camp Name\t\tCamp Vacancies");
+                            System.out.println("\t\t\t(Participant/Camp Committee)");
+                            System.out.println("");
                             for (int i=0; i<allCamps.list.size(); i++) {
                                 Camp camp1 = (Camp) allCamps.list.get(i);
+                                int vacancies = camp1.getCampInfo().getCurrentParticipantSlots();
+                                int campCommVacancies = camp1.getCampInfo().getCurrentCampCommitteeSlots();
                                 if (camp1.getCampInfo().getFaculty().equals(faculty)) { 
                                     counter++;
-                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName());
+                                    System.out.println(counter + ") " + camp1.getCampInfo().getCampName() + "\t\t(" + vacancies + "/" + campCommVacancies + ")");
                                 }
                             }
                             if (counter == 0) { System.out.println("There are no camps under the specified faculty.");} 
