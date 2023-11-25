@@ -3,6 +3,9 @@
 */
 
 public class CampInformationMenu implements iMenu {
+    /**
+     * prints menu options of camps information to be edited
+     */
     public void printMenu() {
         System.out.println("==============================");
         System.out.println("Enter your choice:");

@@ -3,6 +3,9 @@
 */
 
 public class CampCommMenu implements iMenu {
+    /**
+     * prints menu options for what a camp committee can do
+     */
     public void printMenu() {
         System.out.println("==============================");
         System.out.println("CAMP COMMITTEE MENU");

@@ -1,9 +1,19 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+    Represents the login page for users to log into CAMS.
+*/
 public class LoginPage {
+    /**
+    * Reflects the logout status of the user.
+    * By default, the user is logged in (not logged out).
+    */
     private static int logout = 0;
 
+    /**
+    * Allows user to login to CAMS.
+    */
     public static User login() {
         int choice = 0;
         setLogout(0);
@@ -96,6 +106,12 @@ public class LoginPage {
         return null;
     }
 
+    /**
+    * Extracts userID from a given email address.
+    * ie. "KOH1" in "KOH1@e.ntu.edu.sg".
+    * @param Email The given email for the userID to be extracted from.
+    * @return The userID extracted from the given email address.
+    */
     public static String ExtractUserName(String Email) {
         int EndIndex = Email.indexOf("@");
         if (EndIndex != -1) {
@@ -105,6 +121,11 @@ public class LoginPage {
         }
     }
 
+
+    /**
+    * Allows a new student account to be created.
+    * @return Returns the new Student object being created.
+    */
     public static Student createStudentAccount() {
         Scanner scan = Main.getScanner();
         scan.nextLine();
@@ -145,6 +166,11 @@ public class LoginPage {
         return createdStudent;
     }
 
+
+    /**
+    * Allows a new staff account to be created.
+    * @return Returns the new Staff object being created.
+    */
     public static Staff createStaffAccount() {
         Scanner scan = Main.getScanner();
         scan.nextLine();
@@ -185,18 +211,18 @@ public class LoginPage {
         return createdStaff;
     }
 
+    /**
+    * Facilitates the login of a Student based on the given list of existing student accounts, as well as the inputted userID and password.
+    * @param studentList List of existing (registered) student accounts.
+    * @param UserID The input student ID.
+    * @param StudentPassword The input student password.
+    * @return Returns the respective student object corresponding to the input details. If the userID and/or password is invalid, a null object is returned.
+    */
     public static Student studentLogin(StudentList studentList, String UserID, String StudentPassword) {
         Scanner scan = Main.getScanner();
         int sizeStudent = StudentTextDB.getSize();
         for (int i = 0; i < sizeStudent; i++) {
             Student student = (Student) studentList.getFromList(i);
-
-            // try{
-            //     System.out.println(student.getUserID());
-            // }
-            // catch (NullPointerException e){
-            //     continue;
-            // }
 
             try{
                 if (UserID.toLowerCase().equals(ExtractUserName(student.getUserID()).toLowerCase())
@@ -224,6 +250,14 @@ public class LoginPage {
 
     }
 
+
+    /**
+    * Facilitates the login of a Staff based on the given list of existing staff accounts, as well as the inputted userID and password.
+    * @param staffList List of existing (registered) staff accounts.
+    * @param UserID The input staff ID.
+    * @param StaffPassword The input staff password.
+    * @return Returns the respective staff object corresponding to the input details. If the userID and/or password is invalid, a null object is returned.
+    */
     public static Staff staffLogin(StaffList staffList, String UserID, String StaffPassword) {
         Scanner scan = Main.getScanner();
         int sizeStaff = StaffTextDB.getSize();
@@ -262,6 +296,10 @@ public class LoginPage {
         return null;
     }
 
+    /**
+    * Allows the given user's password to be changed.
+    * @param user The user whose password is to be changed.
+    */
     public static void changePassword(User user) {
         Scanner scan = Main.getScanner();
         String prevPassInput = "";
@@ -303,14 +341,25 @@ public class LoginPage {
         } while (oldPassMatch == false);
     }
 
+    /**
+    * Returns the current logout status.
+    */
     public static int getLogout() {
         return logout;
     }
 
+    /**
+    * Sets the current logout status with the given input.
+    * @param i Reflects the logout status after the function has been executed. 1 represents logged out, while 0 represents logged in.
+    */
     public static void setLogout(int i) {
         logout = i;
     }
 
+    /**
+    * Executes a logout.
+    * @return The logout status after the method has been executed.
+    */
     public static int Logout() {
         setLogout(1);
         return getLogout();

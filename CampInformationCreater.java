@@ -1,10 +1,17 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
-
+/**
+    Creates the information for a camp.
+*/
 public class CampInformationCreater {
+    /**
+     * Populates the camp information of a camp.
+     * @param staff The staff in charge.
+     * @param campList The list of camps.
+     * @return The information of the camp.
+     */
     public static CampInformation populateCampInformation(Staff staff, CampList campList) {
         Scanner scanner = Main.getScanner();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");

@@ -3,6 +3,9 @@
 */
 
 public class StaffMenu implements iMenu {
+    /**
+     * prints menu options for what a staff can do
+     */
     public void printMenu() {
         System.out.println("==============================");
         System.out.println("STAFF MENU");

@@ -2,10 +2,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
-
+/**
+    Represents the controller that allows interaction between the camp information to be edited and the menu to edit the camp.
+*/
 public class CampInformationMenuController {
+    /**
+     * Scanner.
+     */
     Scanner scanner = Main.getScanner();
 
+    /**
+     * The controller to allow different aspects of a camps information to be edited.
+     * @param campInfo The information of the camp.
+     * @param campList The list of all camps.
+     */
     public void CampInformationMenuControl(CampInformation campInfo, CampList campList) {
         CampInformationMenu campInfoMenu = new CampInformationMenu();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -172,6 +182,10 @@ public class CampInformationMenuController {
         } while (choice > 0 && choice < 11);
     }
 
+    /**
+     * Toggls the visibility fo the camp.
+     * @param campinfo The information of the camp.
+     */
     public void toggleCampVisibility(CampInformation campinfo){
         
         System.out.print(campinfo.getCampName() + " Current visibility status: ");
@@ -200,6 +214,12 @@ public class CampInformationMenuController {
 
     }
 
+    /**
+     * Checks if date 1 is not before date 2.
+     * @param date1 The first date to be compared with second date.
+     * @param date2 The second date to be compared with first date.
+     * @return Boolean true if date 1 is not before date 2.
+     */
     public boolean checkDate(LocalDate date1, LocalDate date2) {
         return (!(date1.isBefore(date2)));
     }
