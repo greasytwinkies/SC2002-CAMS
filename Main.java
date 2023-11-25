@@ -1,14 +1,30 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+    Represents the main class of the directory.
+*/
+
 public class Main {
 
+    /**
+    * Scanner to read inputs; This scanner is shared by all other classes in the directory.
+    */
     public static Scanner scan = new Scanner(System.in);
 
+    /**
+    * Returns the scanner object initialized in the main class, such that it can be used in other classes.
+    * @return The initialized scanner object.
+    */
     public static Scanner getScanner(){
         return scan;
     }
 
+    /**
+     * Main method for CAMS.
+     * @param args The command line arguments.
+     * @throws FileNotFoundException When a specified file cannot be found.
+     **/
     public static void main(String[] args) throws FileNotFoundException {
 
 

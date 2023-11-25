@@ -2,9 +2,22 @@ import java.io.FileNotFoundException;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+/**
+    Controls the interaction between Staff and StaffMenu classes.
+*/
 public class StaffMenuController {
+    /**
+    * Scanner to read inputs
+    */
     Scanner scanner = Main.getScanner();
 
+    /**
+    * The main function for interaction between Staff and StaffMenu classes.
+    * @param staff The staff interacting with the Staff menu.
+    * @param campList The global list of camps.
+    * @return The logout status of the given staff.
+    * @throws FileNotFoundException When a given file cannot be found.
+    */
     public int StaffMenuControl(Staff staff, CampList campList) throws FileNotFoundException {
         StaffMenu staffMenu = new StaffMenu();
         CampInformationMenuController campInfoControl = new CampInformationMenuController();
