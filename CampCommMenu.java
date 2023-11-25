@@ -1,3 +1,7 @@
+/**
+    Represents menu options for camp committee member
+*/
+
 public class CampCommMenu implements iMenu {
     public void printMenu() {
         System.out.println("==============================");

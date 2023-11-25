@@ -1,3 +1,7 @@
+/**
+    Represents menu options for student
+*/
+
 public class StudentMenu implements iMenu {
     public void printMenu() {
         System.out.println("==============================");
