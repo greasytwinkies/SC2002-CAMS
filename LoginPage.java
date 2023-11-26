@@ -82,17 +82,26 @@ public class LoginPage {
                     System.out.println("Create new account:");
                     System.out.println("1) Student");
                     System.out.println("2) Staff");
-                    choice = scan.nextInt();
+                    choice = Integer.valueOf(scan.nextLine());
+                    
                     if (choice == 1) {
                         Student createdStudent = createStudentAccount();
                         StudentTextDB.createStudent(createdStudent);
                         return createdStudent;
-                    } else if (choice == 2) {
+                    }
+                    if (choice == 2) {
                         System.out.println("Please verify staff access using unique password: ");
-                        // TODO: make some sort of check before allowing creating of a staff account
-                        Staff createdStaff = createStaffAccount();
-                        StaffTextDB.createStaff(createdStaff);
-                        return createdStaff;
+                        String adminPassword = scan.next();
+                        if(adminPassword.equals("admin")){
+                            Staff createdStaff = createStaffAccount();
+                            StaffTextDB.createStaff(createdStaff);
+                            return createdStaff;
+                        }
+                        else{
+                            System.out.println("Cannot access this feature if not an admin. ");
+                            return null;
+                        }
+                        
 
                     }
 
