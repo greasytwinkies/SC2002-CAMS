@@ -31,16 +31,23 @@ public class CampCommMenuController {
                     break;
                 case 4:
                     campComm.viewMySuggestions();
+                    if(campComm.getCamp().getSuggestions().list.size() == 0){
+                        System.out.println("There are no suggestions for the camp");
+                        break;
+                    }
                     System.out.println("Enter number of suggestion to be edited: ");
                     int idx = Integer.valueOf(scanner.nextLine())-1;
                     campComm.getCamp().getSuggestions().editSuggestions(idx);
                     break;
                 case 5:
                     campComm.viewMySuggestions();
+                    if(campComm.getCamp().getSuggestions().list.size() == 0){
+                        System.out.println("There are no suggestions for the camp");
+                        break;
+                    }
                     System.out.println("Enter number of suggestion to be deleted: ");
                     int del = Integer.valueOf(scanner.nextLine())-1;
                     campComm.getCamp().getSuggestions().deleteFromList(del);
-                    System.out.println("Suggestion successfully deleted.");
                     break;
                 case 6:
                     campComm.getCamp().getEnquiries().printList();

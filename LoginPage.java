@@ -21,12 +21,12 @@ public class LoginPage {
         // create a list of student based on student database
         StudentList studentList = new StudentList("Studentlist");
         StudentTextDB.populateStudentList(studentList);
-        studentList.printList(); // this function doesnt work the way its supposed to...
+        // studentList.printList();
 
         // create a list of staff based on staff database
         StaffList staffList = new StaffList("stafflist");
         StaffTextDB.populateStaffList(staffList);
-        staffList.printList(); //// this function doesnt work the way its supposed to...
+        // staffList.printList();
 
         Scanner scan = Main.getScanner();
 

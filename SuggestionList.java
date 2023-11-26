@@ -75,7 +75,14 @@ public class SuggestionList extends List {
     * @param idx The index of the specified suggestion (within the given list) to be deleted.
     */
     public void deleteFromList(int idx){
-        super.list.remove(idx);
+        Suggestion suggestion = (Suggestion) super.list.get(idx);
+        if(suggestion.getState().equals(Suggestion.states.PENDING)){
+            super.list.remove(idx);
+            System.out.println("Suggestion successfully deleted.");
+            return;
+        }
+        System.out.println("Cannot delete!");
+        
     }
 
     /**

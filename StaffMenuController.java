@@ -66,6 +66,10 @@ public class StaffMenuController {
                     System.out.println("Enter the index of the camp you want to delete: ");
                     option = Integer.valueOf(scanner.nextLine());
                     camp = (Camp) userCamps.getFromList(option-1);
+                    if(camp.getCampMembersList().list.size() > 0){
+                        System.out.println("Cannot delete because camp has people!");
+                        break;
+                    }
                     boolean done = campList.deleteFromList(camp);
                     if (done){ System.out.println("Successfully deleted");}
                     // delete from staff's list of camps too

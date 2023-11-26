@@ -17,7 +17,7 @@ public class Suggestion implements iService {
     /**
      * states of the Suggestion
      */
-    public enum states {PENDING, APPROVED, REJECTED};
+    public static enum states {PENDING, APPROVED, REJECTED};
 
     /**
      * Status of the Suggestion
@@ -65,6 +65,10 @@ public class Suggestion implements iService {
             System.out.println("You have not made any suggestions");
         }
         else{
+            if(this.status != status.PENDING){
+                System.out.println("Suggestion cannot be edited because it has been responded to");
+                return;
+            }
             System.out.println("Edit suggestion:");
             this.suggestion = scanner.nextLine();
             System.out.println("Suggestion edited.");
@@ -112,6 +116,10 @@ public class Suggestion implements iService {
                 }
             } while (choice < 1 || choice > 3);
         }
+    }
+
+    public states getState(){
+        return this.status;
     }
     
 }
