@@ -9,4 +9,3 @@ DENISE|DL007@e.ntu.edu.sg|SCSE|password
 SEAN|SEAN@e.ntu.edu.sg|EEE|password
 KOH|KOH1@e.ntu.edu.sg|ADM|password
 LIU|SL22@e.ntu.edu.sg|NBS|password
-SEAN|SEAN@e.ntu.edu.sg|EEE|password
