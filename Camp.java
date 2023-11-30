@@ -1,59 +1,104 @@
+/**
+    Represents a camp created by staff that students can register for as participants or committee members.
+*/
+
 public class Camp {
+    /**
+     * The camps information.
+     */
     private CampInformation campInfo;
 
+    /**
+     * The list of enquries a camp has.
+     */
     private EnquiryList enquiries;
+
+    /**
+     * The list of suggestions a camp has.
+     */
     private SuggestionList suggestions;
-    // private SuggestionList suggestions;
+    
+    /**
+     * The list of students as camp attendees.
+     */
     private StudentList CampAttendeesList;
+
+    /**
+     * The list of students as camp committee members.
+     */
     private StudentList CampCommitteeMembersList;
+
+    /**
+     * The list of students consisting of camp attendees and camp committees.
+     */
     private StudentList CampMemberList;
 
+    /**
+     * The list of students who withdrew from this camp.
+     */
+    private StudentList WithdrawnStudentList;
+
+    /**
+     * Creates a new camp with the given campInformation, staffInCharge.
+     * Initialises the following lists: campAttendeesList, CampCommitteeMembersList, enquiries, suggestions, WithdrawnStudentList, CampMemberList.
+     * @param campInformation This is the camp infroamtion.
+     * @param staffInCharge This is the staff in charge of the camp.
+     */
     public Camp(CampInformation campInformation, Staff staffInCharge){
         this.campInfo = campInformation;
-        campInformation.setStaffInCharge(staffInCharge);
+        this.campInfo.setStaffInCharge(staffInCharge);
         CampAttendeesList = new StudentList("Camp Attendees");
         CampCommitteeMembersList = new StudentList("Camp Committee Members");
         enquiries = new EnquiryList("Enquiry List");
         suggestions = new SuggestionList("Suggestion List");
-
+        WithdrawnStudentList = new StudentList("Withdrawn students");
+        CampMemberList = new StudentList("All Members");
     }
 
-    //     // Initialize the lists
-    //     StudentList CampAttendeesList = new StudentList();
-    //     CampCommitteeMembersList = new StudentList();
-    //     CampMemberList = new StudentList();
-    // }
+    /**
+     * Gets the information of the camp.
+     * @return
+     */
+    public CampInformation getCampInfo(){  return this.campInfo;}
 
-    // public void registerStudent(Student studentName) {
-    //     if (campInfo.getCurrentParticipantVacancies() < campInfo.getTotalParticipantSlots()) {
-    //         // campInfo.getParticipantMembers().add(studentName);
-    //         CampMemberList.addToList(studentName);
-    //         CampAttendeesList.addToList(studentName); // what is the difference between CampMembers and CampAttendees?
-    //         campInfo.setCurrentParticipantSlots(campInfo.getCurrentParticipantVacancies() + 1);
-    //     } else {
-    //         System.out.println("No more slots available for participants.");
-    //     }
-    // }
-
-    // public void registerCommitteeMember(CampCommMember committeeMemberName) {
-    //     if (campInfo.getCurrentCampCommitteeVacancies() < campInfo.getTotalCampCommitteeSlots()) {
-    //         // campInfo.getCampCommitteeMembers().add(committeeMemberName);
-    //         // campInfo.getCampMembers().add(committeeMemberName);
-    //         campInfo.setCurrentCampCommitteeVacanciess(campInfo.getCurrentCampCommitteeVacancies() + 1);
-    //     } else {
-    //         System.out.println("No more slots available for committee members.");
-    //     }
-    // }
-    public CampInformation getCampInfo(){  return this.campInfo;    }
+    /**
+     * Gets the enquiry list of the camp.
+     * @return
+     */
     public EnquiryList getEnquiries(){ return enquiries;}
-    public SuggestionList getSuggestions(){ return this.suggestions;    }
 
+    /**
+     * Gets the suggestion list of the camp.
+     */
+    public SuggestionList getSuggestions(){ return this.suggestions;}
+
+    /**
+     * Gets the camp Attendee list of the camp.
+     * @return
+     */
     public StudentList getCampAttendeesList() {return CampAttendeesList;}
 
-    public StudentList getCampCommitteeMembersList(){return CampCommitteeMembersList;} 
+    /**
+     * Gets the camp committee list of the camp.
+     * @return
+     */
+    public StudentList getCampCommitteeMembersList(){return CampCommitteeMembersList;}
 
+    /**
+     * Gets the camp attendees and committees list of the camp.
+     * @return
+     */
     public StudentList getCampMembersList(){return this.CampMemberList;}
 
+    /**
+     * Gets the withdrawn student list of the camp.
+     * @return
+     */
+    public StudentList getWithdrawnStudentList(){return this.WithdrawnStudentList;}
+
+    /**
+     * Prints the camps name.
+     */
     public void printCampInfo(){
         System.out.println(getCampInfo().getCampName());
     }

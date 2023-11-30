@@ -1,8 +1,15 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+/**
+    Represents the controller that controls the interaction betwween camp committee member and camp committee menu options.
+*/
 public class CampCommMenuController {
     Scanner scanner = Main.getScanner();
 
+    /**
+     * Takes in the choice of what the camp committee member would like to do.
+     * @param campComm This is the camp committee interacting with the controller.
+     */
     public void CampCommMenuControl(CampCommMember campComm) {
         CampCommMenu campCommMenu = new CampCommMenu();
         Camp camp = campComm.getCamp();
@@ -24,36 +31,45 @@ public class CampCommMenuController {
                     break;
                 case 4:
                     campComm.viewMySuggestions();
+                    if(campComm.getCamp().getSuggestions().list.size() == 0){
+                        System.out.println("There are no suggestions for the camp");
+                        break;
+                    }
                     System.out.println("Enter number of suggestion to be edited: ");
-                    int idx = Integer.valueOf(scanner.nextLine());
+                    int idx = Integer.valueOf(scanner.nextLine())-1;
                     campComm.getCamp().getSuggestions().editSuggestions(idx);
                     break;
                 case 5:
                     campComm.viewMySuggestions();
+                    if(campComm.getCamp().getSuggestions().list.size() == 0){
+                        System.out.println("There are no suggestions for the camp");
+                        break;
+                    }
                     System.out.println("Enter number of suggestion to be deleted: ");
-                    int del = Integer.valueOf(scanner.nextLine());
+                    int del = Integer.valueOf(scanner.nextLine())-1;
                     campComm.getCamp().getSuggestions().deleteFromList(del);
-                    System.out.println("Suggestion successfully deleted.");
+                    break;
+                case 6:
+                    campComm.getCamp().getEnquiries().printList();
+                    break;
+                case 7:
+                    campComm.getCamp().getEnquiries().replyEnquiries();
+                    campComm.addPoints(1);
+                    break;
+                case 8:
+                    StudentReport studentReport = new StudentReport();
+                    try {
+                        studentReport.printReport(camp);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Student report printed to studentReport.txt");
                     break;
                 case 9:
                     System.out.println("EXITING CAMP COMMITTEE MEMBER MENU");
                     System.out.println("");
                     System.out.println("RETURNING TO STUDENT MENU");
                     break;
-            //     case 4:
-            //         campComm.deleteMySuggestions();
-            //         break;
-            //     case 5:
-            //         campComm.viewEnquiries();
-            //         break;
-            //     case 6:
-            //         campComm.replyEnquiries();
-            //         break;
-            //     case 7:
-            //         campComm.generateReport();
-            //         break;
-            //     case 8:
-            //         break;
             }
         } while (choice > 0 && choice < 9);
     }

@@ -1,10 +1,11 @@
-KOH|KOH1@e.ntu.edu.sg|ADM|password
-BRANDON|BR015@e.ntu.edu.sg|EEE|password
-CALVIN|CT113@e.ntu.edu.sg|SCSE|password
 CHAN|YCN019@e.ntu.edu.sg|NBS|password
-DENISE|DL007@e.ntu.edu.sg|SCSE|password
 DONG|DON84@e.ntu.edu.sg|ADM|password
+CALVIN|CT113@e.ntu.edu.sg|SCSE|password
+BRANDON|BR015@e.ntu.edu.sg|EEE|password
+CHERN|YCHERN@e.ntu.edu.sg|SCSE|password
 ERNEST|ELI34@e.ntu.edu.sg|EEE|password
 LEE|LE51@e.ntu.edu.sg|SCSE|password
+DENISE|DL007@e.ntu.edu.sg|SCSE|password
+SEAN|SEAN@e.ntu.edu.sg|EEE|password
+KOH|KOH1@e.ntu.edu.sg|ADM|password
 LIU|SL22@e.ntu.edu.sg|NBS|password
-CHERN|YCHERN@e.ntu.edu.sg|SCSE|cabbage

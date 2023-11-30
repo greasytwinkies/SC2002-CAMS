@@ -1,4 +1,11 @@
+/**
+    Represents menu options for staff
+*/
+
 public class StaffMenu implements iMenu {
+    /**
+     * prints menu options for what a staff can do
+     */
     public void printMenu() {
         System.out.println("==============================");
         System.out.println("STAFF MENU");
@@ -16,7 +23,8 @@ public class StaffMenu implements iMenu {
         System.out.println("(10) Approve camp committee suggestions");
         System.out.println("(11) Generate student report");
         System.out.println("(12) Generate camp committee member performance report");
-        System.out.println("(13) Exit Menu");
+        System.out.println("(13) Change password");
+        System.out.println("(14) Exit Menu");
         System.out.println("==============================");
         System.out.println("");
     }

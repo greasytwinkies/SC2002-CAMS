@@ -1,4 +1,12 @@
+/**
+    Represents menu options for student
+*/
+
 public class StudentMenu implements iMenu {
+
+    /**
+     * Method to Print the Menu for Students options.
+     */
     public void printMenu() {
         System.out.println("==============================");
         System.out.println("STUDENT MENU");
@@ -12,8 +20,9 @@ public class StudentMenu implements iMenu {
         System.out.println("(6) View your enquiries");
         System.out.println("(7) Edit enquiry");
         System.out.println("(8) Delete enquiry");
-        System.out.println("(9) Access Camp Committee menu");
-        System.out.println("(10) Exit menu");
+        System.out.println("(9) **Access Camp Committee menu**");
+        System.out.println("(10) Change password");
+        System.out.println("(11) Exit menu");
         System.out.println("==============================");
         System.out.println("");
     }

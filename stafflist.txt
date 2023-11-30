@@ -1,5 +1,5 @@
-Madhukumar|HUKUMAR@NTU.EDU.SG|SCSE|Password
-Alexei|OURIN@ntu.edu.sg|ADM|Password
-Chattopadhyay|UPAM@NTU.EDU.SG|EEE|Password
-Datta|ANWIT@NTU.EDU.SG|SCSE|Password
-Arvind|ARVI@NTU.EDU.SG|NBS|Cabbage
+Madhukumar|HUKUMAR@NTU.EDU.SG|SCSE|password
+Datta|ANWIT@NTU.EDU.SG|SCSE|password
+Alexei|OURIN@ntu.edu.sg|ADM|password
+Arvind|ARVI@NTU.EDU.SG|NBS|password
+Chattopadhyay|UPAM@NTU.EDU.SG|EEE|password
